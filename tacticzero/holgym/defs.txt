@@ -1,0 +1,154 @@
+ZIP_def大⊢ (∀l2. ZIP ([],l2) = []) ∧ (∀l1. ZIP (l1,[]) = []) ∧
+  ∀x1 l1 x2 l2. ZIP (x1::l1,x2::l2) = (x1,x2)::ZIP (l1,l2);
+
+UNZIP大⊢ UNZIP [] = ([],[]) ∧
+  ∀x l. UNZIP (x::l) = (FST x::FST (UNZIP l),SND x::SND (UNZIP l));
+
+UNIQUE_DEF大⊢ ∀e L. UNIQUE e L ⇔ ∃L1 L2. L1 ⧺ [e] ⧺ L2 = L ∧ ¬MEM e L1 ∧ ¬MEM e L2;
+
+TL_DEF大⊢ TL [] = [] ∧ ∀h t. TL (h::t) = t;
+
+TAKE_def大⊢ (∀n. TAKE n [] = []) ∧
+  ∀n x xs. TAKE n (x::xs) = if n = 0 then [] else x::TAKE (n − 1) xs;
+
+SUM_ACC_DEF大⊢ (∀acc. SUM_ACC [] acc = acc) ∧
+  ∀h t acc. SUM_ACC (h::t) acc = SUM_ACC t (h + acc);
+
+SUM大⊢ SUM [] = 0 ∧ ∀h t. SUM (h::t) = h + SUM t;
+
+splitAtPki_def大⊢ (∀P k. splitAtPki P k [] = k [] []) ∧
+  ∀P k h t.
+      splitAtPki P k (h::t) =
+      if P 0 h then k [] (h::t)
+      else splitAtPki (P ∘ SUC) (λp s. k (h::p) s) t;
+
+SNOC大⊢ (∀x. SNOC x [] = [x]) ∧ ∀x x' l. SNOC x (x'::l) = x'::SNOC x l;
+
+SHORTLEX_def大⊢ (∀R l2. SHORTLEX R [] l2 ⇔ l2 ≠ []) ∧
+  ∀R h1 t1 l2.
+      SHORTLEX R (h1::t1) l2 ⇔
+      case l2 of
+        [] => F
+      | h2::t2 =>
+        if LENGTH t1 < LENGTH t2 then T
+        else if LENGTH t1 = LENGTH t2 then
+          if R h1 h2 then T else if h1 = h2 then SHORTLEX R t1 t2 else F
+        else F;
+
+SET_TO_LIST_primitive_def大⊢ SET_TO_LIST =
+  WFREC (@R. WF R ∧ ∀s. FINITE s ∧ s ≠ ∅ ⇒ R (REST s) s)
+    (λSET_TO_LIST a.
+         I
+           (if FINITE a then
+              if a = ∅ then [] else CHOICE a::SET_TO_LIST (REST a)
+            else ARB));
+
+REVERSE_DEF大⊢ REVERSE [] = [] ∧ ∀h t. REVERSE (h::t) = REVERSE t ⧺ [h];
+
+REV_DEF大⊢ (∀acc. REV [] acc = acc) ∧ ∀h t acc. REV (h::t) acc = REV t (h::acc);
+
+PAD_RIGHT大⊢ ∀c n s. PAD_RIGHT c n s = s ⧺ GENLIST (K c) (n − LENGTH s);
+
+PAD_LEFT大⊢ ∀c n s. PAD_LEFT c n s = GENLIST (K c) (n − LENGTH s) ⧺ s;
+
+OPT_MMAP_def大⊢ (∀f. OPT_MMAP f [] = SOME []) ∧
+  ∀f h0 t0.
+      OPT_MMAP f (h0::t0) =
+      OPTION_BIND (f h0) (λh. OPTION_BIND (OPT_MMAP f t0) (λt. SOME (h::t)));
+
+oHD_def大⊢ ∀l. oHD l = case l of [] => NONE | h::v1 => SOME h;
+
+oEL_def大⊢ (∀n. oEL n [] = NONE) ∧
+  ∀n x xs. oEL n (x::xs) = if n = 0 then SOME x else oEL (n − 1) xs;
+
+NULL_DEF大⊢ (NULL [] ⇔ T) ∧ ∀h t. NULL (h::t) ⇔ F;
+
+nub_def大⊢ nub [] = [] ∧ ∀x l. nub (x::l) = if MEM x l then nub l else x::nub l;
+
+MAP大⊢ (∀f. MAP f [] = []) ∧ ∀f h t. MAP f (h::t) = f h::MAP f t;
+
+LUPDATE_def大⊢ (∀e n. LUPDATE e n [] = []) ∧ (∀e x l. LUPDATE e 0 (x::l) = e::l) ∧
+  ∀e n x l. LUPDATE e (SUC n) (x::l) = x::LUPDATE e n l;
+
+LRC_def大⊢ (∀R x y. LRC R [] x y ⇔ x = y) ∧
+  ∀R h t x y. LRC R (h::t) x y ⇔ x = h ∧ ∃z. R x z ∧ LRC R t z y;
+
+LLEX_def大⊢ (∀R l2. LLEX R [] l2 ⇔ l2 ≠ []) ∧
+  ∀R h1 t1 l2.
+      LLEX R (h1::t1) l2 ⇔
+      case l2 of
+        [] => F
+      | h2::t2 => if R h1 h2 then T else if h1 = h2 then LLEX R t1 t2 else F;
+
+LIST_TO_SET_DEF大⊢ (∀x. set [] x ⇔ F) ∧ ∀h t x. set (h::t) x ⇔ x = h ∨ set t x;
+
+list_size_def大⊢ (∀f. list_size f [] = 0) ∧
+  ∀f a0 a1. list_size f (a0::a1) = 1 + (f a0 + list_size f a1);
+
+LIST_LIFT2_def大⊢ ∀f xs ys. LIST_LIFT2 f xs ys = MAP f xs <*> ys;
+
+LIST_IGNORE_BIND_def大⊢ ∀m1 m2. LIST_IGNORE_BIND m1 m2 = LIST_BIND m1 (K m2);
+
+LIST_GUARD_def大⊢ ∀b. LIST_GUARD b = if b then [()] else [];
+
+list_case_def大⊢ (∀v f. list_CASE [] v f = v) ∧ ∀a0 a1 v f. list_CASE (a0::a1) v f = f a0 a1;
+
+LIST_BIND_def大⊢ ∀l f. LIST_BIND l f = FLAT (MAP f l);
+
+LIST_APPLY_def大⊢ ∀fs xs. fs <*> xs = LIST_BIND fs (combin$C MAP xs);
+
+LENGTH大⊢ LENGTH [] = 0 ∧ ∀h t. LENGTH (h::t) = SUC (LENGTH t);
+
+LEN_DEF大⊢ (∀n. LEN [] n = n) ∧ ∀h t n. LEN (h::t) n = LEN t (n + 1);
+
+LAST_DEF大⊢ ∀h t. LAST (h::t) = if t = [] then h else LAST t;
+
+isPREFIX大⊢ (∀l. [] ≼ l ⇔ T) ∧
+  ∀h t l. h::t ≼ l ⇔ case l of [] => F | h'::t' => h = h' ∧ t ≼ t';
+
+INDEX_OF_def大⊢ ∀x. INDEX_OF x = OPTION_MAP FST ∘ INDEX_FIND 0 ($= x);
+
+INDEX_FIND_def大⊢ (∀i P. INDEX_FIND i P [] = NONE) ∧
+  ∀i P h t.
+      INDEX_FIND i P (h::t) =
+      if P h then SOME (i,h) else INDEX_FIND (SUC i) P t;
+
+HD大⊢ ∀h t. HD (h::t) = h;
+
+GENLIST_AUX大⊢ (∀f l. GENLIST_AUX f 0 l = l) ∧
+  ∀f n l. GENLIST_AUX f (SUC n) l = GENLIST_AUX f n (f n::l);
+
+GENLIST大⊢ (∀f. GENLIST f 0 = []) ∧ ∀f n. GENLIST f (SUC n) = SNOC (f n) (GENLIST f n);
+
+FRONT_DEF大⊢ ∀h t. FRONT (h::t) = if t = [] then [] else h::FRONT t;
+
+FOLDR大⊢ (∀f e. FOLDR f e [] = e) ∧ ∀f e x l. FOLDR f e (x::l) = f x (FOLDR f e l);
+
+FOLDL大⊢ (∀f e. FOLDL f e [] = e) ∧ ∀f e x l. FOLDL f e (x::l) = FOLDL f (f e x) l;
+
+FLAT大⊢ FLAT [] = [] ∧ ∀h t. FLAT (h::t) = h ⧺ FLAT t;
+
+FIND_def大⊢ ∀P. FIND P = OPTION_MAP SND ∘ INDEX_FIND 0 P;
+
+FILTER大⊢ (∀P. FILTER P [] = []) ∧
+  ∀P h t. FILTER P (h::t) = if P h then h::FILTER P t else FILTER P t;
+
+EXISTS_DEF大⊢ (∀P. EXISTS P [] ⇔ F) ∧ ∀P h t. EXISTS P (h::t) ⇔ P h ∨ EXISTS P t;
+
+EVERYi_def大⊢ (∀P. EVERYi P [] ⇔ T) ∧
+  ∀P h t. EVERYi P (h::t) ⇔ P 0 h ∧ EVERYi (P ∘ SUC) t;
+
+EVERY_DEF大⊢ (∀P. EVERY P [] ⇔ T) ∧ ∀P h t. EVERY P (h::t) ⇔ P h ∧ EVERY P t;
+
+EL大⊢ (∀l. EL 0 l = HD l) ∧ ∀l n. EL (SUC n) l = EL n (TL l);
+
+dropWhile_def大⊢ (∀P. dropWhile P [] = []) ∧
+  ∀P h t. dropWhile P (h::t) = if P h then dropWhile P t else h::t;
+
+DROP_def大⊢ (∀n. DROP n [] = []) ∧
+  ∀n x xs. DROP n (x::xs) = if n = 0 then x::xs else DROP (n − 1) xs;
+
+APPEND大⊢ (∀l. [] ⧺ l = l) ∧ ∀l1 l2 h. h::l1 ⧺ l2 = h::(l1 ⧺ l2);
+
+ALL_DISTINCT大⊢ (ALL_DISTINCT [] ⇔ T) ∧
+  ∀h t. ALL_DISTINCT (h::t) ⇔ ¬MEM h t ∧ ALL_DISTINCT t;

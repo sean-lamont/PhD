@@ -1,0 +1,3 @@
+list:
+
+["HD", "TL_DEF", "APPEND", "FLAT", "LENGTH", "MAP", ]

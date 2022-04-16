@@ -1,0 +1,71 @@
+* To discuss:
+
++ [X] NeurIPS fomatting is done.
+
++ [-] Insert new tables. Preferrably one as a table and the other as 
+  a bar chart
+
+  + [X] Search stategies
+    #+begin_table
+    |                      | proved |         % | timesteps | length |   |   |   |
+    |----------------------+--------+-----------+-----------+--------+---+---+---|
+    | all random           |     39 | 14.606742 |     14.51 |   3.12 |   |   |   |
+    | BFS_stochastic (b=2) |     99 | 37.078652 |     15.32 |   3.25 |   |   |   |
+    | BFS_stochastic (b=3) |     79 | 29.588015 |     17.01 |   2.60 |   |   |   |
+    | BFS_topk (b=2)       |    116 | 43.445693 |     15.85 |   3.10 |   |   |   |
+    | BFS_topk (b=3)       |     92 | 34.456929 |     14.79 |   2.36 |   |   |   |
+    | DFS_stochastic (b=2) |     83 | 31.086142 |      8.33 |   6.00 |   |   |   |
+    | DFS_stochastic (b=3) |     96 | 35.955056 |      9.71 |   6.21 |   |   |   |
+    | DFS_stochastic (b=5) |    104 | 38.951311 |     11.08 |   6.98 |   |   |   |
+    | DFS_topk (b=2)       |     86 | 32.209738 |      8.04 |   5.86 |   |   |   |
+    | DFS_topk (b=3)       |     90 | 33.707865 |      9.78 |   6.36 |   |   |   |
+    | DFS_topk (b=5)       |    104 | 38.951311 |     10.07 |   5.89 |   |   |   |
+    | latest_fringe        |    112 | 41.947566 |     11.07 |   6.94 |   |   |   |
+    | random_fringe        |    106 | 39.700375 |     17.09 |   4.35 |   |   |   |
+    | TacticZero           |    132 | 49.438202 |     11.72 |   5.00 |   |   |   |
+    #+TBLFM: $3=$2 * 100/267
+    #+end_table
+    
+  + [ ] Hammer comparison
+    #+begin_table
+    |                                       | proved        | overlap 1 | overlap 8 |   |   |
+    |---------------------------------------+---------------+-----------+-----------+---+---|
+    | TacticZero 8                          |               |           |           |   |   |
+    | TacticZero                            | 132,127,129   |           |           |   |   |
+    | hammer (cheating)                     | 178           |           |           |   |   |
+    | hammer (Vampire w/ ps b 32 from 256)  | 72/73         |        54 |           |   |   |
+    | hammer (Vampire w/ ps b 128 from 256) | 63/68         |        47 |           |   |   |
+    | hammer (Vampire)                      | 44/47         |        35 |           |   |   |
+    | hammer (z3 w/ ps b 32 from 256)       | 50/53         |        40 |           |   |   |
+    | hammer (z3 w/ ps b 128 from 256)      | 49/51         |        36 |           |   |   |
+    | hammer (Z3)                           | 41/41         |        30 |           |   |   |
+    | hammer (E w/ ps b 32 from 256)        | 80/82         |        55 |           |   |   |
+    | hammer (E w/ ps b 128 from 256)       | 85/90  83/88  |        54 |           |   |   |
+    | hammer (E)                            | 66/70  64/68  |        45 |           |   |   |
+    | hammer (combined)                     | 70/77         |        49 |           |   |   |
+    | hammer (combined 32 256)              | 84/101        |        60 |           |   |   |
+    | hammer (combined 128 256)             | 91/112 90/109 |        61 |           |   |   |
+    | METIS_TAC[] for all                   | 13            |           |           |   |   |
+    | BFS_random  (b=3)                     | 35/12.02/1.85 |           |           |   |   |
+    | DFS_random  (b=5)                     | 31/6.77/2.93  |           |           |   |   |
+    #+end_table
+
++ [-] Add an explanation in supp why using HOL4
+
+  - This is quite ridiculous as it's similar to asking 
+    why having so many theorem provers.
+
+  - A paragrah from Michael?
+
+    + Bullet points providing tech reasons for using HOL4
+      + Quicker restarts than hol light
+      + Strong support for multi threading
+      + Maybe also difference in library?
+      + Community (CakeML -- a large corpus)
+
++ [-] Remove some figures to save space
+  - pseudo code
+  - or architecture
+
++ [-] Maybe a bit more contextualization
+

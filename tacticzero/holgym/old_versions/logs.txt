@@ -1,0 +1,73 @@
+Initialization done. Main goal is:
+MAP f l = h::t ⇔ ∃x0 t0. l = x0::t0 ∧ h = f x0 ∧ t = MAP f t0.
+Initialization done. Main goal is:
+∀l x y i. MEM x (LUPDATE y i l) ⇒ x = y ∨ MEM x l.
+Timeout when applying tactic rpt strip_tac >> metis_tac[LIST_LIFT2_def, LIST_LIFT2_def, LENGTH, dropWhile_def, ZIP_def, APPEND, splitAtPki_def, LIST_LIFT2_def, EXISTS_DEF, UNZIP] to g `(MEM x (LUPDATE y i l))==>x = y ∨ MEM x l`;.
+Failed due to metis timout.
+Reward pool: [0, -1, 0, 0, 0, 0, -1, 0, 0, -1, -1, -1, -1, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -10]
+Total reward: -17
+
+Initialization done. Main goal is:
+(¬LLEX R [] [] ∧ ¬LLEX R (h1::t1) []) ∧ LLEX R [] (h2::t2) ∧ (LLEX R (h1::t1) (h2::t2) ⇔ R h1 h2 ∨ h1 = h2 ∧ LLEX R t1 t2).
+Proved in 7 steps.
+Reward pool: [0, 0, -1, -1, 0, 0, 1]
+Total reward: -1
+Proof trace: [('strip_tac', '(¬LLEX R [] [] ∧ ¬LLEX R (h1::t1) []) ∧ LLEX R [] (h2::t2) ∧ (LLEX R (h1::t1) (h2::t2) ⇔ R h1 h2 ∨ h1 = h2 ∧ LLEX R t1 t2)'), ('simp[EVERYi_def, FRONT_DEF, FRONT_DEF, ALL_DISTINCT, REV_DEF, FRONT_DEF, UNZIP, TAKE_def, LIST_BIND_def, LIST_BIND_def]', '¬LLEX R [] [] ∧ ¬LLEX R (h1::t1) []'), ('strip_tac', 'LLEX R [] (h2::t2) ∧ (LLEX R (h1::t1) (h2::t2) ⇔ R h1 h2 ∨ h1 = h2 ∧ LLEX R t1 t2)'), ('fs[LIST_IGNORE_BIND_def, isPREFIX, APPEND, MAP, LUPDATE_def, APPEND, LIST_IGNORE_BIND_def, LUPDATE_def, LAST_DEF, LIST_IGNORE_BIND_def]', 'LLEX R [] (h2::t2)'), ('fs[LIST_TO_SET_DEF, list_case_def, REV_DEF, LIST_APPLY_def, FLAT, INDEX_FIND_def, oEL_def, PAD_LEFT, oHD_def, SHORTLEX_def]', 'LLEX R (h1::t1) (h2::t2) ⇔ R h1 h2 ∨ h1 = h2 ∧ LLEX R t1 t2')]
+
+Initialization done. Main goal is:
+(∀x y. R1 x y ⇒ R2 x y) ⇒ LLEX R1 x y ⇒ LLEX R2 x y.
+Timeout when applying tactic metis_tac[list_size_def, LIST_BIND_def, SUM_ACC_DEF, SET_TO_LIST_primitive_def, LIST_TO_SET_DEF, LUPDATE_def, SET_TO_LIST_primitive_def, SNOC, FLAT, LIST_BIND_def] to g `(∀x y. R1 x y ⇒ R2 x y) ⇒ LLEX R1 x y ⇒ LLEX R2 x y`;.
+Failed due to metis timout.
+Reward pool: [0, -10]
+Total reward: -10
+
+Initialization done. Main goal is:
+∀h1 h2. h1 ≠ h2 ⇒ ∀l1 l2. h1::l1 ≠ h2::l2.
+Proved in 1 steps.
+Reward pool: [1]
+Total reward: 1
+Proof trace: [('fs[FILTER, EL, oHD_def, HD, APPEND, ZIP_def, LIST_APPLY_def, LAST_DEF, LUPDATE_def, GENLIST_AUX]', '∀h1 h2. h1 ≠ h2 ⇒ ∀l1 l2. h1::l1 ≠ h2::l2')]
+
+Initialization done. Main goal is:
+∀L n. LEN L n = LENGTH L + n.
+Timeout when applying tactic metis_tac[EVERYi_def, REVERSE_DEF, FRONT_DEF, PAD_LEFT, UNIQUE_DEF, LRC_def, DROP_def, FILTER, LENGTH, SET_TO_LIST_primitive_def] to g `LEN L n = n + LENGTH L`;.
+Failed due to metis timout.
+Reward pool: [0, -1, 0, 0, 0, -1, -1, 0, -1, 0, -1, 0, -1, 0, -1, 0, -1, -1, -1, 0, 0, 0, 0, 0, 0, -1, -1, 0, 0, -1, 0, -10]
+Total reward: -23
+
+Initialization done. Main goal is:
+∀l1 l2 l3. (∀n. n < LENGTH l1 ∧ R (EL n l1) (EL n l2) ∧ R (EL n l2) (EL n l3) ⇒ R (EL n l1) (EL n l3)) ∧ LIST_REL R l1 l2 ∧ LIST_REL R l2 l3 ⇒ LIST_REL R l1 l3.
+Timeout when applying tactic rpt strip_tac >> metis_tac[GENLIST_AUX, FLAT, APPEND, EXISTS_DEF, FIND_def, GENLIST, HD, SUM, REV_DEF, LIST_LIFT2_def] to g `(∀n. n < LENGTH l1 ∧ R (EL n l1) (EL n l2) ∧ R (EL n l2) (EL n l3) ⇒ R (EL n l1) (EL n l3))==>(LIST_REL R l1 l2)==>(LIST_REL R l2 l3)==>LIST_REL R l1 l3`;.
+Failed due to metis timout.
+Reward pool: [0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, -1, -1, 0, 0, 0, 0, -1, 0, -1, 0, 0, 0, 0, -1, 0, -10]
+Total reward: -16
+
+Initialization done. Main goal is:
+∀n x l. x < n ⇒ EL x (TAKE n l) = EL x l.
+Timeout when applying tactic rpt strip_tac >> metis_tac[INDEX_FIND_def, SNOC, UNIQUE_DEF, LIST_TO_SET_DEF, FILTER, EVERY_DEF, UNIQUE_DEF, UNZIP, SET_TO_LIST_primitive_def, ZIP_def] to g `(x < n)==>EL x (TAKE n l) = EL x l`;.
+Failed due to metis timout.
+Reward pool: [0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, -1, -1, -10]
+Total reward: -13
+
+Initialization done. Main goal is:
+(∀x. LAST [x] = x) ∧ ∀x y z. LAST (x::y::z) = LAST (y::z).
+Proved in 6 steps.
+Reward pool: [0, -1, 0, 0, -1, 1]
+Total reward: -1
+Proof trace: [('strip_tac', '(∀x. LAST [x] = x) ∧ ∀x y z. LAST (x::y::z) = LAST (y::z)'), ('fs[DROP_def, LAST_DEF, INDEX_OF_def, REV_DEF, FLAT, ZIP_def, ALL_DISTINCT, splitAtPki_def, SUM_ACC_DEF, oHD_def]', '∀x. LAST [x] = x'), ('strip_tac', '∀x y z. LAST (x::y::z) = LAST (y::z)'), ('simp[REVERSE_DEF, HD, INDEX_OF_def, FOLDR, LRC_def, PAD_RIGHT, LIST_APPLY_def, LIST_LIFT2_def, isPREFIX, SUM_ACC_DEF]', '∀y z. LAST (x::y::z) = LAST (y::z)')]
+
+Initialization done. Main goal is:
+∀f n. TL (GENLIST f (SUC n)) = GENLIST (f ∘ SUC) n.
+Timeout when applying tactic metis_tac[LENGTH, LAST_DEF, LIST_BIND_def, EL, UNZIP, list_case_def, FRONT_DEF, LIST_GUARD_def, UNIQUE_DEF, FLAT] to g `TL (GENLIST f (SUC n)) = GENLIST (f ∘ SUC) n`;.
+Failed due to metis timout.
+Reward pool: [0, 0, 0, 0, 0, 0, 0, -1, 0, 0, -10]
+Total reward: -11
+
+Initialization done. Main goal is:
+∀l x. l ≠ x::l ∧ x::l ≠ l.
+Proved in 1 steps.
+Reward pool: [1]
+Total reward: 1
+Proof trace: [('fs[list_case_def, LUPDATE_def, EVERYi_def, oEL_def, splitAtPki_def, list_size_def, NULL_DEF, LIST_BIND_def, OPT_MMAP_def, ZIP_def]', '∀l x. l ≠ x::l ∧ x::l ≠ l')]
+
+Learned tac preferences: tensor([0.1812, 0.5040, 0.1719, 0.0415, 0.0685, 0.0329])

@@ -1,0 +1,224 @@
+* Function extensionality 
+- [ ] CONV_TAC FUN_EQ_CONV
+- [X] FUN_EQ_THM
+- [ ] pairs whatever
+f = g 
+forall x. f x = g x
+* Directions of rewriting
+- [ ] GSYM foo  pain
+assumption foo : a = b
+goal: a + b = c
+rw[foo]
+goal : b + b = c
+rw[+- foo]
+goal : a + a = c
+* Do something to an assumption
+- [ ] ~~qpat_assum /assumption/ /thm_tactic/ ~~
+  - e.g. ~qpat_assum ‘∀n. n >= 0’ (assume_tac o (SPEC (“0”)))~
+  - SPEC sometimes require type information, i.e., "l:'a list"
+- [ ] ~~FIRST_ASSUM /thm_tactic/ ~~
+  - e.g. ~FIRST_ASSUM MATCH_MP_TAC~
+* Theorems from other theories
+- [ ] arithmetic
+- [ ] bool EQ_IMP_THM
+- [ ] pair
+* Training
+
+1. num_iter
+
+2. train_set
+
+3. continue folder and checkpoint file
+
+4. updating all nets
+
+5. learning rates
+
+6. switch to correct models of encoder
+
+pred_set: 410~    training: 240/328   test: 81   40-45 7 50% 60% 70%    5-7 9%   
+
+list: 241~/470
+rich_list: 180~
+relation: 105~
+core(rest): 278~
+
+total: 1214
+
+arithmetic: 284~
+
+1 2 3 ... 10   40%
+
+1 5 7 8 9   50%
+
+2 3 7 8 9   50%
+
+            60%
+
+1 2 3 5 7 8 9
+
+* Misc
+- [ ] EQ_TAC <=> EQ_IMP_THM add this to candidate pool
+- [X] EXISTS_TAC SPEC
+- [X] Auxiliary theorems
+- [X] suffices_by  generating arbitrary terms
+  - Requires synthesizing terms: see [[https://arxiv.org/abs/2006.09265][Modelling High-Level Mathematical Reasoning in Mechanised Declarative Proofs]]
+- Note that env.frequency = frequency is a shallow copy. 
+  Hence, even when env.frequency is destroyed, frequency remains.
+
+
+
+assumption: A
+goal: P
+to prove P, we first prove P'
+
+A ==> P'
+
+P' ==> P
+
+A => B
+C => B
+
+A
+Exists x. super duper conjecture x /\ x > 7
+G
+
+
+1. Put the augmented data into ./scripts
+2. Modify new_gen_hol.py according to data file names
+3. In the root of this repo, run scripts/new_gen_hol.sh
+4.
+TRAIN_PATH=data/core_int_sort_database_augmented/train/data.txt
+DEV_PATH=data/core_int_sort_database_augmented/dev/data.txt
+# Start training
+python examples/train_hol.py --train_path $TRAIN_PATH --dev_path $DEV_PATH
+
+
+1. dump raw theorem database using dump.sml --> raw_data.txt
+
+2. generate database.json using database_generator.py --> database.json
+
+3. encode the entire database using encoded_database_generator.py --> encoded_database.pt
+
+The training script needs both database and encoded_database.
+
+
+
+
+
+
+
+
+
+
+
+
+
+TOPICS:
+
+1. evaluation: tactictoe / holyhammer problems
+
+2. real theory (let's not do it)
+
+3. train per theory
+
+4. replays legit?
+
+
+
+
+50 
+
+100 
+
+Theorem 1 abc
+
+
+
+
+
+
+> length (theorems "pred_set");
+val it = 574: int
+> length (theorems "list");
+val it = 464: int
+> length (theorems "arithmetic");
+val it = 391: int
+> length (theorems "rich_list");
+val it = 352: int
+> length (theorems "relation");
+val it = 200: int
+> length (theorems "quantHeuristics");
+val it = 108: int
+> length (theorems "integer");
+val it = 314: int
+
+
+> up_to_probability;
+val it =
+   ["martingale", "lebesgue", "borel", "real_borel", "sigma_algebra",
+    "util_prob", "fcp", "indexedLists", "rich_list", "list", "pred_set",
+    "numpair", "basicSize", "numeral", "arithmetic", "prim_rec", "num",
+    "marker", "bool", "min", "normalForms", "relation", "sum", "pair", "sat",
+    "while", "bit", "logroot", "transc", "powser", "lim", "seq", "nets",
+    "metric", "real", "realax", "hreal", "hrat", "quotient_sum", "quotient",
+    "res_quan", "product", "iterate", "cardinal", "wellorder",
+    "set_relation", "derivative", "real_topology"]: string list
+> length_of_theories up_to_probability;
+val it =
+   [63, 156, 256, 98, 159, 168, 54, 42, 352, 464, 574, 35, 0, 32, 391, 38, 3,
+    7, 157, 0, 2, 200, 26, 55, 24, 22, 119, 29, 214, 15, 66, 99, 24, 22, 486,
+    69, 60, 37, 15, 91, 57, 82, 383, 257, 106, 141, 81, 1629]: int list
+
+
+>>> print(failures)
+['WF ($<< :α -> α -> bool) ⇔ ¬∃(s :num -> α). ∀(n :num). s (SUC n) ≪ s n', 'DATATYPE ((sum :(α -> α + β) -> (β -> α + β) -> γ) (INL :α -> α + β) (INR :β -> α + β))', 'DATATYPE ((list :α list -> (α -> α list -> α list) -> bool) ([] :α list) (CONS :α -> α list -> α list))', 'WF ($<< :α -> α -> bool) ⇔ ∀(P :α -> bool). (∀(x :α). (∀(y :α). y ≪ x ⇒ P y) ⇒ P x) ⇒ ∀(x :α). P x', '(∀(H :(α -> bool) -> α -> bool). (∀(f :α -> bool) (g :α -> bool) (x :α). (∀(z :α). z ≪ x ⇒ (f z ⇔ g z)) ⇒ (H f x ⇔ H g x)) ⇒ ∀(f :α -> bool) (g :α -> bool). (∀(x :α). f x ⇔ H f x) ∧ (∀(x :α). g x ⇔ H g x) ⇒ f = g) ⇒ WF ($<< :α -> α -> bool)', 'WF ($<< :α -> α -> bool) ⇒ ∀(H :(α -> β) -> α -> β). (∀(f :α -> β) (g :α -> β) (x :α). (∀(z :α). z ≪ x ⇒ f z = g z) ⇒ H f x = H g x) ⇒ ∃(f :α -> β). ∀(x :α). f x = H f x', 'WF ($<< :α -> α -> bool) ⇒ ∀(H :(α -> β) -> α -> β) (S :α -> β -> bool). (∀(f :α -> β) (g :α -> β) (x :α). (∀(z :α). z ≪ x ⇒ f z = g z ∧ S z (f z)) ⇒ H f x = H g x ∧ S x (H f x)) ⇒ ∃(f :α -> β). ∀(x :α). f x = H f x', 'WF ($<< :α -> α -> bool) ⇔ ∀(P :α -> bool). (∃(x :α). P x) ⇔ ∃(x :α). P x ∧ ∀(y :α). y ≪ x ⇒ ¬P y', 'WF ($<< :α -> α -> bool) ⇔ ∀(P :α -> bool). (∃(x :α). P x) ⇒ ∃(x :α). P x ∧ ∀(y :α). y ≪ x ⇒ ¬P y', 'WF ($<< :α -> α -> bool) ⇒ ∀(H :(α -> β) -> α -> β). (∀(f :α -> β) (g :α -> β) (x :α). (∀(z :α). z ≪ x ⇒ f z = g z) ⇒ H f x = H g x) ⇒ ∀(f :α -> β) (g :α -> β). (∀(x :α). f x = H f x) ∧ (∀(x :α). g x = H g x) ⇒ f = g']
+
+Iteration statistics: {'real_topology': [24, 24, 1607], 
+'real': [7, 7, 455], 
+'derivative': [1, 1, 78], 
+'real_borel': [0, 0, 94], 
+'nets': [0, 0, 24], 
+'indexedLists': [0, 0, 42], 
+'rich_list': [21, 21, 347], 
+'lebesgue': [0, 0, 152], 
+'quotient': [19, 19, 90], 
+'sigma_algebra': [2, 2, 159], 
+'list': [15, 15, 456], 
+'probability': [0, 0, 221], 
+'product': [2, 2, 82], 
+'pred_set': [12, 12, 562], 
+'set_relation': [4, 4, 140], 
+'fcp': [1, 1, 51], 
+'wellorder': [1, 1, 106], 
+'iterate': [11, 11, 369], 
+'hreal': [1, 1, 60], 
+'borel': [5, 5, 233], 
+'util_prob': [7, 7, 168], 
+'relation': [6, 6, 195], 
+'seq': [5, 5, 99], 
+'pair': [5, 5, 53], 
+'logroot': [4, 4, 29], 
+'sum': [2, 2, 26], 
+'cardinal': [41, 41, 240], 
+'martingale': [1, 1, 50], 
+'numpair': [1, 1, 35], 
+'lim': [0, 0, 66], 
+'transc': [1, 1, 213], 
+'bit': [10, 10, 119], 
+'prim_rec': [21, 21, 37], 
+'marker': [4, 4, 7], 
+'hrat': [1, 1, 37], 
+'numeral': [0, 0, 28], 
+'while': [0, 0, 22], 
+'realax': [2, 2, 69], 
+'sat': [23, 23, 24], 
+'res_quan': [12, 12, 57], 
+'powser': [0, 0, 15], 
+'metric': [0, 0, 22], 
+'quotient_sum': [1, 1, 15], 
+'num': [2, 2, 3], 
+'normalForms': [0, 0, 2]}
+
+
+Feb 26 23:13 sydney time ID:7 and 8  meaning there are ~6 submissions before

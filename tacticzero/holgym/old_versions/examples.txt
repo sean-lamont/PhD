@@ -1,0 +1,57 @@
+Initialization done. Main goal is:
+∀x l. SUM (SNOC x l) = SUM l + x.
+Exception raised when applying tactic metis_tac[FOLDR, ALL_DISTINCT, list_TY_DEF, nub_def, FRONT_DEF, DROP_def, isPREFIX, SHORTLEX_def, LIST_BIND_def, nub_def] to SUM (SNOC x l) = x + SUM l.
+Exception raised when applying tactic irule FILTER to SUM (SNOC x l) = x + SUM l.
+Exception raised when applying tactic strip_tac to SUM (SNOC x l) = x + SUM l.
+Exception raised when applying tactic irule SET_TO_LIST_primitive_def to SUM (SNOC x l) = x + SUM l.
+Exception raised when applying tactic drule FOLDR to SUM (SNOC x l) = x + SUM l.
+Exception raised when applying tactic strip_tac to SUM (SNOC x l) = x + SUM l.
+Exception raised when applying tactic irule UNZIP to SUM (SNOC x l) = x + SUM l.
+Exception raised when applying tactic irule LIST_BIND_def to SUM (SNOC x l) = x + SUM l.
+Exception raised when applying tactic strip_tac to SUM (SNOC x []) = x + SUM [].
+Exception raised when applying tactic Induct_on to SUM (SNOC x []) = x + SUM [].
+Exception raised when applying tactic strip_tac to SUM (SNOC x []) = x + SUM [].
+Exception raised when applying tactic strip_tac to SUM (SNOC x []) = x + SUM [].
+Exception raised when applying tactic rpt strip_tac >> drule splitAtPki_def to (SUM (SNOC x l) = x + SUM l) ==> (∀h. SUM (SNOC x (h::l)) = x + SUM (h::l)).
+Exception raised when applying tactic rpt strip_tac >> drule LENGTH to (SUM (SNOC x []) = x + SUM []) ==> (SUM (SNOC (SUC x) []) = SUC x + SUM []).
+Proved in 31 steps.
+Reward pool: [0, 0, 0, -1, -1, 0, -1, -1, 0, 0, -1, 0, 0, -1, 0, 0, 0, -1, -1, 0, 0, -1, -1, -1, -1, 0, -1, 0, 0, -1, 20]
+Total reward: 6
+Proof trace: [('strip_tac', '∀x l. SUM (SNOC x l) = SUM l + x'), ('simp[FIND_def, EXISTS_DEF, LAST_DEF, TL_DEF, list_size_def, REV_DEF, oEL_def, TL_DEF, list_size_def, list_case_def]', '∀l. SUM (SNOC x l) = SUM l + x'), ('strip_tac', '∀l. SUM (SNOC x l) = x + SUM l'), ('fs[dropWhile_def, ZIP_def, FLAT, MAP, LIST_LIFT2_def, LUPDATE_def, list_case_def, UNZIP, nub_def, MAP]', 'SUM (SNOC x l) = x + SUM l'), ('fs[INDEX_OF_def, UNIQUE_DEF, SHORTLEX_def, EXISTS_DEF, MAP, SHORTLEX_def, LIST_TO_SET_DEF, LUPDATE_def, PAD_LEFT, LEN_DEF]', 'SUM (SNOC x l) = x + SUM l'), ('simp[FLAT, oEL_def, EVERYi_def, dropWhile_def, TL_DEF, FOLDR, GENLIST_AUX, isPREFIX, TL_DEF, LAST_DEF]', 'SUM (SNOC x l) = x + SUM l'), ('fs[DROP_def, LAST_DEF, SUM, NULL_DEF, SUM, list_TY_DEF, FOLDL, dropWhile_def, FRONT_DEF, INDEX_FIND_def]', 'SUM (SNOC x l) = x + SUM l'), ('fs[DROP_def, LIST_GUARD_def, INDEX_FIND_def, FRONT_DEF, SNOC, FLAT, EL, DROP_def, list_size_def, DROP_def]', 'SUM (SNOC x l) = x + SUM l'), ('fs[FIND_def, FIND_def, dropWhile_def, REV_DEF, SNOC, EVERY_DEF, FIND_def, dropWhile_def, INDEX_OF_def, DROP_def]', 'SUM (SNOC x l) = x + SUM l'), ('fs[GENLIST, list_case_def, NULL_DEF, MAP, SHORTLEX_def, SET_TO_LIST_primitive_def, LIST_LIFT2_def, DROP_def, LLEX_def, PAD_LEFT]', 'SUM (SNOC x l) = x + SUM l'), ('fs[LLEX_def, EXISTS_DEF, GENLIST, DROP_def, PAD_LEFT, SHORTLEX_def, OPT_MMAP_def, SET_TO_LIST_primitive_def, LAST_DEF, HD]', 'SUM (SNOC x l) = x + SUM l'), ('fs[LIST_TO_SET_DEF, TAKE_def, SUM_ACC_DEF, ALL_DISTINCT, EVERY_DEF, FRONT_DEF, UNZIP, FRONT_DEF, INDEX_FIND_def, oEL_def]', 'SUM (SNOC x l) = x + SUM l'), ('Induct_on `l`', 'SUM (SNOC x l) = x + SUM l'), ('Induct_on `x`', 'SUM (SNOC x []) = x + SUM []'), ('rpt strip_tac >> fs[REVERSE_DEF, PAD_LEFT, REVERSE_DEF, LIST_TO_SET_DEF, LIST_TO_SET_DEF, TAKE_def, REVERSE_DEF, APPEND, SUM_ACC_DEF, INDEX_OF_def]', '(SUM (SNOC x l) = x + SUM l) ==> (∀h. SUM (SNOC x (h::l)) = x + SUM (h::l))'), ('fs[SUM, splitAtPki_def, nub_def, REV_DEF, splitAtPki_def, EL, LIST_BIND_def, list_TY_DEF, nub_def, LIST_BIND_def]', 'SUM (SNOC 0 []) = 0 + SUM []'), ('rpt strip_tac >> fs[TAKE_def, oHD_def, LEN_DEF, FLAT, SET_TO_LIST_primitive_def, MAP, LENGTH, APPEND, LLEX_def, GENLIST]', '(SUM (SNOC x []) = x + SUM []) ==> (SUM (SNOC (SUC x) []) = SUC x + SUM [])')]
+
+
+
+
+Initialization done. Main goal is:
+set [] = ∅ ∧ set (h::t) = h INSERT set t.
+Proved in 1 steps.
+Reward pool: [1]
+Total reward: 1
+Proof trace: [('simp[UNIQUE_DEF, FIND_def, LLEX_def, TL_DEF, ALL_DISTINCT, REVERSE_DEF, NULL_DEF, FLAT, LENGTH, FLAT]', 'set [] = ∅ ∧ set (h::t) = h INSERT set t')]
+
+
+(∀l1 l2. l1 ++ l2 = l1 ⇔ l2 = []) ∧ (∀l1 l2. l1 ++ l2 = l2 ⇔ l1 = []) ∧ (∀l1 l2. l1 = l1 ++ l2 ⇔ l2 = []) ∧ ∀l1 l2. l2 = l1 ++ l2 ⇔ l1 = [].
+content: [([], "(∀l2. [] = l2 ⇔ l2 = []) ∧ ∀l1. [] = l1 ⇔ l1 = []")]
+content: [([], "∀l2. [] = l2 ⇔ l2 = []"), ([], "∀l1. [] = l1 ⇔ l1 = []")]
+content: [([], "∀l2. [] = l2 ⇔ l2 = []")]
+content: [([], "∀l1. [] = l1 ⇔ l1 = []")]
+content: [([], "∀l2. [] = l2 ⇔ l2 = []")]
+content: [([], "∀l1. [] = l1 ⇔ l1 = []")]
+content: [([], "∀l2. [] = l2 ⇔ l2 = []")]
+content: [([], "[] = l1 ⇔ l1 = []")]
+content: [([], "[] = l2 ⇔ l2 = []")]
+content: [([], "[] = l1 ⇔ l1 = []")]
+content: [([], "[] = l2 ⇔ l2 = []")]
+content: [([], "[] = l1 ⇔ l1 = []")]
+content: [([], "[] = l2 ⇔ l2 = []")]
+content: [([], "[] = l1 ⇔ l1 = []")]
+content: [([], "[] = l2 ⇔ l2 = []")]
+content: [([], "[] = l1 ⇔ l1 = []")]
+content: [([], "[] = l1 ⇔ l1 = []")]
+content: [([], "[] = l1 ⇔ l1 = []")]
+content: [([], "[] = l1 ⇔ l1 = []")]
+content: [([], "[] = l1 ⇔ l1 = []")]
+Proved in 41 steps.
+Reward pool: [0, 0, -1, -1, 0, -1, 0, 0, 0, -1, -1, -1, -1, 0, 0, 0, 0, -1, -1, 0, 0, 0, -1, 0, -1, 0, 0, 0, 0, 0, -1, 0, -1, -1, -1, 0, -1, -1, -1, -1, 1]
+Total reward: -18
+Proof trace: [('fs[GENLIST_AUX, MAP, list_size_def, LIST_BIND_def, LLEX_def, TAKE_def, LIST_GUARD_def, EXISTS_DEF, splitAtPki_def, DROP_def]', '(∀l1 l2. l1 ++ l2 = l1 ⇔ l2 = []) ∧ (∀l1 l2. l1 ++ l2 = l2 ⇔ l1 = []) ∧ (∀l1 l2. l1 = l1 ++ l2 ⇔ l2 = []) ∧ ∀l1 l2. l2 = l1 ++ l2 ⇔ l1 = []'), ('strip_tac', '(∀l2. [] = l2 ⇔ l2 = []) ∧ ∀l1. [] = l1 ⇔ l1 = []'), ('fs[FLAT, LLEX_def, LAST_DEF, FRONT_DEF, SUM_ACC_DEF, LLEX_def, APPEND, SNOC, APPEND, nub_def]', '∀l2. [] = l2 ⇔ l2 = []'), ('simp[FLAT, SNOC, FOLDR, INDEX_FIND_def, LIST_LIFT2_def, PAD_RIGHT, TL_DEF, isPREFIX, REVERSE_DEF, EL]', '∀l1. [] = l1 ⇔ l1 = []'), ('fs[splitAtPki_def, LIST_BIND_def, PAD_RIGHT, LIST_GUARD_def, FOLDL, LIST_APPLY_def, ZIP_def, SUM_ACC_DEF, NULL_DEF, EVERYi_def]', '∀l2. [] = l2 ⇔ l2 = []'), ('fs[isPREFIX, ZIP_def, SHORTLEX_def, nub_def, LRC_def, MAP, REVERSE_DEF, splitAtPki_def, REVERSE_DEF, FLAT]', '∀l1. [] = l1 ⇔ l1 = []'), ('simp[INDEX_FIND_def, TAKE_def, FRONT_DEF, EXISTS_DEF, isPREFIX, LENGTH, PAD_LEFT, LIST_IGNORE_BIND_def, UNZIP, nub_def]', '∀l2. [] = l2 ⇔ l2 = []'), ('strip_tac', '∀l1. [] = l1 ⇔ l1 = []'), ('strip_tac', '∀l2. [] = l2 ⇔ l2 = []'), ('fs[LUPDATE_def, list_case_def, FRONT_DEF, PAD_RIGHT, TL_DEF, ALL_DISTINCT, ALL_DISTINCT, list_size_def, UNIQUE_DEF, PAD_LEFT]', '[] = l1 ⇔ l1 = []'), ('fs[EVERYi_def, FOLDR, LEN_DEF, REV_DEF, isPREFIX, FIND_def, SUM_ACC_DEF, isPREFIX, TL_DEF, SHORTLEX_def]', '[] = l2 ⇔ l2 = []'), ('simp[ALL_DISTINCT, oHD_def, DROP_def, LRC_def, LIST_BIND_def, INDEX_FIND_def, dropWhile_def, FOLDL, FRONT_DEF, INDEX_OF_def]', '[] = l1 ⇔ l1 = []'), ('simp[TAKE_def, FRONT_DEF, OPT_MMAP_def, PAD_RIGHT, FRONT_DEF, SHORTLEX_def, GENLIST_AUX, FIND_def, oEL_def, oHD_def]', '[] = l2 ⇔ l2 = []'), ('simp[SHORTLEX_def, SUM, FOLDR, HD, LIST_LIFT2_def, LIST_APPLY_def, SHORTLEX_def, APPEND, INDEX_FIND_def, LAST_DEF]', '[] = l1 ⇔ l1 = []'), ('fs[HD, OPT_MMAP_def, TL_DEF, PAD_LEFT, FRONT_DEF, TL_DEF, NULL_DEF, list_size_def, ZIP_def, LLEX_def]', '[] = l2 ⇔ l2 = []'), ('fs[LEN_DEF, MAP, HD, LIST_LIFT2_def, LENGTH, SHORTLEX_def, LEN_DEF, REV_DEF, SHORTLEX_def, FOLDR]', '[] = l1 ⇔ l1 = []'), ('metis_tac[LLEX_def, REVERSE_DEF, FOLDL, NULL_DEF, dropWhile_def, TAKE_def, SUM_ACC_DEF, FIND_def, list_size_def, isPREFIX]', '[] = l2 ⇔ l2 = []'), ('fs[ZIP_def, LIST_LIFT2_def, splitAtPki_def, oEL_def, LIST_APPLY_def, HD, GENLIST, SHORTLEX_def, FILTER, REV_DEF]', '[] = l1 ⇔ l1 = []'), ('fs[isPREFIX, splitAtPki_def, isPREFIX, PAD_RIGHT, FIND_def, LIST_TO_SET_DEF, EL, APPEND, MAP, LIST_LIFT2_def]', '[] = l1 ⇔ l1 = []'), ('simp[FOLDL, DROP_def, list_case_def, SHORTLEX_def, UNIQUE_DEF, TAKE_def, PAD_LEFT, FOLDR, SET_TO_LIST_primitive_def, PAD_LEFT]', '[] = l1 ⇔ l1 = []'), ('fs[UNIQUE_DEF, EVERYi_def, INDEX_FIND_def, HD, LIST_BIND_def, SHORTLEX_def, UNZIP, LENGTH, PAD_LEFT, GENLIST_AUX]', '[] = l1 ⇔ l1 = []'), ('metis_tac[EL, LUPDATE_def, LIST_LIFT2_def, UNZIP, FOLDL, APPEND, FIND_def, PAD_LEFT, LRC_def, APPEND]', '[] = l1 ⇔ l1 = []')]

@@ -1,0 +1,134 @@
+A goal-assumptions pair: (1, 4, 128) tensor
+
+Example:
+
+------  goal
+------  assumption 1
+------  assumption 2
+------  assumption 3
+
+
+A state: (1, 8, 4, 128) tensor
+
+Consider at most 8 goal-assumptions pairs.
+
+------  goal 1
+------  assumption 11
+------  assumption 12
+------  assumption 13
+
+------  goal 2
+------  assumption 21
+------  assumption 22
+------  assumption 23
+
+...
+
+Hidden variables: 
+
+h1: (1, 1, 128) tensor
+h2: (1, 1, 128) tensor
+h : (h1, h2)
+
+A candidate: (1, 8, 8, 128) tensor
+
+------ goal 1
+------ assumption 11
+------ assumption 12
+------ assumption 13
+------ encoding of the candidate theorem: (1, 128)
+------ encoding of the tactic or previously predicted argument: (1, 128)
+------ h1
+------ h2
+
+------ goal 2
+------ assumption 21
+------ assumption 22
+------ assumption 23
+------ encoding of the candidate theorem: (1, 128)
+------ encoding of the tactic or previously predicted argument: (1, 128)
+------ h1
+------ h2
+
+...
+
+Note that the information contained in a candidate is an extension of a state.
+
+Input of argnet: 
+
+1. A candidate
+2. The encoding of the tactic or previously predicted argument: (1, 128)
+3. Hidden variable h
+
+Output of argnet:
+
+1. Hidden variable h', computed by an internal lstm using 2 and 3 of the input
+2. A score of the candidate
+
+An action involves a prediction of 5 arguments.
+
+Example: simp[t1, t2, t3, t4, t5]
+
+Predicting t1 requires running argnet on all the possible candidates.
+
+There are 56 definitions in list theory. 
+
+Hence, in order to predict t1, we construct 56 candidates. 
+
+Argnet then computes 56 scores for each of them.
+
+Then we predict t2 ...
+
+g1 -> a -> {}
+
+g1 -> a -> g3
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+A tactic takes exactly one argument at a time. 
+
+(Reasonable for simp, problematic for metis)
+
+n : number of lemmas in the database to be considered
+
+Input matrix of argnet (n, 2, max_assumptions+2, max_len)
+
+Channel 1: (max_assumptions+1+1, max_len) -- (5,64) for example
+|   |   |   |   |   | --- goal
+|   |   |   |   |   | --|
+|   |   |   |   |   | --| assumptions
+|   |   |   |   |   | --| max_assumptions rows
+|   |   |   |   |   | --|
+|   |   |   |   |   | --- candidate lemma (defs)
+
+Channel 2: (max_assumptions+1+1, max_len)
+|   |   |   |   |   | all constants 
+|   |   |   |   |   | representing the id of the tactic 
+|   |   |   |   |   | chosen by tacnet
+|   |   |   |   |   | 
+|   |   |   |   |   | 
+|   |   |   |   |   | 
+
+Stacking the two channels together we have (2, max_assumptions+2, max_len)
+
+For each candidate we have such a matrix. Thus the input to argnet is of size
+(n, 2, max_assumptions+2, max_len). 
+
+The output of the argnet is n many scores. Then we softmax them and sample one.

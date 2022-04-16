@@ -1,0 +1,15 @@
+Game: 2
+Initialization done. Main goal is:
+∀l1 l2. ALL_DISTINCT (l1 ++ l2) ⇔ ALL_DISTINCT l1 ∧ ALL_DISTINCT l2 ∧ ∀e. MEM e l1 ⇒ ¬MEM e l2.
+Proved in 19 steps.
+Reward pool: [-1, 0, 0, -1, -1, -1, -1, -1, 0, 0, 0, -1, -1, -1, 0, 0, 0, -1, 20]
+Total reward: 10
+Proof trace: [('strip_tac', '∀l1 l2. ALL_DISTINCT (l1 ++ l2) ⇔ ALL_DISTINCT l1 ∧ ALL_DISTINCT l2 ∧ ∀e. MEM e l1 ⇒ ¬MEM e l2'), ('strip_tac', '∀l2. ALL_DISTINCT (l1 ⧺ l2) ⇔ ALL_DISTINCT l1 ∧ ALL_DISTINCT l2 ∧ ∀e. MEM e l1 ⇒ ¬MEM e l2'), ('Induct_on `l1`', 'ALL_DISTINCT (l1 ⧺ l2) ⇔ ALL_DISTINCT l1 ∧ ALL_DISTINCT l2 ∧ ∀e. MEM e l1 ⇒ ¬MEM e l2'), ('simp[LIST_TO_SET_DEF, OPT_MMAP_def, GENLIST_AUX, LIST_BIND_def, INDEX_OF_def]', 'ALL_DISTINCT ([] ⧺ l2) ⇔ ALL_DISTINCT [] ∧ ALL_DISTINCT l2 ∧ ∀e. MEM e [] ⇒ ¬MEM e l2'), ('rpt strip_tac >> fs[nub_def, APPEND, LIST_TO_SET_DEF, ALL_DISTINCT, oHD_def]', '(ALL_DISTINCT (l1 ⧺ l2) ⇔ ALL_DISTINCT l1 ∧ ALL_DISTINCT l2 ∧ ∀e. MEM e l1 ⇒ ¬MEM e l2) ==> (∀h. ALL_DISTINCT (h::l1 ⧺ l2) ⇔ ALL_DISTINCT (h::l1) ∧ ALL_DISTINCT l2 ∧ ∀e. MEM e (h::l1) ⇒ ¬MEM e l2)'), ('rpt strip_tac >> metis_tac[NULL_DEF, REV_DEF, LAST_DEF, NULL_DEF, SUM]', '(ALL_DISTINCT (l1 ⧺ l2) ⇔ ALL_DISTINCT l1 ∧ ALL_DISTINCT l2 ∧ ∀e. MEM e l1 ⇒ ¬MEM e l2) ==> ((¬MEM h l1 ∧ ¬MEM h l2) ∧ ALL_DISTINCT l1 ∧ ALL_DISTINCT l2 ∧ (∀e. MEM e l1 ⇒ ¬MEM e l2) ⇔ (¬MEM h l1 ∧ ALL_DISTINCT l1) ∧ ALL_DISTINCT l2 ∧ ∀e. e = h ∨ MEM e l1 ⇒ ¬MEM e l2)')]
+Time: 7.581933673000094
+
+Initialization done. Main goal is:
+∀x l. ALL_DISTINCT (SNOC x l) ⇔ ¬MEM x l ∧ ALL_DISTINCT l.
+Proved in 24 steps.
+Reward pool: [-1, -1, -1, -1, -1, -1, -1, -1, 0, 0, -1, -1, 0, -1, 0, -1, 0, -1, -1, -1, -1, 0, 0, 20]
+Total reward: 4
+Proof trace: [('Induct_on `l`', '∀x l. ALL_DISTINCT (SNOC x l) ⇔ ¬MEM x l ∧ ALL_DISTINCT l'), ('fs[SHORTLEX_def, UNZIP, MAP, TL_DEF, SNOC]', '∀x. ALL_DISTINCT (SNOC x []) ⇔ ¬MEM x [] ∧ ALL_DISTINCT []'), ('rpt strip_tac >> simp[list_TY_DEF, PAD_LEFT, EXISTS_DEF, LUPDATE_def, REVERSE_DEF]', '(∀x. ALL_DISTINCT (SNOC x l) ⇔ ¬MEM x l ∧ ALL_DISTINCT l) ==> (∀h x. ALL_DISTINCT (SNOC x (h::l)) ⇔ ¬MEM x (h::l) ∧ ALL_DISTINCT (h::l))'), ('rpt strip_tac >> metis_tac[FIND_def, FOLDR, isPREFIX, GENLIST, DROP_def]', '(∀x. ALL_DISTINCT (SNOC x l) ⇔ ¬MEM x l ∧ ALL_DISTINCT l) ==> ((h ≠ x ∧ ¬MEM h l) ∧ ¬MEM x l ∧ ALL_DISTINCT l ⇔ (x ≠ h ∧ ¬MEM x l) ∧ ¬MEM h l ∧ ALL_DISTINCT l)')]

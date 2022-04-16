@@ -1,0 +1,285 @@
+Exception: Induct_on `` to WF (λL1 L2. ∃h. L2 = h::L1) to be debugged
+
+Game: 33
+Initialization done. Main goal is:
+(∀f cs c bs b a. FOLDL2 f a (b::bs) (c::cs) = FOLDL2 f (f a b c) bs cs) ∧ (∀f cs a. FOLDL2 f a [] cs = a) ∧ ∀v7 v6 f a. FOLDL2 f a (v6::v7) [] = a.
+Proved in 1 steps.
+Rewards: [10]
+Tactics: ['simp']
+Total: 10
+Proof trace: [('simp[oHD_def, SET_TO_LIST_primitive_def, GENLIST, isPREFIX, SET_TO_LIST_primitive_def]', '(∀f cs c bs b a. FOLDL2 f a (b::bs) (c::cs) = FOLDL2 f (f a b c) bs cs) ∧ (∀f cs a. FOLDL2 f a [] cs = a) ∧ ∀v7 v6 f a. FOLDL2 f a (v6::v7) [] = a')]
+Time: 0.5183715399980429  
+Preferences: tensor([0.6198, 0.0220, 0.1375, 0.0359, 0.0732, 0.0463, 0.0653])
+
+Initialization done. Main goal is:
+∀x f. ∃!fn1. fn1 [] = x ∧ ∀h t. fn1 (h::t) = f (fn1 t) h t.
+Exception: rpt strip_tac >> metis_tac[HD, FOLDR, SNOC, FOLDL, EL] to (v = [] ⇒ ∃!fn1. fn1 [] = x ∧ ∀h t. fn1 (h::t) = f (fn1 t) h t) ==> (∀h. h::v = [] ⇒ ∃!fn1. fn1 [] = x ∧ ∀h t. fn1 (h::t) = f (fn1 t) h t) returned no goals
+
+Initialization done. Main goal is:
+x ≼ [] ⇔ x = [].
+Traceback (most recent call last):
+  File "/home/minchao/anaconda3/lib/python3.7/site-packages/pexpect/expect.py", line 111, in expect_loop
+    incoming = spawn.read_nonblocking(spawn.maxread, timeout)
+  File "/home/minchao/anaconda3/lib/python3.7/site-packages/pexpect/pty_spawn.py", line 509, in read_nonblocking
+    raise TIMEOUT('Timeout exceeded.')
+pexpect.exceptions.TIMEOUT: Timeout exceeded.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/home/minchao/proj/python/RL/station/holgym/lstm-train.py", line 136, in <module>
+    ng, next_state, reward, done = env.step(action)
+  File "/home/minchao/proj/python/RL/station/holgym/env.py", line 330, in step
+    d = self.query(goal, "rpt strip_tac >> " + action)
+  File "/home/minchao/proj/python/RL/station/holgym/env.py", line 212, in query
+    self.process.expect("val it =")
+  File "/home/minchao/anaconda3/lib/python3.7/site-packages/pexpect/spawnbase.py", line 341, in expect
+    timeout, searchwindowsize, async_)
+  File "/home/minchao/anaconda3/lib/python3.7/site-packages/pexpect/spawnbase.py", line 369, in expect_list
+    return exp.expect_loop(timeout)
+  File "/home/minchao/anaconda3/lib/python3.7/site-packages/pexpect/expect.py", line 119, in expect_loop
+    return self.timeout(e)
+  File "/home/minchao/anaconda3/lib/python3.7/site-packages/pexpect/expect.py", line 82, in timeout
+    raise TIMEOUT(msg)
+pexpect.exceptions.TIMEOUT: Timeout exceeded.
+<pexpect.pty_spawn.spawn object at 0x7f88f5e08048>
+command: /home/minchao/HOL/bin/hol
+args: ['/home/minchao/HOL/bin/hol']
+buffer (last 100 chars): b'ssage = "no goals", origin_function = "top_goals", origin_structure =\r\n      "goalStack"} raised\r\n> '
+before (last 100 chars): b'ssage = "no goals", origin_function = "top_goals", origin_structure =\r\n      "goalStack"} raised\r\n> '
+after: <class 'pexpect.exceptions.TIMEOUT'>
+match: None
+match_index: None
+exitstatus: None
+flag_eof: False
+pid: 28498
+child_fd: 6
+closed: False
+timeout: 30
+delimiter: <class 'pexpect.exceptions.EOF'>
+logfile: None
+logfile_read: None
+logfile_send: None
+maxread: 2000
+ignorecase: False
+searchwindowsize: None
+delaybeforesend: 0.05
+delayafterclose: 0.1
+delayafterterminate: 0.1
+searcher: searcher_re:
+    0: re.compile(b'val it =')
+
+
+Initialization done. Main goal is:
+(∃a b. R a b) ⇒ ¬WF (LLEX R).
+probs: tensor([[1.]], grad_fn=<SoftmaxBackward>)
+
+
+Exception: Induct_on `f` to ∀h. LUPDATE (SOME (f h)) n (MAP (OPTION_MAP f) xs) = MAP (OPTION_MAP f) (LUPDATE (SOME h) n xs).
+Exception: Induct_on `h` to ∀h. LUPDATE (SOME (f h)) n (MAP (OPTION_MAP f) xs) = MAP (OPTION_MAP f) (LUPDATE (SOME h) n xs).
+
+--------------------------------------------
+
+because load "Timeout"; unpredictably returns a ">" somewhere. 
+
+Initialization done. Main goal is:
+∀P ls. NULL (FILTER P ls) ⇔ ∀x. MEM x ls ⇒ ¬P x.
+Timeout when applying tactic metis_tac[REVERSE_DEF, dropWhile_def, nub_def, OPT_MMAP_def, LIST_LIFT2_def, SET_TO_LIST_primitive_def, list_case_def, LRC_def, INDEX_OF_def, UNZIP] to g `∀ls. NULL (FILTER P ls) ⇔ ∀x. MEM x ls ⇒ ¬P x`;.
+Failed due to metis timout.
+Reward pool: [0, -1, 0, 0, -1, -1, -1, 0, 0, 0, -1, 0, -10]
+Total reward: -15
+
+Initialization done. Main goal is:
+∀xs1 zs. LIST_REL P zs (xs1 ++ xs2) ⇔ ∃ys1 ys2. zs = ys1 ++ ys2 ∧ LIST_REL P ys1 xs1 ∧ LIST_REL P ys2 xs2.
+Traceback (most recent call last):
+  File "/home/minchao/anaconda3/lib/python3.7/site-packages/pexpect/expect.py", line 111, in expect_loop
+    incoming = spawn.read_nonblocking(spawn.maxread, timeout)
+  File "/home/minchao/anaconda3/lib/python3.7/site-packages/pexpect/pty_spawn.py", line 509, in read_nonblocking
+    raise TIMEOUT('Timeout exceeded.')
+pexpect.exceptions.TIMEOUT: Timeout exceeded.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/home/minchao/proj/python/RL/station/holgym/lstm-train.py", line 91, in <module>
+    next_state, reward, done = env.step(action)
+  File "/home/minchao/proj/python/RL/station/holgym/env.py", line 227, in step
+    d = self.query(goal, action)
+  File "/home/minchao/proj/python/RL/station/holgym/env.py", line 139, in query
+    self.process.expect([": goal list"])
+  File "/home/minchao/anaconda3/lib/python3.7/site-packages/pexpect/spawnbase.py", line 341, in expect
+    timeout, searchwindowsize, async_)
+  File "/home/minchao/anaconda3/lib/python3.7/site-packages/pexpect/spawnbase.py", line 369, in expect_list
+    return exp.expect_loop(timeout)
+  File "/home/minchao/anaconda3/lib/python3.7/site-packages/pexpect/expect.py", line 119, in expect_loop
+    return self.timeout(e)
+  File "/home/minchao/anaconda3/lib/python3.7/site-packages/pexpect/expect.py", line 82, in timeout
+    raise TIMEOUT(msg)
+pexpect.exceptions.TIMEOUT: Timeout exceeded.
+<pexpect.pty_spawn.spawn object at 0x7ff29e064c18>
+command: /home/minchao/HOL/bin/hol
+args: ['/home/minchao/HOL/bin/hol']
+buffer (last 100 chars): b'  \xe2\x88\x83ys1 ys2. zs = ys1 \xe2\xa7\xba ys2 \xe2\x88\xa7 LIST_REL P ys1 xs1 \xe2\x88\xa7 LIST_REL P ys2 xs2\xe2\x80\x9d)]:\r\n   goal list\r\n> '
+before (last 100 chars): b'  \xe2\x88\x83ys1 ys2. zs = ys1 \xe2\xa7\xba ys2 \xe2\x88\xa7 LIST_REL P ys1 xs1 \xe2\x88\xa7 LIST_REL P ys2 xs2\xe2\x80\x9d)]:\r\n   goal list\r\n> '
+after: <class 'pexpect.exceptions.TIMEOUT'>
+match: None
+match_index: None
+exitstatus: None
+flag_eof: False
+pid: 4124
+child_fd: 6
+closed: False
+timeout: 30
+delimiter: <class 'pexpect.exceptions.EOF'>
+logfile: None
+logfile_read: None
+logfile_send: None
+maxread: 2000
+ignorecase: False
+searchwindowsize: None
+delaybeforesend: 0.05
+delayafterclose: 0.1
+delayafterterminate: 0.1
+searcher: searcher_re:
+    0: re.compile(b': goal list')
+
+
+Initialization done. Main goal is:
+FINITE s ⇒ SET_TO_LIST s = if s = ∅ then [] else CHOICE s::SET_TO_LIST (REST s).
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/home/minchao/proj/python/RL/station/holgym/lstm-train.py", line 91, in <module>
+    next_state, reward, done = env.step(action)
+  File "/home/minchao/proj/python/RL/station/holgym/env.py", line 226, in step
+    d = self.query(goal, action)
+  File "/home/minchao/proj/python/RL/station/holgym/env.py", line 147, in query
+    data = eval(subgoals)
+  File "<string>", line 1
+    [([], "FINITE s ⇒ WFREC (@R. WF R ∧ ∀s. FINITE s ∧ s ≠ ∅ ⇒ R (REST s) s) (λSET_TO_LIST a. if FINITE a then if a = ∅ then [] else CHOICE a::SET_TO_LIST (REST a) else ARB) s = if s = ∅ then [] else CHOICE s:
+                                                                                                                                                                                                                ^
+SyntaxError: EOL while scanning string literal
+
+
+Initialization done. Main goal is:
+∀n. TAKE n [] = [].
+Initialization done. Main goal is:
+(∀P ys. LIST_REL P [] ys ⇔ ys = []) ∧ (∀P yys x xs. LIST_REL P (x::xs) yys ⇔ ∃y ys. yys = y::ys ∧ P x y ∧ LIST_REL P xs ys) ∧ (∀P xs. LIST_REL P xs [] ⇔ xs = []) ∧ ∀P xxs y ys. LIST_REL P xxs (y::ys) ⇔ ∃x xs. xxs = x::xs ∧ P x y ∧ LIST_REL P xs ys.
+goal is: (∀P ys. LIST_REL P [] ys ⇔ ys = []) ∧ (∀P yys x xs. LIST_REL P (x::xs) yys ⇔ ∃y ys. yys = y::ys ∧ P x y ∧ LIST_REL P xs ys) ∧ (∀P xs. LIST_REL P xs [] ⇔ xs = []) ∧ ∀P xxs y ys. LIST_REL P xxs (y::ys) ⇔ ∃x xs. xxs = x::xs ∧ P x y ∧ LIST_REL P xs ys
+tac is: metis_tac[ALL_DISTINCT, LIST_BIND_def, oHD_def, EXISTS_DEF, UNIQUE_DEF, NULL_DEF, HD, FOLDR, SHORTLEX_def, UNZIP]
+Traceback (most recent call last):
+  File "/home/minchao/anaconda3/lib/python3.7/site-packages/pexpect/expect.py", line 111, in expect_loop
+    incoming = spawn.read_nonblocking(spawn.maxread, timeout)
+  File "/home/minchao/anaconda3/lib/python3.7/site-packages/pexpect/pty_spawn.py", line 509, in read_nonblocking
+    raise TIMEOUT('Timeout exceeded.')
+pexpect.exceptions.TIMEOUT: Timeout exceeded.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/home/minchao/proj/python/RL/station/holgym/lstm-train.py", line 91, in <module>
+    next_state, reward, done = env.step(action)
+  File "/home/minchao/proj/python/RL/station/holgym/env.py", line 239, in step
+    d = self.query(goal, action)
+  File "/home/minchao/proj/python/RL/station/holgym/env.py", line 151, in query
+    self.process.expect("val it =")
+  File "/home/minchao/anaconda3/lib/python3.7/site-packages/pexpect/spawnbase.py", line 341, in expect
+    timeout, searchwindowsize, async_)
+  File "/home/minchao/anaconda3/lib/python3.7/site-packages/pexpect/spawnbase.py", line 369, in expect_list
+    return exp.expect_loop(timeout)
+  File "/home/minchao/anaconda3/lib/python3.7/site-packages/pexpect/expect.py", line 119, in expect_loop
+    return self.timeout(e)
+  File "/home/minchao/anaconda3/lib/python3.7/site-packages/pexpect/expect.py", line 82, in timeout
+    raise TIMEOUT(msg)
+pexpect.exceptions.TIMEOUT: Timeout exceeded.
+<pexpect.pty_spawn.spawn object at 0x7f4e8c53bd30>
+command: /home/minchao/HOL/bin/hol
+args: ['/home/minchao/HOL/bin/hol']
+buffer (last 100 chars): b'97+81+29+186r+56+248+284r+127+219r+64+21+16+4+4+39+5+10+6+272r+30+274+253r+153+382r+405r+882r+105+22'
+before (last 100 chars): b'97+81+29+186r+56+248+284r+127+219r+64+21+16+4+4+39+5+10+6+272r+30+274+253r+153+382r+405r+882r+105+22'
+after: <class 'pexpect.exceptions.TIMEOUT'>
+match: None
+match_index: None
+exitstatus: None
+flag_eof: False
+pid: 19569
+child_fd: 7
+closed: False
+timeout: 30
+delimiter: <class 'pexpect.exceptions.EOF'>
+logfile: None
+logfile_read: None
+logfile_send: None
+maxread: 2000
+ignorecase: False
+searchwindowsize: None
+delaybeforesend: 0.05
+delayafterclose: 0.1
+delayafterterminate: 0.1
+searcher: searcher_re:
+    0: re.compile(b'val it =')
+
+
+Target: ([], 'oHD (h::t) = SOME h')
+Tactic: fs[REV_DEF]
+
+
+Initialization done. Main goal is:
+(∀l1 l2. l1 ++ l2 = l1 ⇔ l2 = []) ∧ (∀l1 l2. l1 ++ l2 = l2 ⇔ l1 = []) ∧ (∀l1 l2. l1 = l1 ++ l2 ⇔ l2 = []) ∧ ∀l1 l2. l2 = l1 ++ l2 ⇔ l1 = [].
+Initialization done. Main goal is:
+oHD [] = NONE ∧ oHD (h::t) = SOME h.
+Traceback (most recent call last):
+  File "/home/minchao/anaconda3/lib/python3.7/site-packages/pexpect/expect.py", line 111, in expect_loop
+    incoming = spawn.read_nonblocking(spawn.maxread, timeout)
+  File "/home/minchao/anaconda3/lib/python3.7/site-packages/pexpect/pty_spawn.py", line 509, in read_nonblocking
+    raise TIMEOUT('Timeout exceeded.')
+pexpect.exceptions.TIMEOUT: Timeout exceeded.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/home/minchao/proj/python/RL/station/holgym/lstm-train.py", line 91, in <module>
+    next_state, reward, done = env.step(action)
+  File "/home/minchao/proj/python/RL/station/holgym/env.py", line 238, in step
+    d = self.query(goal, action)
+  File "/home/minchao/proj/python/RL/station/holgym/env.py", line 153, in query
+    self.process.expect([": goal list", ":\r\n"])
+  File "/home/minchao/anaconda3/lib/python3.7/site-packages/pexpect/spawnbase.py", line 341, in expect
+    timeout, searchwindowsize, async_)
+  File "/home/minchao/anaconda3/lib/python3.7/site-packages/pexpect/spawnbase.py", line 369, in expect_list
+    return exp.expect_loop(timeout)
+  File "/home/minchao/anaconda3/lib/python3.7/site-packages/pexpect/expect.py", line 119, in expect_loop
+    return self.timeout(e)
+  File "/home/minchao/anaconda3/lib/python3.7/site-packages/pexpect/expect.py", line 82, in timeout
+    raise TIMEOUT(msg)
+pexpect.exceptions.TIMEOUT: Timeout exceeded.
+<pexpect.pty_spawn.spawn object at 0x7fa827074c18>
+command: /home/minchao/HOL/bin/hol
+args: ['/home/minchao/HOL/bin/hol']
+buffer (last 100 chars): b'ssage = "no goals", origin_function = "top_goals", origin_structure =\r\n      "goalStack"} raised\r\n> '
+before (last 100 chars): b'ssage = "no goals", origin_function = "top_goals", origin_structure =\r\n      "goalStack"} raised\r\n> '
+after: <class 'pexpect.exceptions.TIMEOUT'>
+match: None
+match_index: None
+exitstatus: None
+flag_eof: False
+pid: 16296
+child_fd: 7
+closed: False
+timeout: 30
+delimiter: <class 'pexpect.exceptions.EOF'>
+logfile: None
+logfile_read: None
+logfile_send: None
+maxread: 2000
+ignorecase: False
+searchwindowsize: None
+delaybeforesend: 0.05
+delayafterclose: 0.1
+delayafterterminate: 0.1
+searcher: searcher_re:
+    0: re.compile(b': goal list')
+    1: re.compile(b':\r\n')

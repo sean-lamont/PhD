@@ -1,0 +1,192 @@
+                            training     validation	num iters
+small scale: excellent      10/10	  15/20		1500 ~ 2000 iters       10 theorems we know that are solvable
+intermediate scale: good    78/87         12/20	     	1000 ~ 1500 iters       87 theorems we are very confident that they are solvable
+large scale: poor           60~70/443     10/20	     	200 iters  2days        443 all theorems in the library
+                                          08/20
+
+large with curriculum: good 100+/443      15/20	     	200 iters  2days        443 all theorems in the library
+
+large with curriculum: good 120+/443      17/20	     	400 iters  	        443 all theorems in the library
+
+
+***At least 20/189 theorems provable. use replays
+
+exact same settings
+
+cache : 100 iters 20 hours -> 17-18 hours  1 gb memory
+
+150/443
+
+150/190  ~75%
+
+180/190
+
+1. no duplicates
+
+2. <END>
+
+[b, ...]
+
+
+
+[b,a,a,c,d]
+
+[a,b,a,c,d]
+
+
+state
+tactic [a, b, c, d]
+
+[a, b, c, d]
+
+old
+
+completeness of action space
+
+1. generate theorems that can be solved by the action space?
+
+2. make the action space complete?
+
+TODO: re-implement the environment to avoid confusions raised during string transmisson / also avoid repeated parsing on HOL side
+
+
+
+rpt strip_tac
+
+DO THIS: initialize network parameters by the ones trained on small scale data & keep track of proved theorems &  & try to do the cache
+
+TODO: infrastructure
+
+def memodict(f):
+    class memodict(dict):
+        def __missing__(self, key):
+            ret = self[key] = f(key)
+            return ret 
+    return memodict().__getitem__
+
+
+def memodict(f):
+    class memodict(dict):
+        def __missing__(self, key):
+            ret = self[key] = f(key)
+            return ret 
+    return memodict().__getitem__
+
+((goal, assumptions), chosen tactics) 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- requires induction on a proper variable (50%), followed by one arbitrary simp and one simp with proper arguments
+
+one theorem: ¬SHORTLEX R l []
+
+train for 1000 episodes
+
+updating all policies: 253
+
+fringe (scoring) policy off: 86
+
+tactic policy off: 52
+
+argument policy off: 102
+
+term policy off: 267
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Initialization done. Main goal is:
+(∀f cs c bs b a. FOLDL2 f a (b::bs) (c::cs) = FOLDL2 f (f a b c) bs cs) ∧ (∀f cs a. FOLDL2 f a [] cs = a) ∧ ∀v7 v6 f a. FOLDL2 f a (v6::v7) [] = a.
+Proved in 33 steps.
+Reward pool: [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0, 0, -1, -1, -1, -1, 0, -1, 0, -1, -1, -1, -1, 0, -1, -1, -1, -1, -1, -1, -1, -1, 1]
+Mean reward: -0.7878787878787878
+Proof trace: [('strip_tac', '(∀f cs c bs b a. FOLDL2 f a (b::bs) (c::cs) = FOLDL2 f (f a b c) bs cs) ∧ (∀f cs a. FOLDL2 f a [] cs = a) ∧ ∀v7 v6 f a. FOLDL2 f a (v6::v7) [] = a'), ('strip_tac', '∀f cs c bs b a. FOLDL2 f a (b::bs) (c::cs) = FOLDL2 f (f a b c) bs cs'), ('strip_tac', '(∀f cs a. FOLDL2 f a [] cs = a) ∧ ∀v7 v6 f a. FOLDL2 f a (v6::v7) [] = a'), ('fs[GENLIST_AUX]', '∀cs c bs b a. FOLDL2 f a (b::bs) (c::cs) = FOLDL2 f (f a b c) bs cs'), ('simp[TL_DEF]', '∀f cs a. FOLDL2 f a [] cs = a'), ('fs[EVERYi_def]', '∀v7 v6 f a. FOLDL2 f a (v6::v7) [] = a')]
+
+Initialization done. Main goal is:
+∀a0 a1 a0' a1'. a0::a1 = a0'::a1' ⇔ a0 = a0' ∧ a1 = a1'.
+Proved in 8 steps.
+Reward pool: [-1, -1, 0, 0, -1, -1, -1, 1]
+Mean reward: -0.5
+Proof trace: [('strip_tac', "∀a0 a1 a0' a1'. a0::a1 = a0'::a1' ⇔ a0 = a0' ∧ a1 = a1'"), ('strip_tac', "∀a1 a0' a1'. a0::a1 = a0'::a1' ⇔ a0 = a0' ∧ a1 = a1'"), ('simp[SNOC]', "∀a0' a1'. a0::a1 = a0'::a1' ⇔ a0 = a0' ∧ a1 = a1'")]
+
+Initialization done. Main goal is:
+∀ls. SUM ls = 0 ⇔ ∀x. MEM x ls ⇒ x = 0.
+Failed.
+Reward pool: [-1, 0, 0, -1, -1, -1, -1, -1, 0, -1, 0, -1, -1, -1, 0, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0]
+Mean reward: -0.8269230769230769
+Initialization done. Main goal is:
+∀n l. LENGTH (DROP n l) = LENGTH l − n.
+Proved in 1 steps.
+Reward pool: [1]
+Mean reward: 1.0
+Proof trace: [('simp[LRC_def]', '∀n l. LENGTH (DROP n l) = LENGTH l − n')]
+
+{"0 = LENGTH l \u21d4 l = []": 556, "\u00acSHORTLEX R l []": 396, "REVERSE l = [] \u21d4 l = []": 1994, "l1 ++ l2 = [e] \u21d4 l1 = [e] \u2227 l2 = [] \u2228 l1 = [] \u2227 l2 = [e]": 872, "\u2200l1 l2 l3. l1 ++ (l2 ++ l3) = l1 ++ l2 ++ l3": 2000, "\u2200M M' v f. M = M' \u2227 (M' = [] \u21d2 v = v') \u2227 (\u2200a0 a1. M' = a0::a1 \u21d2 f a0 a1 = f' a0 a1) \u21d2 list_CASE M v f = list_CASE M' v' f'": 737, "\u2200l. l = [] \u2228 \u2203h t. l = h::t": 1813, "\u2200c l. EXISTS (\u03bbx. c) l \u21d4 l \u2260 [] \u2227 c": 80, "list_CASE x v f = v' \u21d4 x = [] \u2227 v = v' \u2228 \u2203a l. x = a::l \u2227 f a l = v'": 978, "LAST (h::t) = if t = [] then h else LAST t": 1844}
+
+
+DELSIMPS = ["ALL_DISTINCT.1", "ALL_DISTINCT.2", "ALL_DISTINCT_FLAT_REVERSE.1", "ALL_DISTINCT_REVERSE.1", "ALL_DISTINCT_SET_TO_LIST.1", "APPEND.1", "APPEND.2", "APPEND_11.1", "APPEND_11.2", "APPEND_ASSOC.1", "APPEND_NIL.1", "APPEND_eq_NIL.1", "APPEND_eq_NIL.2", "APPEND_eq_NIL.3", "APPEND_eq_NIL.4", "CONS.1", "CONS_11.1", "CONS_11.2", "CONS_ACYCLIC.1", "CONS_ACYCLIC.2", "CONS_ACYCLIC.3", "CONS_ACYCLIC.4", "DROP_0.1", "DROP_cons.1", "DROP_nil.1", "EL_GENLIST.1", "EL_restricted.1", "EL_restricted.2", "EL_simp_restricted.1", "EL_simp_restricted.2", "EVERY2_THM.1", "EVERY2_THM.2", "EVERY2_THM.3", "EVERY2_THM.4", "EVERY_APPEND.1", "EVERY_DEF.1", "EVERY_DEF.2", "EVERY_SIMP.1", "EXISTS_APPEND.1", "EXISTS_DEF.1", "EXISTS_DEF.2", "EXISTS_SIMP.1", "FILTER.1", "FILTER.2", "FILTER_F.1", "FILTER_T.1", "FINITE_LIST_TO_SET.1", "FLAT.1", "FLAT.2", "FLAT_APPEND.1", "FOLDL.1", "FOLDL.2", "FOLDL2_def.1", "FOLDL2_def.2", "FOLDL2_def.3", "FOLDL_ZIP_SAME.1", "FOLDR.1", "FOLDR.2", "FRONT_CONS.1", "FRONT_CONS.2", "FRONT_CONS_EQ_NIL.1", "FRONT_CONS_EQ_NIL.2", "FRONT_CONS_EQ_NIL.3", "FRONT_SNOC.1", "GENLIST_AUX_compute.1", "GENLIST_AUX_compute.2", "GENLIST_AUX_compute.3", "GENLIST_NUMERALS.1", "GENLIST_NUMERALS.2", "HD.1", "INFINITE_LIST_UNIV.1", "LAST_APPEND_CONS.1", "LAST_CONS.1", "LAST_CONS.2", "LAST_MAP.1", "LAST_SNOC.1", "LENGTH.1", "LENGTH.2", "LENGTH_APPEND.1", "LENGTH_DROP.1", "LENGTH_FRONT_CONS.1", "LENGTH_GENLIST.1", "LENGTH_LUPDATE.1", "LENGTH_MAP.1", "LENGTH_MAP2.1", "LENGTH_NIL.1", "LENGTH_NIL_SYM.1", "LENGTH_REVERSE.1", "LENGTH_SNOC.1", "LENGTH_TAKE.1", "LENGTH_UNZIP.1", "LENGTH_UNZIP.2", "LENGTH_ZIP.1", "LENGTH_ZIP.2", "LENGTH_ZIP_MIN.1", "LIST_BIND_THM.1", "LIST_BIND_THM.2", "LIST_REL_NIL.1", "LIST_REL_NIL.2", "LIST_REL_def.1", "LIST_REL_def.2", "LIST_REL_def.3", "LIST_REL_def.4", "LIST_REL_eq.1", "LIST_TO_SET.1", "LIST_TO_SET.2", "LIST_TO_SET_APPEND.1", "LIST_TO_SET_DEF.1", "LIST_TO_SET_DEF.2", "LIST_TO_SET_EQ_EMPTY.1", "LIST_TO_SET_EQ_EMPTY.2", "LIST_TO_SET_REVERSE.1", "LLEX_NIL2.1", "LLEX_THM.1", "LLEX_THM.2", "LLEX_THM.3", "LLEX_THM.4", "LUPDATE_LENGTH.1", "LUPDATE_NIL.1", "MAP.1", "MAP.2", "MAP2.1", "MAP2.2", "MAP2_DEF.1", "MAP2_DEF.2", "MAP2_DEF.3", "MAP2_NIL.1", "MAP_APPEND.1", "MAP_EQ_NIL.1", "MAP_EQ_NIL.2", "MAP_EQ_SING.1", "MAP_EQ_SING.2", "MAP_ID.1", "MAP_ID.2", "MAP_ZIP_SAME.1", "MEM.1", "MEM.2", "MEM_APPEND.1", "MEM_REVERSE.1", "MEM_SET_TO_LIST.1", "MEM_SNOC.1", "NOT_CONS_NIL.1", "NOT_CONS_NIL.2", "NOT_EVERY.1", "NOT_EXISTS.1", "NOT_NIL_CONS.1", "NOT_NIL_CONS.2", "NULL_APPEND.1", "NULL_DEF.1", "NULL_DEF.2", "REVERSE_11.1", "REVERSE_DEF.1", "REVERSE_DEF.2", "REVERSE_EQ_NIL.1", "REVERSE_EQ_SING.1", "REVERSE_REVERSE.1", "SET_TO_LIST_EMPTY.1", "SET_TO_LIST_SING.1", "SHORTLEX_NIL2.1", "SHORTLEX_THM.1", "SHORTLEX_THM.2", "SHORTLEX_THM.3", "SHORTLEX_THM.4", "SINGL_LIST_APPLY_L.1", "SINGL_SINGL_APPLY.1", "SING_HD.1", "SING_HD.2", "SNOC.1", "SNOC.2", "SNOC_11.1", "SNOC_11.2", "SUM.1", "SUM.2", "TAKE_0.1", "TAKE_DROP.1", "TAKE_EQ_NIL.1", "TAKE_EQ_NIL.2", "TAKE_LENGTH_ID.1", "TAKE_cons.1", "TAKE_nil.1", "TL_DEF.1", "TL_DEF.2", "UNZIP.1", "UNZIP.2", "UNZIP_ZIP.1", "WF_SHORTLEX.1", "ZIP.1", "ZIP.2", "ZIP_UNZIP.1", "dropWhile_def.1", "dropWhile_def.2", "isPREFIX.1", "isPREFIX.2", "isPREFIX_NILR.1", "isPREFIX_THM.1", "isPREFIX_THM.2", "isPREFIX_THM.3", "list_case_def.1", "list_case_def.2", "nub_set.1", "oHD_thm.1", "oHD_thm.2", "FINITE_common_prefixes.1", "IS_PREFIX_APPEND3.1", "IS_PREFIX_APPENDS.1", "IS_PREFIX_REFL.1", "IS_SUFFIX_REFL.1", "LENGTH_FLAT_REPLICATE.1", "LENGTH_REPLICATE.1", "LIST_REL_APPEND_SING.1", "LIST_REL_REVERSE_EQ.1", "NIL_IN_common_prefixes.1", "REPLICATE.1", "REPLICATE.2", "REVERSE_REPLICATE.1", "SUM_REPLICATE.1", "common_prefixes_NONEMPTY.1", "common_prefixes_NONEMPTY.2", "common_prefixes_PAIR.1", "common_prefixes_PAIR.2", "common_prefixes_PAIR.3", "longest_prefix_EMPTY.1", "longest_prefix_SING.1"]
+
+DELSIMPS2 = ["FINITE_common_prefixes.1", "IS_PREFIX_APPEND3.1", "IS_PREFIX_APPENDS.1", "IS_PREFIX_REFL.1", "IS_SUFFIX_REFL.1", "LENGTH_FLAT_REPLICATE.1", "LENGTH_REPLICATE.1", "LIST_REL_APPEND_SING.1", "LIST_REL_REVERSE_EQ.1", "NIL_IN_common_prefixes.1", "REPLICATE.1", "REPLICATE.2", "REVERSE_REPLICATE.1", "SUM_REPLICATE.1", "common_prefixes_NONEMPTY.1", "common_prefixes_NONEMPTY.2", "common_prefixes_PAIR.1", "common_prefixes_PAIR.2", "common_prefixes_PAIR.3", "longest_prefix_EMPTY.1", "longest_prefix_SING.1"]
+
+DELSIMPS3 = ["LIST_EQ_SIMP_CONV"]

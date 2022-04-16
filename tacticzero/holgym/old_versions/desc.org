@@ -1,0 +1,5 @@
+state: (goal, [assumptions])
+
+action: tac (nat) * [args]
+
+fringe: [states]

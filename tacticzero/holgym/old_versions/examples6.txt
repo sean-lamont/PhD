@@ -1,0 +1,12 @@
+Game: 45
+Initialization done. Main goal is:
+∀s. FINITE s ⇒ ∀x. MEM x (SET_TO_LIST s) ⇔ x ∈ s.
+Proved in 3 steps.
+Rewards: [1, 1, 10]
+Tactics: ['strip_tac', 'Induct_on', 'simp']
+Total: 12
+Proof trace: [('strip_tac', '∀s. FINITE s ⇒ ∀x. MEM x (SET_TO_LIST s) ⇔ x ∈ s'), ('Induct_on `pred_set$FINITE`', 'FINITE s ⇒ ∀x. MEM x (SET_TO_LIST s) ⇔ x ∈ s'), ('simp[LIST_TO_SET_DEF, EVERY_DEF, OPT_MMAP_def, FLAT, LRC_def]', '(∀x. MEM x (SET_TO_LIST ∅) ⇔ x ∈ ∅) ∧ ∀s. FINITE s ∧ (∀x. MEM x (SET_TO_LIST s) ⇔ x ∈ s) ⇒ ∀e. e ∉ s ⇒ ∀x. MEM x (SET_TO_LIST (e INSERT s)) ⇔ x ∈ e INSERT s')]
+Time: 1.4595833450002829  
+Induct args: ['Cpred_set$FINITE']
+Preferences: tensor([0.0411, 0.0099, 0.4304, 0.0265, 0.4921])
+Proved so far: 11

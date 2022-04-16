@@ -1,0 +1,901 @@
+ZIP_UNZIP大⊢ @ Cbool$! | Vl @ @ Cmin$= @ Clist$ZIP @ Clist$UNZIP Vl Vl;
+
+ZIP_MAP大⊢ @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ Cbool$! | Vf1 @ Cbool$! | Vf2 @ @ Cmin$==> @ @ Cmin$= @ Clist$LENGTH Vl1 @ Clist$LENGTH Vl2 @ @ Cbool$/\ @ @ Cmin$= @ Clist$ZIP @ @ Cpair$, @ @ Clist$MAP Vf1 Vl1 Vl2 @ @ Clist$MAP | Vp @ @ Cpair$, @ Vf1 @ Cpair$FST Vp @ Cpair$SND Vp @ Clist$ZIP @ @ Cpair$, Vl1 Vl2 @ @ Cmin$= @ Clist$ZIP @ @ Cpair$, Vl1 @ @ Clist$MAP Vf2 Vl2 @ @ Clist$MAP | Vp @ @ Cpair$, @ Cpair$FST Vp @ Vf2 @ Cpair$SND Vp @ Clist$ZIP @ @ Cpair$, Vl1 Vl2;
+
+ZIP_GENLIST大⊢ @ Cbool$! | Vl @ Cbool$! | Vf @ Cbool$! | Vn @ @ Cmin$==> @ @ Cmin$= @ Clist$LENGTH Vl Vn @ @ Cmin$= @ Clist$ZIP @ @ Cpair$, Vl @ @ Clist$GENLIST Vf Vn @ @ Clist$GENLIST | Vx @ @ Cpair$, @ @ Clist$EL Vx Vl @ Vf Vx Vn;
+
+ZIP_EQ_NIL大⊢ @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ @ Cmin$==> @ @ Cmin$= @ Clist$LENGTH Vl1 @ Clist$LENGTH Vl2 @ @ Cmin$= @ @ Cmin$= @ Clist$ZIP @ @ Cpair$, Vl1 Vl2 Clist$NIL @ @ Cbool$/\ @ @ Cmin$= Vl1 Clist$NIL @ @ Cmin$= Vl2 Clist$NIL;
+
+ZIP_DROP大⊢ @ Cbool$! | Va @ Cbool$! | Vb @ Cbool$! | Vn @ @ Cmin$==> @ @ Cbool$/\ @ @ Carithmetic$<= Vn @ Clist$LENGTH Va @ @ Cmin$= @ Clist$LENGTH Va @ Clist$LENGTH Vb @ @ Cmin$= @ Clist$ZIP @ @ Cpair$, @ @ Clist$DROP Vn Va @ @ Clist$DROP Vn Vb @ @ Clist$DROP Vn @ Clist$ZIP @ @ Cpair$, Va Vb;
+
+ZIP大⊢ @ @ Cbool$/\ @ @ Cmin$= @ Clist$ZIP @ @ Cpair$, Clist$NIL Clist$NIL Clist$NIL @ Cbool$! | Vx1 @ Cbool$! | Vl1 @ Cbool$! | Vx2 @ Cbool$! | Vl2 @ @ Cmin$= @ Clist$ZIP @ @ Cpair$, @ @ Clist$CONS Vx1 Vl1 @ @ Clist$CONS Vx2 Vl2 @ @ Clist$CONS @ @ Cpair$, Vx1 Vx2 @ Clist$ZIP @ @ Cpair$, Vl1 Vl2;
+
+WF_SHORTLEX_same_lengths大⊢ @ @ Cmin$==> @ Crelation$WF VR @ Cbool$! | Vl @ Cbool$! | Vs @ @ Cmin$==> @ @ Cbool$/\ @ Cbool$! | Vd @ @ Cmin$==> @ @ Cbool$IN Vd Vs @ @ Cmin$= @ Clist$LENGTH Vd Vl @ Cbool$? | Va @ @ Cbool$IN Va Vs @ Cbool$? | Vb @ @ Cbool$/\ @ @ Cbool$IN Vb Vs @ Cbool$! | Vc @ @ Cmin$==> @ @ @ Clist$SHORTLEX VR Vc Vb @ Cbool$~ @ @ Cbool$IN Vc Vs;
+
+WF_SHORTLEX大⊢ @ @ Cmin$==> @ Crelation$WF VR @ Crelation$WF @ Clist$SHORTLEX VR;
+
+WF_LIST_PRED大⊢ @ Crelation$WF | VL1 | VL2 @ Cbool$? | Vh @ @ Cmin$= VL2 @ @ Clist$CONS Vh VL1;
+
+UNZIP_ZIP大⊢ @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ @ Cmin$==> @ @ Cmin$= @ Clist$LENGTH Vl1 @ Clist$LENGTH Vl2 @ @ Cmin$= @ Clist$UNZIP @ Clist$ZIP @ @ Cpair$, Vl1 Vl2 @ @ Cpair$, Vl1 Vl2;
+
+UNZIP_THM大⊢ @ @ Cbool$/\ @ @ Cmin$= @ Clist$UNZIP Clist$NIL @ @ Cpair$, Clist$NIL Clist$NIL @ @ Cmin$= @ Clist$UNZIP @ @ Clist$CONS @ @ Cpair$, Vx Vy Vt @ @ Cbool$LET @ Cpair$UNCURRY | VL1 | VL2 @ @ Cpair$, @ @ Clist$CONS Vx VL1 @ @ Clist$CONS Vy VL2 @ Clist$UNZIP Vt;
+
+UNZIP_MAP大⊢ @ Cbool$! | VL @ @ Cmin$= @ Clist$UNZIP VL @ @ Cpair$, @ @ Clist$MAP Cpair$FST VL @ @ Clist$MAP Cpair$SND VL;
+
+UNIQUE_LENGTH_FILTER大⊢ @ Cbool$! | Ve @ Cbool$! | VL @ @ Cmin$= @ @ Clist$UNIQUE Ve VL @ @ Cmin$= @ Clist$LENGTH @ @ Clist$FILTER @ Cmin$= Ve VL @ Carithmetic$NUMERAL @ Carithmetic$BIT1 Carithmetic$ZERO;
+
+UNIQUE_FILTER大⊢ @ Cbool$! | Ve @ Cbool$! | VL @ @ Cmin$= @ @ Clist$UNIQUE Ve VL @ @ Cmin$= @ @ Clist$FILTER @ Cmin$= Ve VL @ @ Clist$CONS Ve Clist$NIL;
+
+UNION_APPEND大⊢ @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ @ Cmin$= @ @ Cpred_set$UNION @ Clist$LIST_TO_SET Vl1 @ Clist$LIST_TO_SET Vl2 @ Clist$LIST_TO_SET @ @ Clist$APPEND Vl1 Vl2;
+
+TL_GENLIST大⊢ @ Cbool$! | Vf @ Cbool$! | Vn @ @ Cmin$= @ Clist$TL @ @ Clist$GENLIST Vf @ Cnum$SUC Vn @ @ Clist$GENLIST @ @ Ccombin$o Vf Cnum$SUC Vn;
+
+TL大⊢ @ Cbool$! | Vh @ Cbool$! | Vt @ @ Cmin$= @ Clist$TL @ @ Clist$CONS Vh Vt Vt;
+
+TAKE_TAKE_MIN大⊢ @ Cbool$! | Vm @ Cbool$! | Vn @ @ Cmin$= @ @ Clist$TAKE Vn @ @ Clist$TAKE Vm Vl @ @ Clist$TAKE @ @ Carithmetic$MIN Vn Vm Vl;
+
+TAKE_SUM大⊢ @ Cbool$! | Vn @ Cbool$! | Vm @ Cbool$! | Vl @ @ Cmin$= @ @ Clist$TAKE @ @ Carithmetic$+ Vn Vm Vl @ @ Clist$APPEND @ @ Clist$TAKE Vn Vl @ @ Clist$TAKE Vm @ @ Clist$DROP Vn Vl;
+
+TAKE_splitAtPki大⊢ @ @ Cmin$= @ @ Clist$TAKE Vn Vl @ @ @ Clist$splitAtPki @ @ Ccombin$o Ccombin$K @ Cmin$= Vn Ccombin$K Vl;
+
+TAKE_nil大⊢ @ Cbool$! | Vn @ @ Cmin$= @ @ Clist$TAKE Vn Clist$NIL Clist$NIL;
+
+TAKE_LENGTH_TOO_LONG大⊢ @ Cbool$! | Vl @ Cbool$! | Vn @ @ Cmin$==> @ @ Carithmetic$<= @ Clist$LENGTH Vl Vn @ @ Cmin$= @ @ Clist$TAKE Vn Vl Vl;
+
+TAKE_LENGTH_ID_rwt大⊢ @ Cbool$! | Vl @ Cbool$! | Vm @ @ Cmin$==> @ @ Cmin$= Vm @ Clist$LENGTH Vl @ @ Cmin$= @ @ Clist$TAKE Vm Vl Vl;
+
+TAKE_LENGTH_ID大⊢ @ Cbool$! | Vl @ @ Cmin$= @ @ Clist$TAKE @ Clist$LENGTH Vl Vl Vl;
+
+TAKE_GENLIST大⊢ @ @ Cmin$= @ @ Clist$TAKE Vn @ @ Clist$GENLIST Vf Vm @ @ Clist$GENLIST Vf @ @ Carithmetic$MIN Vn Vm;
+
+TAKE_EQ_NIL大⊢ @ @ Cmin$= @ @ Cmin$= @ @ Clist$TAKE Vn Vl Clist$NIL @ @ Cbool$\/ @ @ Cmin$= Vn Cnum$0 @ @ Cmin$= Vl Clist$NIL;
+
+TAKE_DROP_SWAP大⊢ @ Cbool$! | Vxs @ Cbool$! | Vk @ Cbool$! | Vn @ @ Cmin$= @ @ Clist$TAKE Vk @ @ Clist$DROP Vn Vxs @ @ Clist$DROP Vn @ @ Clist$TAKE @ @ Carithmetic$+ Vk Vn Vxs;
+
+TAKE_DROP大⊢ @ Cbool$! | Vn @ Cbool$! | Vl @ @ Cmin$= @ @ Clist$APPEND @ @ Clist$TAKE Vn Vl @ @ Clist$DROP Vn Vl Vl;
+
+TAKE_cons大⊢ @ @ Cmin$==> @ @ Cprim_rec$< Cnum$0 Vn @ @ Cmin$= @ @ Clist$TAKE Vn @ @ Clist$CONS Vx Vxs @ @ Clist$CONS Vx @ @ Clist$TAKE @ @ Carithmetic$- Vn @ Carithmetic$NUMERAL @ Carithmetic$BIT1 Carithmetic$ZERO Vxs;
+
+TAKE_compute大⊢ @ @ Cbool$/\ @ Cbool$! | Vl @ @ Cmin$= @ @ Clist$TAKE Cnum$0 Vl Clist$NIL @ @ Cbool$/\ @ Cbool$! | Vn @ @ Cmin$= @ @ Clist$TAKE @ Carithmetic$NUMERAL @ Carithmetic$BIT1 Vn Clist$NIL Clist$NIL @ @ Cbool$/\ @ Cbool$! | Vn @ @ Cmin$= @ @ Clist$TAKE @ Carithmetic$NUMERAL @ Carithmetic$BIT2 Vn Clist$NIL Clist$NIL @ @ Cbool$/\ @ Cbool$! | Vn @ Cbool$! | Vh @ Cbool$! | Vt @ @ Cmin$= @ @ Clist$TAKE @ Carithmetic$NUMERAL @ Carithmetic$BIT1 Vn @ @ Clist$CONS Vh Vt @ @ Clist$CONS Vh @ @ Clist$TAKE @ @ Carithmetic$- @ Carithmetic$NUMERAL @ Carithmetic$BIT1 Vn @ Carithmetic$NUMERAL @ Carithmetic$BIT1 Carithmetic$ZERO Vt @ Cbool$! | Vn @ Cbool$! | Vh @ Cbool$! | Vt @ @ Cmin$= @ @ Clist$TAKE @ Carithmetic$NUMERAL @ Carithmetic$BIT2 Vn @ @ Clist$CONS Vh Vt @ @ Clist$CONS Vh @ @ Clist$TAKE @ Carithmetic$NUMERAL @ Carithmetic$BIT1 Vn Vt;
+
+TAKE_APPEND2大⊢ @ Cbool$! | Vn @ @ Cmin$==> @ @ Cprim_rec$< @ Clist$LENGTH Vl1 Vn @ @ Cmin$= @ @ Clist$TAKE Vn @ @ Clist$APPEND Vl1 Vl2 @ @ Clist$APPEND Vl1 @ @ Clist$TAKE @ @ Carithmetic$- Vn @ Clist$LENGTH Vl1 Vl2;
+
+TAKE_APPEND1大⊢ @ Cbool$! | Vn @ @ Cmin$==> @ @ Carithmetic$<= Vn @ Clist$LENGTH Vl1 @ @ Cmin$= @ @ Clist$TAKE Vn @ @ Clist$APPEND Vl1 Vl2 @ @ Clist$TAKE Vn Vl1;
+
+TAKE_0大⊢ @ @ Cmin$= @ @ Clist$TAKE Cnum$0 Vl Clist$NIL;
+
+TAKE1_DROP大⊢ @ Cbool$! | Vn @ Cbool$! | Vl @ @ Cmin$==> @ @ Cprim_rec$< Vn @ Clist$LENGTH Vl @ @ Cmin$= @ @ Clist$TAKE @ Carithmetic$NUMERAL @ Carithmetic$BIT1 Carithmetic$ZERO @ @ Clist$DROP Vn Vl @ @ Clist$CONS @ @ Clist$EL Vn Vl Clist$NIL;
+
+TAKE1大⊢ @ Cbool$! | Vl @ @ Cmin$==> @ Cbool$~ @ @ Cmin$= Vl Clist$NIL @ @ Cmin$= @ @ Clist$TAKE @ Carithmetic$NUMERAL @ Carithmetic$BIT1 Carithmetic$ZERO Vl @ @ Clist$CONS @ @ Clist$EL Cnum$0 Vl Clist$NIL;
+
+SWAP_REVERSE_SYM大⊢ @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ @ Cmin$= @ @ Cmin$= @ Clist$REVERSE Vl1 Vl2 @ @ Cmin$= Vl1 @ Clist$REVERSE Vl2;
+
+SWAP_REVERSE大⊢ @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ @ Cmin$= @ @ Cmin$= Vl1 @ Clist$REVERSE Vl2 @ @ Cmin$= Vl2 @ Clist$REVERSE Vl1;
+
+SUM_SUM_ACC大⊢ @ Cbool$! | VL @ @ Cmin$= @ Clist$SUM VL @ @ Clist$SUM_ACC VL Cnum$0;
+
+SUM_SNOC大⊢ @ Cbool$! | Vx @ Cbool$! | Vl @ @ Cmin$= @ Clist$SUM @ @ Clist$SNOC Vx Vl @ @ Carithmetic$+ @ Clist$SUM Vl Vx;
+
+SUM_MAP_PLUS_ZIP大⊢ @ Cbool$! | Vls1 @ Cbool$! | Vls2 @ @ Cmin$==> @ @ Cbool$/\ @ @ Cmin$= @ Clist$LENGTH Vls1 @ Clist$LENGTH Vls2 @ Cbool$! | Vx @ Cbool$! | Vy @ @ Cmin$= @ Vf @ @ Cpair$, Vx Vy @ @ Carithmetic$+ @ Vg Vx @ Vh Vy @ @ Cmin$= @ Clist$SUM @ @ Clist$MAP Vf @ Clist$ZIP @ @ Cpair$, Vls1 Vls2 @ @ Carithmetic$+ @ Clist$SUM @ @ Clist$MAP Vg Vls1 @ Clist$SUM @ @ Clist$MAP Vh Vls2;
+
+SUM_MAP_PLUS大⊢ @ Cbool$! | Vf @ Cbool$! | Vg @ Cbool$! | Vls @ @ Cmin$= @ Clist$SUM @ @ Clist$MAP | Vx @ @ Carithmetic$+ @ Vf Vx @ Vg Vx Vls @ @ Carithmetic$+ @ Clist$SUM @ @ Clist$MAP Vf Vls @ Clist$SUM @ @ Clist$MAP Vg Vls;
+
+SUM_MAP_MEM_bound大⊢ @ Cbool$! | Vf @ Cbool$! | Vx @ Cbool$! | Vls @ @ Cmin$==> @ @ Cbool$IN Vx @ Clist$LIST_TO_SET Vls @ @ Carithmetic$<= @ Vf Vx @ Clist$SUM @ @ Clist$MAP Vf Vls;
+
+SUM_MAP_FOLDL大⊢ @ Cbool$! | Vls @ @ Cmin$= @ Clist$SUM @ @ Clist$MAP Vf Vls @ @ @ Clist$FOLDL | Va | Ve @ @ Carithmetic$+ Va @ Vf Ve Cnum$0 Vls;
+
+SUM_IMAGE_LIST_TO_SET_upper_bound大⊢ @ Cbool$! | Vls @ @ Carithmetic$<= @ @ Cpred_set$SUM_IMAGE Vf @ Clist$LIST_TO_SET Vls @ Clist$SUM @ @ Clist$MAP Vf Vls;
+
+SUM_IMAGE_eq_SUM_MAP_SET_TO_LIST大⊢ @ @ Cmin$==> @ Cpred_set$FINITE Vs @ @ Cmin$= @ @ Cpred_set$SUM_IMAGE Vf Vs @ Clist$SUM @ @ Clist$MAP Vf @ Clist$SET_TO_LIST Vs;
+
+SUM_eq_0大⊢ @ Cbool$! | Vls @ @ Cmin$= @ @ Cmin$= @ Clist$SUM Vls Cnum$0 @ Cbool$! | Vx @ @ Cmin$==> @ @ Cbool$IN Vx @ Clist$LIST_TO_SET Vls @ @ Cmin$= Vx Cnum$0;
+
+SUM_APPEND大⊢ @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ @ Cmin$= @ Clist$SUM @ @ Clist$APPEND Vl1 Vl2 @ @ Carithmetic$+ @ Clist$SUM Vl1 @ Clist$SUM Vl2;
+
+SUM_ACC_SUM_LEM大⊢ @ Cbool$! | VL @ Cbool$! | Vn @ @ Cmin$= @ @ Clist$SUM_ACC VL Vn @ @ Carithmetic$+ @ Clist$SUM VL Vn;
+
+splitAtPki_RAND大⊢ @ @ Cmin$= @ Vf @ @ @ Clist$splitAtPki VP Vk Vl @ @ @ Clist$splitAtPki VP @ @ Ccombin$o @ Ccombin$o Vf Vk Vl;
+
+splitAtPki_MAP大⊢ @ @ Cmin$= @ @ @ Clist$splitAtPki VP Vk @ @ Clist$MAP Vf Vl @ @ @ Clist$splitAtPki @ @ Ccombin$C @ @ Ccombin$o Ccombin$o VP Vf @ @ Ccombin$C @ @ Ccombin$o Ccombin$o @ @ Ccombin$o Vk @ Clist$MAP Vf @ Clist$MAP Vf Vl;
+
+splitAtPki_EQN大⊢ @ @ Cmin$= @ @ @ Clist$splitAtPki VP Vk Vl @ @ @ Coption$option_CASE @ Cwhile$OLEAST | Vi @ @ Cbool$/\ @ @ Cprim_rec$< Vi @ Clist$LENGTH Vl @ @ VP Vi @ @ Clist$EL Vi Vl @ @ Vk Vl Clist$NIL | Vi @ @ Vk @ @ Clist$TAKE Vi Vl @ @ Clist$DROP Vi Vl;
+
+splitAtPki_change_predicate大⊢ @ @ Cmin$==> @ Cbool$! | Vi @ @ Cmin$==> @ @ Cprim_rec$< Vi @ Clist$LENGTH Vl @ @ Cmin$= @ @ VP1 Vi @ @ Clist$EL Vi Vl @ @ VP2 Vi @ @ Clist$EL Vi Vl @ @ Cmin$= @ @ @ Clist$splitAtPki VP1 Vk Vl @ @ @ Clist$splitAtPki VP2 Vk Vl;
+
+splitAtPki_APPEND大⊢ @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ Cbool$! | VP @ Cbool$! | Vk @ @ Cmin$==> @ @ Cbool$/\ @ @ Clist$EVERYi | Vi @ @ Ccombin$o Cbool$~ @ VP Vi Vl1 @ @ Cmin$==> @ @ Cprim_rec$< Cnum$0 @ Clist$LENGTH Vl2 @ @ VP @ Clist$LENGTH Vl1 @ Clist$HD Vl2 @ @ Cmin$= @ @ @ Clist$splitAtPki VP Vk @ @ Clist$APPEND Vl1 Vl2 @ @ Vk Vl1 Vl2;
+
+SNOC_INDUCT大⊢ @ Cbool$! | VP @ @ Cmin$==> @ @ Cbool$/\ @ VP Clist$NIL @ Cbool$! | Vl @ @ Cmin$==> @ VP Vl @ Cbool$! | Vx @ VP @ @ Clist$SNOC Vx Vl @ Cbool$! | Vl @ VP Vl;
+
+SNOC_CASES大⊢ @ Cbool$! | Vll @ @ Cbool$\/ @ @ Cmin$= Vll Clist$NIL @ Cbool$? | Vx @ Cbool$? | Vl @ @ Cmin$= Vll @ @ Clist$SNOC Vx Vl;
+
+SNOC_Axiom大⊢ @ Cbool$! | Ve @ Cbool$! | Vf @ Cbool$? | Vfn @ @ Cbool$/\ @ @ Cmin$= @ Vfn Clist$NIL Ve @ Cbool$! | Vx @ Cbool$! | Vl @ @ Cmin$= @ Vfn @ @ Clist$SNOC Vx Vl @ @ @ Vf Vx Vl @ Vfn Vl;
+
+SNOC_APPEND大⊢ @ Cbool$! | Vx @ Cbool$! | Vl @ @ Cmin$= @ @ Clist$SNOC Vx Vl @ @ Clist$APPEND Vl @ @ Clist$CONS Vx Clist$NIL;
+
+SNOC_11大⊢ @ Cbool$! | Vx @ Cbool$! | Vy @ Cbool$! | Va @ Cbool$! | Vb @ @ Cmin$= @ @ Cmin$= @ @ Clist$SNOC Vx Vy @ @ Clist$SNOC Va Vb @ @ Cbool$/\ @ @ Cmin$= Vx Va @ @ Cmin$= Vy Vb;
+
+SINGL_SINGL_APPLY大⊢ @ @ Cmin$= @ @ Clist$LIST_APPLY @ @ Clist$CONS Vf Clist$NIL @ @ Clist$CONS Vx Clist$NIL @ @ Clist$CONS @ Vf Vx Clist$NIL;
+
+SINGL_LIST_APPLY_R大⊢ @ @ Cmin$= @ @ Clist$LIST_BIND Vl | Vx @ @ Clist$CONS Vx Clist$NIL Vl;
+
+SINGL_LIST_APPLY_L大⊢ @ @ Cmin$= @ @ Clist$LIST_BIND @ @ Clist$CONS Vx Clist$NIL Vf @ Vf Vx;
+
+SINGL_APPLY_PERMUTE大⊢ @ @ Cmin$= @ @ Clist$LIST_APPLY Vfs @ @ Clist$CONS Vx Clist$NIL @ @ Clist$LIST_APPLY @ @ Clist$CONS | Vf @ Vf Vx Clist$NIL Vfs;
+
+SINGL_APPLY_MAP大⊢ @ @ Cmin$= @ @ Clist$LIST_APPLY @ @ Clist$CONS Vf Clist$NIL Vl @ @ Clist$MAP Vf Vl;
+
+SING_HD大⊢ @ @ Cbool$/\ @ @ Cmin$= @ @ Cmin$= @ @ Clist$CONS @ Clist$HD Vxs Clist$NIL Vxs @ @ Cmin$= @ Clist$LENGTH Vxs @ Carithmetic$NUMERAL @ Carithmetic$BIT1 Carithmetic$ZERO @ @ Cmin$= @ @ Cmin$= Vxs @ @ Clist$CONS @ Clist$HD Vxs Clist$NIL @ @ Cmin$= @ Clist$LENGTH Vxs @ Carithmetic$NUMERAL @ Carithmetic$BIT1 Carithmetic$ZERO;
+
+SHORTLEX_transitive大⊢ @ @ Cmin$==> @ Crelation$transitive VR @ Crelation$transitive @ Clist$SHORTLEX VR;
+
+SHORTLEX_total大⊢ @ @ Cmin$==> @ Crelation$total @ Crelation$RC VR @ Crelation$total @ Crelation$RC @ Clist$SHORTLEX VR;
+
+SHORTLEX_THM大⊢ @ @ Cbool$/\ @ @ Cbool$/\ @ Cbool$~ @ @ @ Clist$SHORTLEX VR Clist$NIL Clist$NIL @ Cbool$~ @ @ @ Clist$SHORTLEX VR @ @ Clist$CONS Vh1 Vt1 Clist$NIL @ @ Cbool$/\ @ @ @ Clist$SHORTLEX VR Clist$NIL @ @ Clist$CONS Vh2 Vt2 @ @ Cmin$= @ @ @ Clist$SHORTLEX VR @ @ Clist$CONS Vh1 Vt1 @ @ Clist$CONS Vh2 Vt2 @ @ Cbool$\/ @ @ Cprim_rec$< @ Clist$LENGTH Vt1 @ Clist$LENGTH Vt2 @ @ Cbool$/\ @ @ Cmin$= @ Clist$LENGTH Vt1 @ Clist$LENGTH Vt2 @ @ Cbool$\/ @ @ VR Vh1 Vh2 @ @ Cbool$/\ @ @ Cmin$= Vh1 Vh2 @ @ @ Clist$SHORTLEX VR Vt1 Vt2;
+
+SHORTLEX_NIL2大⊢ @ Cbool$~ @ @ @ Clist$SHORTLEX VR Vl Clist$NIL;
+
+SHORTLEX_MONO大⊢ @ @ Cmin$==> @ Cbool$! | Vx @ Cbool$! | Vy @ @ Cmin$==> @ @ VR1 Vx Vy @ @ VR2 Vx Vy @ @ Cmin$==> @ @ @ Clist$SHORTLEX VR1 Vx Vy @ @ @ Clist$SHORTLEX VR2 Vx Vy;
+
+SHORTLEX_LENGTH_LE大⊢ @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ @ Cmin$==> @ @ @ Clist$SHORTLEX VR Vl1 Vl2 @ @ Carithmetic$<= @ Clist$LENGTH Vl1 @ Clist$LENGTH Vl2;
+
+SET_TO_LIST_THM大⊢ @ @ Cmin$==> @ Cpred_set$FINITE Vs @ @ Cmin$= @ Clist$SET_TO_LIST Vs @ @ @ Cbool$COND @ @ Cmin$= Vs Cpred_set$EMPTY Clist$NIL @ @ Clist$CONS @ Cpred_set$CHOICE Vs @ Clist$SET_TO_LIST @ Cpred_set$REST Vs;
+
+SET_TO_LIST_SING大⊢ @ @ Cmin$= @ Clist$SET_TO_LIST @ @ Cpred_set$INSERT Vx Cpred_set$EMPTY @ @ Clist$CONS Vx Clist$NIL;
+
+SET_TO_LIST_INV大⊢ @ Cbool$! | Vs @ @ Cmin$==> @ Cpred_set$FINITE Vs @ @ Cmin$= @ Clist$LIST_TO_SET @ Clist$SET_TO_LIST Vs Vs;
+
+SET_TO_LIST_IND大⊢ @ Cbool$! | VP @ @ Cmin$==> @ Cbool$! | Vs @ @ Cmin$==> @ @ Cmin$==> @ @ Cbool$/\ @ Cpred_set$FINITE Vs @ Cbool$~ @ @ Cmin$= Vs Cpred_set$EMPTY @ VP @ Cpred_set$REST Vs @ VP Vs @ Cbool$! | Vv @ VP Vv;
+
+SET_TO_LIST_IN_MEM大⊢ @ Cbool$! | Vs @ @ Cmin$==> @ Cpred_set$FINITE Vs @ Cbool$! | Vx @ @ Cmin$= @ @ Cbool$IN Vx Vs @ @ Cbool$IN Vx @ Clist$LIST_TO_SET @ Clist$SET_TO_LIST Vs;
+
+SET_TO_LIST_EMPTY大⊢ @ @ Cmin$= @ Clist$SET_TO_LIST Cpred_set$EMPTY Clist$NIL;
+
+SET_TO_LIST_CARD大⊢ @ Cbool$! | Vs @ @ Cmin$==> @ Cpred_set$FINITE Vs @ @ Cmin$= @ Clist$LENGTH @ Clist$SET_TO_LIST Vs @ Cpred_set$CARD Vs;
+
+REVERSE_SNOC_DEF大⊢ @ @ Cbool$/\ @ @ Cmin$= @ Clist$REVERSE Clist$NIL Clist$NIL @ Cbool$! | Vx @ Cbool$! | Vl @ @ Cmin$= @ Clist$REVERSE @ @ Clist$CONS Vx Vl @ @ Clist$SNOC Vx @ Clist$REVERSE Vl;
+
+REVERSE_SNOC大⊢ @ Cbool$! | Vx @ Cbool$! | Vl @ @ Cmin$= @ Clist$REVERSE @ @ Clist$SNOC Vx Vl @ @ Clist$CONS Vx @ Clist$REVERSE Vl;
+
+REVERSE_REVERSE大⊢ @ Cbool$! | Vl @ @ Cmin$= @ Clist$REVERSE @ Clist$REVERSE Vl Vl;
+
+REVERSE_REV大⊢ @ Cbool$! | VL @ @ Cmin$= @ Clist$REVERSE VL @ @ Clist$REV VL Clist$NIL;
+
+REVERSE_o_REVERSE大⊢ @ @ Cmin$= @ @ Ccombin$o Clist$REVERSE @ @ Ccombin$o Clist$REVERSE Vf Vf;
+
+REVERSE_GENLIST大⊢ @ @ Cmin$= @ Clist$REVERSE @ @ Clist$GENLIST Vf Vn @ @ Clist$GENLIST | Vm @ Vf @ @ Carithmetic$- @ Cprim_rec$PRE Vn Vm Vn;
+
+REVERSE_EQ_SING大⊢ @ @ Cmin$= @ @ Cmin$= @ Clist$REVERSE Vl @ @ Clist$CONS Ve Clist$NIL @ @ Cmin$= Vl @ @ Clist$CONS Ve Clist$NIL;
+
+REVERSE_EQ_NIL大⊢ @ @ Cmin$= @ @ Cmin$= @ Clist$REVERSE Vl Clist$NIL @ @ Cmin$= Vl Clist$NIL;
+
+REVERSE_APPEND大⊢ @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ @ Cmin$= @ Clist$REVERSE @ @ Clist$APPEND Vl1 Vl2 @ @ Clist$APPEND @ Clist$REVERSE Vl2 @ Clist$REVERSE Vl1;
+
+REVERSE_11大⊢ @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ @ Cmin$= @ @ Cmin$= @ Clist$REVERSE Vl1 @ Clist$REVERSE Vl2 @ @ Cmin$= Vl1 Vl2;
+
+REV_REVERSE_LEM大⊢ @ Cbool$! | VL1 @ Cbool$! | VL2 @ @ Cmin$= @ @ Clist$REV VL1 VL2 @ @ Clist$APPEND @ Clist$REVERSE VL1 VL2;
+
+OPT_MMAP_cong大⊢ @ Cbool$! | Vf1 @ Cbool$! | Vf2 @ Cbool$! | Vx1 @ Cbool$! | Vx2 @ @ Cmin$==> @ @ Cbool$/\ @ @ Cmin$= Vx1 Vx2 @ Cbool$! | Va @ @ Cmin$==> @ @ Cbool$IN Va @ Clist$LIST_TO_SET Vx2 @ @ Cmin$= @ Vf1 Va @ Vf2 Va @ @ Cmin$= @ @ Clist$OPT_MMAP Vf1 Vx1 @ @ Clist$OPT_MMAP Vf2 Vx2;
+
+oHD_thm大⊢ @ @ Cbool$/\ @ @ Cmin$= @ Clist$oHD Clist$NIL Coption$NONE @ @ Cmin$= @ Clist$oHD @ @ Clist$CONS Vh Vt @ Coption$SOME Vh;
+
+oEL_THM大⊢ @ Cbool$! | Vxs @ Cbool$! | Vn @ @ Cmin$= @ @ Clist$oEL Vn Vxs @ @ @ Cbool$COND @ @ Cprim_rec$< Vn @ Clist$LENGTH Vxs @ Coption$SOME @ @ Clist$EL Vn Vxs Coption$NONE;
+
+oEL_TAKE_E大⊢ @ @ Cmin$==> @ @ Cmin$= @ @ Clist$oEL Vn @ @ Clist$TAKE Vm Vxs @ Coption$SOME Vx @ @ Cmin$= @ @ Clist$oEL Vn Vxs @ Coption$SOME Vx;
+
+oEL_LUPDATE大⊢ @ Cbool$! | Vxs @ Cbool$! | Vi @ Cbool$! | Vn @ Cbool$! | Vx @ @ Cmin$= @ @ Clist$oEL Vn @ @ @ Clist$LUPDATE Vx Vi Vxs @ @ @ Cbool$COND @ Cbool$~ @ @ Cmin$= Vi Vn @ @ Clist$oEL Vn Vxs @ @ @ Cbool$COND @ @ Cprim_rec$< Vi @ Clist$LENGTH Vxs @ Coption$SOME Vx Coption$NONE;
+
+oEL_EQ_EL大⊢ @ Cbool$! | Vxs @ Cbool$! | Vn @ Cbool$! | Vy @ @ Cmin$= @ @ Cmin$= @ @ Clist$oEL Vn Vxs @ Coption$SOME Vy @ @ Cbool$/\ @ @ Cprim_rec$< Vn @ Clist$LENGTH Vxs @ @ Cmin$= Vy @ @ Clist$EL Vn Vxs;
+
+oEL_DROP大⊢ @ @ Cmin$= @ @ Clist$oEL Vn @ @ Clist$DROP Vm Vxs @ @ Clist$oEL @ @ Carithmetic$+ Vm Vn Vxs;
+
+NULL_LENGTH大⊢ @ Cbool$! | Vl @ @ Cmin$= @ Clist$NULL Vl @ @ Cmin$= @ Clist$LENGTH Vl Cnum$0;
+
+NULL_GENLIST大⊢ @ Cbool$! | Vn @ Cbool$! | Vf @ @ Cmin$= @ Clist$NULL @ @ Clist$GENLIST Vf Vn @ @ Cmin$= Vn Cnum$0;
+
+NULL_FILTER大⊢ @ Cbool$! | VP @ Cbool$! | Vls @ @ Cmin$= @ Clist$NULL @ @ Clist$FILTER VP Vls @ Cbool$! | Vx @ @ Cmin$==> @ @ Cbool$IN Vx @ Clist$LIST_TO_SET Vls @ Cbool$~ @ VP Vx;
+
+NULL_EQ大⊢ @ Cbool$! | Vl @ @ Cmin$= @ Clist$NULL Vl @ @ Cmin$= Vl Clist$NIL;
+
+NULL_APPEND大⊢ @ @ Cmin$= @ Clist$NULL @ @ Clist$APPEND Vl1 Vl2 @ @ Cbool$/\ @ Clist$NULL Vl1 @ Clist$NULL Vl2;
+
+NULL大⊢ @ @ Cbool$/\ @ Clist$NULL Clist$NIL @ Cbool$! | Vh @ Cbool$! | Vt @ Cbool$~ @ Clist$NULL @ @ Clist$CONS Vh Vt;
+
+nub_set大⊢ @ Cbool$! | Vl @ @ Cmin$= @ Clist$LIST_TO_SET @ Clist$nub Vl @ Clist$LIST_TO_SET Vl;
+
+nub_append大⊢ @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ @ Cmin$= @ Clist$nub @ @ Clist$APPEND Vl1 Vl2 @ @ Clist$APPEND @ Clist$nub @ @ Clist$FILTER | Vx @ Cbool$~ @ @ Cbool$IN Vx @ Clist$LIST_TO_SET Vl2 Vl1 @ Clist$nub Vl2;
+
+NRC_LRC大⊢ @ @ Cmin$= @ @ @ @ Carithmetic$NRC VR Vn Vx Vy @ Cbool$? | Vls @ @ Cbool$/\ @ @ @ @ Clist$LRC VR Vls Vx Vy @ @ Cmin$= @ Clist$LENGTH Vls Vn;
+
+NOT_NULL_MEM大⊢ @ Cbool$! | Vl @ @ Cmin$= @ Cbool$~ @ Clist$NULL Vl @ Cbool$? | Ve @ @ Cbool$IN Ve @ Clist$LIST_TO_SET Vl;
+
+NOT_NIL_EQ_LENGTH_NOT_0大⊢ @ @ Cmin$= @ Cbool$~ @ @ Cmin$= Vx Clist$NIL @ @ Cprim_rec$< Cnum$0 @ Clist$LENGTH Vx;
+
+NOT_NIL_CONS大⊢ @ Cbool$! | Va1 @ Cbool$! | Va0 @ Cbool$~ @ @ Cmin$= Clist$NIL @ @ Clist$CONS Va0 Va1;
+
+NOT_EXISTS大⊢ @ Cbool$! | VP @ Cbool$! | Vl @ @ Cmin$= @ Cbool$~ @ @ Clist$EXISTS VP Vl @ @ Clist$EVERY @ @ Ccombin$o Cbool$~ VP Vl;
+
+NOT_EVERY大⊢ @ Cbool$! | VP @ Cbool$! | Vl @ @ Cmin$= @ Cbool$~ @ @ Clist$EVERY VP Vl @ @ Clist$EXISTS @ @ Ccombin$o Cbool$~ VP Vl;
+
+NOT_EQ_LIST大⊢ @ Cbool$! | Vh1 @ Cbool$! | Vh2 @ @ Cmin$==> @ Cbool$~ @ @ Cmin$= Vh1 Vh2 @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ Cbool$~ @ @ Cmin$= @ @ Clist$CONS Vh1 Vl1 @ @ Clist$CONS Vh2 Vl2;
+
+NOT_CONS_NIL大⊢ @ Cbool$! | Va1 @ Cbool$! | Va0 @ Cbool$~ @ @ Cmin$= @ @ Clist$CONS Va0 Va1 Clist$NIL;
+
+MONO_EXISTS大⊢ @ @ Cmin$==> @ Cbool$! | Vx @ @ Cmin$==> @ VP Vx @ VQ Vx @ @ Cmin$==> @ @ Clist$EXISTS VP Vl @ @ Clist$EXISTS VQ Vl;
+
+MONO_EVERY大⊢ @ @ Cmin$==> @ Cbool$! | Vx @ @ Cmin$==> @ VP Vx @ VQ Vx @ @ Cmin$==> @ @ Clist$EVERY VP Vl @ @ Clist$EVERY VQ Vl;
+
+MEM_ZIP_MEM_MAP大⊢ @ @ Cmin$==> @ @ Cbool$/\ @ @ Cmin$= @ Clist$LENGTH @ Cpair$FST Vps @ Clist$LENGTH @ Cpair$SND Vps @ @ Cbool$IN Vp @ Clist$LIST_TO_SET @ Clist$ZIP Vps @ @ Cbool$/\ @ @ Cbool$IN @ Cpair$FST Vp @ Clist$LIST_TO_SET @ Cpair$FST Vps @ @ Cbool$IN @ Cpair$SND Vp @ Clist$LIST_TO_SET @ Cpair$SND Vps;
+
+MEM_ZIP大⊢ @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ Cbool$! | Vp @ @ Cmin$==> @ @ Cmin$= @ Clist$LENGTH Vl1 @ Clist$LENGTH Vl2 @ @ Cmin$= @ @ Cbool$IN Vp @ Clist$LIST_TO_SET @ Clist$ZIP @ @ Cpair$, Vl1 Vl2 @ Cbool$? | Vn @ @ Cbool$/\ @ @ Cprim_rec$< Vn @ Clist$LENGTH Vl1 @ @ Cmin$= Vp @ @ Cpair$, @ @ Clist$EL Vn Vl1 @ @ Clist$EL Vn Vl2;
+
+MEM_SPLIT_APPEND_last大⊢ @ @ Cmin$= @ @ Cbool$IN Ve @ Clist$LIST_TO_SET Vl @ Cbool$? | Vpfx @ Cbool$? | Vsfx @ @ Cbool$/\ @ @ Cmin$= Vl @ @ Clist$APPEND @ @ Clist$APPEND Vpfx @ @ Clist$CONS Ve Clist$NIL Vsfx @ Cbool$~ @ @ Cbool$IN Ve @ Clist$LIST_TO_SET Vsfx;
+
+MEM_SPLIT_APPEND_first大⊢ @ @ Cmin$= @ @ Cbool$IN Ve @ Clist$LIST_TO_SET Vl @ Cbool$? | Vpfx @ Cbool$? | Vsfx @ @ Cbool$/\ @ @ Cmin$= Vl @ @ Clist$APPEND @ @ Clist$APPEND Vpfx @ @ Clist$CONS Ve Clist$NIL Vsfx @ Cbool$~ @ @ Cbool$IN Ve @ Clist$LIST_TO_SET Vpfx;
+
+MEM_SPLIT大⊢ @ Cbool$! | Vx @ Cbool$! | Vl @ @ Cmin$= @ @ Cbool$IN Vx @ Clist$LIST_TO_SET Vl @ Cbool$? | Vl1 @ Cbool$? | Vl2 @ @ Cmin$= Vl @ @ Clist$APPEND Vl1 @ @ Clist$CONS Vx Vl2;
+
+MEM_SNOC大⊢ @ Cbool$! | Vy @ Cbool$! | Vx @ Cbool$! | Vl @ @ Cmin$= @ @ Cbool$IN Vy @ Clist$LIST_TO_SET @ @ Clist$SNOC Vx Vl @ @ Cbool$\/ @ @ Cmin$= Vy Vx @ @ Cbool$IN Vy @ Clist$LIST_TO_SET Vl;
+
+MEM_SET_TO_LIST大⊢ @ Cbool$! | Vs @ @ Cmin$==> @ Cpred_set$FINITE Vs @ Cbool$! | Vx @ @ Cmin$= @ @ Cbool$IN Vx @ Clist$LIST_TO_SET @ Clist$SET_TO_LIST Vs @ @ Cbool$IN Vx Vs;
+
+MEM_REVERSE大⊢ @ Cbool$! | Vl @ Cbool$! | Vx @ @ Cmin$= @ @ Cbool$IN Vx @ Clist$LIST_TO_SET @ Clist$REVERSE Vl @ @ Cbool$IN Vx @ Clist$LIST_TO_SET Vl;
+
+MEM_MAP大⊢ @ Cbool$! | Vl @ Cbool$! | Vf @ Cbool$! | Vx @ @ Cmin$= @ @ Cbool$IN Vx @ Clist$LIST_TO_SET @ @ Clist$MAP Vf Vl @ Cbool$? | Vy @ @ Cbool$/\ @ @ Cmin$= Vx @ Vf Vy @ @ Cbool$IN Vy @ Clist$LIST_TO_SET Vl;
+
+MEM_LUPDATE_E大⊢ @ Cbool$! | Vl @ Cbool$! | Vx @ Cbool$! | Vy @ Cbool$! | Vi @ @ Cmin$==> @ @ Cbool$IN Vx @ Clist$LIST_TO_SET @ @ @ Clist$LUPDATE Vy Vi Vl @ @ Cbool$\/ @ @ Cmin$= Vx Vy @ @ Cbool$IN Vx @ Clist$LIST_TO_SET Vl;
+
+MEM_LUPDATE大⊢ @ Cbool$! | Vl @ Cbool$! | Vx @ Cbool$! | Vy @ Cbool$! | Vi @ @ Cmin$= @ @ Cbool$IN Vx @ Clist$LIST_TO_SET @ @ @ Clist$LUPDATE Vy Vi Vl @ @ Cbool$\/ @ @ Cbool$/\ @ @ Cprim_rec$< Vi @ Clist$LENGTH Vl @ @ Cmin$= Vx Vy @ Cbool$? | Vj @ @ Cbool$/\ @ @ Cprim_rec$< Vj @ Clist$LENGTH Vl @ @ Cbool$/\ @ Cbool$~ @ @ Cmin$= Vi Vj @ @ Cmin$= @ @ Clist$EL Vj Vl Vx;
+
+MEM_GENLIST大⊢ @ @ Cmin$= @ @ Cbool$IN Vx @ Clist$LIST_TO_SET @ @ Clist$GENLIST Vf Vn @ Cbool$? | Vm @ @ Cbool$/\ @ @ Cprim_rec$< Vm Vn @ @ Cmin$= Vx @ Vf Vm;
+
+MEM_FLAT大⊢ @ Cbool$! | Vx @ Cbool$! | VL @ @ Cmin$= @ @ Cbool$IN Vx @ Clist$LIST_TO_SET @ Clist$FLAT VL @ Cbool$? | Vl @ @ Cbool$/\ @ @ Cbool$IN Vl @ Clist$LIST_TO_SET VL @ @ Cbool$IN Vx @ Clist$LIST_TO_SET Vl;
+
+MEM_FILTER大⊢ @ Cbool$! | VP @ Cbool$! | VL @ Cbool$! | Vx @ @ Cmin$= @ @ Cbool$IN Vx @ Clist$LIST_TO_SET @ @ Clist$FILTER VP VL @ @ Cbool$/\ @ VP Vx @ @ Cbool$IN Vx @ Clist$LIST_TO_SET VL;
+
+mem_exists_set大⊢ @ Cbool$! | Vx @ Cbool$! | Vy @ Cbool$! | Vl @ @ Cmin$==> @ @ Cbool$IN @ @ Cpair$, Vx Vy @ Clist$LIST_TO_SET Vl @ Cbool$? | Vz @ @ Cbool$/\ @ @ Cmin$= Vx @ Cpair$FST Vz @ @ Cbool$IN Vz @ Clist$LIST_TO_SET Vl;
+
+MEM_EL大⊢ @ Cbool$! | Vl @ Cbool$! | Vx @ @ Cmin$= @ @ Cbool$IN Vx @ Clist$LIST_TO_SET Vl @ Cbool$? | Vn @ @ Cbool$/\ @ @ Cprim_rec$< Vn @ Clist$LENGTH Vl @ @ Cmin$= Vx @ @ Clist$EL Vn Vl;
+
+MEM_dropWhile_IMP大⊢ @ Cbool$! | VP @ Cbool$! | Vls @ Cbool$! | Vx @ @ Cmin$==> @ @ Cbool$IN Vx @ Clist$LIST_TO_SET @ @ Clist$dropWhile VP Vls @ @ Cbool$IN Vx @ Clist$LIST_TO_SET Vls;
+
+MEM_DROP大⊢ @ Cbool$! | Vx @ Cbool$! | Vls @ Cbool$! | Vn @ @ Cmin$= @ @ Cbool$IN Vx @ Clist$LIST_TO_SET @ @ Clist$DROP Vn Vls @ Cbool$? | Vm @ @ Cbool$/\ @ @ Cprim_rec$< @ @ Carithmetic$+ Vm Vn @ Clist$LENGTH Vls @ @ Cmin$= Vx @ @ Clist$EL @ @ Carithmetic$+ Vm Vn Vls;
+
+MEM_APPEND_lemma大⊢ @ Cbool$! | Va @ Cbool$! | Vb @ Cbool$! | Vc @ Cbool$! | Vd @ Cbool$! | Vx @ @ Cmin$==> @ @ Cbool$/\ @ @ Cmin$= @ @ Clist$APPEND @ @ Clist$APPEND Va @ @ Clist$CONS Vx Clist$NIL Vb @ @ Clist$APPEND @ @ Clist$APPEND Vc @ @ Clist$CONS Vx Clist$NIL Vd @ @ Cbool$/\ @ Cbool$~ @ @ Cbool$IN Vx @ Clist$LIST_TO_SET Vb @ Cbool$~ @ @ Cbool$IN Vx @ Clist$LIST_TO_SET Va @ @ Cbool$/\ @ @ Cmin$= Va Vc @ @ Cmin$= Vb Vd;
+
+MEM_APPEND大⊢ @ Cbool$! | Ve @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ @ Cmin$= @ @ Cbool$IN Ve @ Clist$LIST_TO_SET @ @ Clist$APPEND Vl1 Vl2 @ @ Cbool$\/ @ @ Cbool$IN Ve @ Clist$LIST_TO_SET Vl1 @ @ Cbool$IN Ve @ Clist$LIST_TO_SET Vl2;
+
+MEM大⊢ @ @ Cbool$/\ @ Cbool$! | Vx @ @ Cmin$= @ @ Cbool$IN Vx @ Clist$LIST_TO_SET Clist$NIL Cbool$F @ Cbool$! | Vx @ Cbool$! | Vh @ Cbool$! | Vt @ @ Cmin$= @ @ Cbool$IN Vx @ Clist$LIST_TO_SET @ @ Clist$CONS Vh Vt @ @ Cbool$\/ @ @ Cmin$= Vx Vh @ @ Cbool$IN Vx @ Clist$LIST_TO_SET Vt;
+
+MAP_ZIP_SAME大⊢ @ Cbool$! | Vls @ Cbool$! | Vf @ @ Cmin$= @ @ Clist$MAP Vf @ Clist$ZIP @ @ Cpair$, Vls Vls @ @ Clist$MAP | Vx @ Vf @ @ Cpair$, Vx Vx Vls;
+
+MAP_ZIP大⊢ @ @ Cmin$==> @ @ Cmin$= @ Clist$LENGTH Vl1 @ Clist$LENGTH Vl2 @ @ Cbool$/\ @ @ Cmin$= @ @ Clist$MAP Cpair$FST @ Clist$ZIP @ @ Cpair$, Vl1 Vl2 Vl1 @ @ Cbool$/\ @ @ Cmin$= @ @ Clist$MAP Cpair$SND @ Clist$ZIP @ @ Cpair$, Vl1 Vl2 Vl2 @ @ Cbool$/\ @ @ Cmin$= @ @ Clist$MAP @ @ Ccombin$o Vf Cpair$FST @ Clist$ZIP @ @ Cpair$, Vl1 Vl2 @ @ Clist$MAP Vf Vl1 @ @ Cmin$= @ @ Clist$MAP @ @ Ccombin$o Vg Cpair$SND @ Clist$ZIP @ @ Cpair$, Vl1 Vl2 @ @ Clist$MAP Vg Vl2;
+
+MAP_TL大⊢ @ Cbool$! | Vl @ Cbool$! | Vf @ @ Cmin$==> @ Cbool$~ @ Clist$NULL Vl @ @ Cmin$= @ @ Clist$MAP Vf @ Clist$TL Vl @ Clist$TL @ @ Clist$MAP Vf Vl;
+
+MAP_TAKE大⊢ @ Cbool$! | Vf @ Cbool$! | Vn @ Cbool$! | Vl @ @ Cmin$= @ @ Clist$MAP Vf @ @ Clist$TAKE Vn Vl @ @ Clist$TAKE Vn @ @ Clist$MAP Vf Vl;
+
+MAP_SNOC大⊢ @ Cbool$! | Vf @ Cbool$! | Vx @ Cbool$! | Vl @ @ Cmin$= @ @ Clist$MAP Vf @ @ Clist$SNOC Vx Vl @ @ Clist$SNOC @ Vf Vx @ @ Clist$MAP Vf Vl;
+
+MAP_o大⊢ @ Cbool$! | Vf @ Cbool$! | Vg @ @ Cmin$= @ Clist$MAP @ @ Ccombin$o Vf Vg @ @ Ccombin$o @ Clist$MAP Vf @ Clist$MAP Vg;
+
+MAP_MAP_o大⊢ @ Cbool$! | Vf @ Cbool$! | Vg @ Cbool$! | Vl @ @ Cmin$= @ @ Clist$MAP Vf @ @ Clist$MAP Vg Vl @ @ Clist$MAP @ @ Ccombin$o Vf Vg Vl;
+
+MAP_LIST_BIND大⊢ @ @ Cmin$= @ @ Clist$MAP Vf @ @ Clist$LIST_BIND Vl Vg @ @ Clist$LIST_BIND Vl @ @ Ccombin$o @ Clist$MAP Vf Vg;
+
+MAP_ID大⊢ @ @ Cbool$/\ @ @ Cmin$= @ @ Clist$MAP | Vx Vx Vl Vl @ @ Cmin$= @ @ Clist$MAP Ccombin$I Vl Vl;
+
+MAP_GENLIST大⊢ @ Cbool$! | Vf @ Cbool$! | Vg @ Cbool$! | Vn @ @ Cmin$= @ @ Clist$MAP Vf @ @ Clist$GENLIST Vg Vn @ @ Clist$GENLIST @ @ Ccombin$o Vf Vg Vn;
+
+MAP_FRONT大⊢ @ Cbool$! | Vls @ @ Cmin$==> @ Cbool$~ @ @ Cmin$= Vls Clist$NIL @ @ Cmin$= @ @ Clist$MAP Vf @ Clist$FRONT Vls @ Clist$FRONT @ @ Clist$MAP Vf Vls;
+
+MAP_FLAT大⊢ @ @ Cmin$= @ @ Clist$MAP Vf @ Clist$FLAT Vl @ Clist$FLAT @ @ Clist$MAP @ Clist$MAP Vf Vl;
+
+MAP_EQ_SING大⊢ @ @ Cmin$= @ @ Cmin$= @ @ Clist$MAP Vf Vl @ @ Clist$CONS Vx Clist$NIL @ Cbool$? | Vx0 @ @ Cbool$/\ @ @ Cmin$= Vl @ @ Clist$CONS Vx0 Clist$NIL @ @ Cmin$= Vx @ Vf Vx0;
+
+MAP_EQ_NIL大⊢ @ Cbool$! | Vl @ Cbool$! | Vf @ @ Cbool$/\ @ @ Cmin$= @ @ Cmin$= @ @ Clist$MAP Vf Vl Clist$NIL @ @ Cmin$= Vl Clist$NIL @ @ Cmin$= @ @ Cmin$= Clist$NIL @ @ Clist$MAP Vf Vl @ @ Cmin$= Vl Clist$NIL;
+
+MAP_EQ_f大⊢ @ Cbool$! | Vf1 @ Cbool$! | Vf2 @ Cbool$! | Vl @ @ Cmin$= @ @ Cmin$= @ @ Clist$MAP Vf1 Vl @ @ Clist$MAP Vf2 Vl @ Cbool$! | Ve @ @ Cmin$==> @ @ Cbool$IN Ve @ Clist$LIST_TO_SET Vl @ @ Cmin$= @ Vf1 Ve @ Vf2 Ve;
+
+MAP_EQ_EVERY2大⊢ @ Cbool$! | Vf1 @ Cbool$! | Vf2 @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ @ Cmin$= @ @ Cmin$= @ @ Clist$MAP Vf1 Vl1 @ @ Clist$MAP Vf2 Vl2 @ @ Cbool$/\ @ @ Cmin$= @ Clist$LENGTH Vl1 @ Clist$LENGTH Vl2 @ @ @ Clist$LIST_REL | Vx | Vy @ @ Cmin$= @ Vf1 Vx @ Vf2 Vy Vl1 Vl2;
+
+MAP_EQ_CONS大⊢ @ @ Cmin$= @ @ Cmin$= @ @ Clist$MAP Vf Vl @ @ Clist$CONS Vh Vt @ Cbool$? | Vx0 @ Cbool$? | Vt0 @ @ Cbool$/\ @ @ Cmin$= Vl @ @ Clist$CONS Vx0 Vt0 @ @ Cbool$/\ @ @ Cmin$= Vh @ Vf Vx0 @ @ Cmin$= Vt @ @ Clist$MAP Vf Vt0;
+
+MAP_EQ_APPEND大⊢ @ @ Cmin$= @ @ Cmin$= @ @ Clist$MAP Vf Vl @ @ Clist$APPEND Vl1 Vl2 @ Cbool$? | Vl10 @ Cbool$? | Vl20 @ @ Cbool$/\ @ @ Cmin$= Vl @ @ Clist$APPEND Vl10 Vl20 @ @ Cbool$/\ @ @ Cmin$= Vl1 @ @ Clist$MAP Vf Vl10 @ @ Cmin$= Vl2 @ @ Clist$MAP Vf Vl20;
+
+MAP_DROP大⊢ @ Cbool$! | Vl @ Cbool$! | Vi @ @ Cmin$= @ @ Clist$MAP Vf @ @ Clist$DROP Vi Vl @ @ Clist$DROP Vi @ @ Clist$MAP Vf Vl;
+
+MAP_CONG大⊢ @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ Cbool$! | Vf @ Cbool$! | Vf' @ @ Cmin$==> @ @ Cbool$/\ @ @ Cmin$= Vl1 Vl2 @ Cbool$! | Vx @ @ Cmin$==> @ @ Cbool$IN Vx @ Clist$LIST_TO_SET Vl2 @ @ Cmin$= @ Vf Vx @ Vf' Vx @ @ Cmin$= @ @ Clist$MAP Vf Vl1 @ @ Clist$MAP Vf' Vl2;
+
+MAP_APPEND_MAP_EQ大⊢ @ Cbool$! | Vxs @ Cbool$! | Vys @ @ Cmin$= @ @ Cmin$= @ @ Clist$APPEND @ @ Clist$MAP Vf1 Vxs @ @ Clist$MAP Vg1 Vys @ @ Clist$APPEND @ @ Clist$MAP Vf2 Vxs @ @ Clist$MAP Vg2 Vys @ @ Cbool$/\ @ @ Cmin$= @ @ Clist$MAP Vf1 Vxs @ @ Clist$MAP Vf2 Vxs @ @ Cmin$= @ @ Clist$MAP Vg1 Vys @ @ Clist$MAP Vg2 Vys;
+
+MAP_APPEND大⊢ @ Cbool$! | Vf @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ @ Cmin$= @ @ Clist$MAP Vf @ @ Clist$APPEND Vl1 Vl2 @ @ Clist$APPEND @ @ Clist$MAP Vf Vl1 @ @ Clist$MAP Vf Vl2;
+
+MAP2_ZIP大⊢ @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ @ Cmin$==> @ @ Cmin$= @ Clist$LENGTH Vl1 @ Clist$LENGTH Vl2 @ Cbool$! | Vf @ @ Cmin$= @ @ @ Clist$MAP2 Vf Vl1 Vl2 @ @ Clist$MAP @ Cpair$UNCURRY Vf @ Clist$ZIP @ @ Cpair$, Vl1 Vl2;
+
+MAP2_NIL大⊢ @ @ Cmin$= @ @ @ Clist$MAP2 Vf Vx Clist$NIL Clist$NIL;
+
+MAP2_MAP大⊢ @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ @ Cmin$==> @ @ Cmin$= @ Clist$LENGTH Vl1 @ Clist$LENGTH Vl2 @ Cbool$! | Vf @ @ Cmin$= @ @ @ Clist$MAP2 Vf Vl1 Vl2 @ @ Clist$MAP @ Cpair$UNCURRY Vf @ Clist$ZIP @ @ Cpair$, Vl1 Vl2;
+
+MAP2_ind大⊢ @ Cbool$! | VP @ @ Cmin$==> @ @ Cbool$/\ @ Cbool$! | Vf @ Cbool$! | Vh1 @ Cbool$! | Vt1 @ Cbool$! | Vh2 @ Cbool$! | Vt2 @ @ Cmin$==> @ @ @ VP Vf Vt1 Vt2 @ @ @ VP Vf @ @ Clist$CONS Vh1 Vt1 @ @ Clist$CONS Vh2 Vt2 @ @ Cbool$/\ @ Cbool$! | Vf @ Cbool$! | Vy @ @ @ VP Vf Clist$NIL Vy @ Cbool$! | Vf @ Cbool$! | Vv4 @ Cbool$! | Vv5 @ @ @ VP Vf @ @ Clist$CONS Vv4 Vv5 Clist$NIL @ Cbool$! | Vv @ Cbool$! | Vv1 @ Cbool$! | Vv2 @ @ @ VP Vv Vv1 Vv2;
+
+MAP2_DEF大⊢ @ @ Cbool$/\ @ Cbool$! | Vt2 @ Cbool$! | Vt1 @ Cbool$! | Vh2 @ Cbool$! | Vh1 @ Cbool$! | Vf @ @ Cmin$= @ @ @ Clist$MAP2 Vf @ @ Clist$CONS Vh1 Vt1 @ @ Clist$CONS Vh2 Vt2 @ @ Clist$CONS @ @ Vf Vh1 Vh2 @ @ @ Clist$MAP2 Vf Vt1 Vt2 @ @ Cbool$/\ @ Cbool$! | Vy @ Cbool$! | Vf @ @ Cmin$= @ @ @ Clist$MAP2 Vf Clist$NIL Vy Clist$NIL @ Cbool$! | Vv5 @ Cbool$! | Vv4 @ Cbool$! | Vf @ @ Cmin$= @ @ @ Clist$MAP2 Vf @ @ Clist$CONS Vv4 Vv5 Clist$NIL Clist$NIL;
+
+MAP2_CONG大⊢ @ Cbool$! | Vl1 @ Cbool$! | Vl1' @ Cbool$! | Vl2 @ Cbool$! | Vl2' @ Cbool$! | Vf @ Cbool$! | Vf' @ @ Cmin$==> @ @ Cbool$/\ @ @ Cmin$= Vl1 Vl1' @ @ Cbool$/\ @ @ Cmin$= Vl2 Vl2' @ Cbool$! | Vx @ Cbool$! | Vy @ @ Cmin$==> @ @ Cbool$/\ @ @ Cbool$IN Vx @ Clist$LIST_TO_SET Vl1' @ @ Cbool$IN Vy @ Clist$LIST_TO_SET Vl2' @ @ Cmin$= @ @ Vf Vx Vy @ @ Vf' Vx Vy @ @ Cmin$= @ @ @ Clist$MAP2 Vf Vl1 Vl2 @ @ @ Clist$MAP2 Vf' Vl1' Vl2';
+
+MAP2_APPEND大⊢ @ Cbool$! | Vxs @ Cbool$! | Vys @ Cbool$! | Vxs1 @ Cbool$! | Vys1 @ Cbool$! | Vf @ @ Cmin$==> @ @ Cmin$= @ Clist$LENGTH Vxs @ Clist$LENGTH Vxs1 @ @ Cmin$= @ @ @ Clist$MAP2 Vf @ @ Clist$APPEND Vxs Vys @ @ Clist$APPEND Vxs1 Vys1 @ @ Clist$APPEND @ @ @ Clist$MAP2 Vf Vxs Vxs1 @ @ @ Clist$MAP2 Vf Vys Vys1;
+
+MAP2大⊢ @ @ Cbool$/\ @ Cbool$! | Vf @ @ Cmin$= @ @ @ Clist$MAP2 Vf Clist$NIL Clist$NIL Clist$NIL @ Cbool$! | Vf @ Cbool$! | Vh1 @ Cbool$! | Vt1 @ Cbool$! | Vh2 @ Cbool$! | Vt2 @ @ Cmin$= @ @ @ Clist$MAP2 Vf @ @ Clist$CONS Vh1 Vt1 @ @ Clist$CONS Vh2 Vt2 @ @ Clist$CONS @ @ Vf Vh1 Vh2 @ @ @ Clist$MAP2 Vf Vt1 Vt2;
+
+LUPDATE_SOME_MAP大⊢ @ Cbool$! | Vxs @ Cbool$! | Vn @ Cbool$! | Vf @ Cbool$! | Vh @ @ Cmin$= @ @ @ Clist$LUPDATE @ Coption$SOME @ Vf Vh Vn @ @ Clist$MAP @ Coption$OPTION_MAP Vf Vxs @ @ Clist$MAP @ Coption$OPTION_MAP Vf @ @ @ Clist$LUPDATE @ Coption$SOME Vh Vn Vxs;
+
+LUPDATE_SNOC大⊢ @ Cbool$! | Vys @ Cbool$! | Vk @ Cbool$! | Vx @ Cbool$! | Vy @ @ Cmin$= @ @ @ Clist$LUPDATE Vx Vk @ @ Clist$SNOC Vy Vys @ @ @ Cbool$COND @ @ Cmin$= Vk @ Clist$LENGTH Vys @ @ Clist$SNOC Vx Vys @ @ Clist$SNOC Vy @ @ @ Clist$LUPDATE Vx Vk Vys;
+
+LUPDATE_SEM大⊢ @ @ Cbool$/\ @ Cbool$! | Ve @ Cbool$! | Vn @ Cbool$! | Vl @ @ Cmin$= @ Clist$LENGTH @ @ @ Clist$LUPDATE Ve Vn Vl @ Clist$LENGTH Vl @ Cbool$! | Ve @ Cbool$! | Vn @ Cbool$! | Vl @ Cbool$! | Vp @ @ Cmin$==> @ @ Cprim_rec$< Vp @ Clist$LENGTH Vl @ @ Cmin$= @ @ Clist$EL Vp @ @ @ Clist$LUPDATE Ve Vn Vl @ @ @ Cbool$COND @ @ Cmin$= Vp Vn Ve @ @ Clist$EL Vp Vl;
+
+LUPDATE_SAME大⊢ @ Cbool$! | Vn @ Cbool$! | Vls @ @ Cmin$==> @ @ Cprim_rec$< Vn @ Clist$LENGTH Vls @ @ Cmin$= @ @ @ Clist$LUPDATE @ @ Clist$EL Vn Vls Vn Vls Vls;
+
+LUPDATE_NIL大⊢ @ Cbool$! | Vxs @ Cbool$! | Vn @ Cbool$! | Vx @ @ Cmin$= @ @ Cmin$= @ @ @ Clist$LUPDATE Vx Vn Vxs Clist$NIL @ @ Cmin$= Vxs Clist$NIL;
+
+LUPDATE_MAP大⊢ @ Cbool$! | Vx @ Cbool$! | Vn @ Cbool$! | Vl @ Cbool$! | Vf @ @ Cmin$= @ @ Clist$MAP Vf @ @ @ Clist$LUPDATE Vx Vn Vl @ @ @ Clist$LUPDATE @ Vf Vx Vn @ @ Clist$MAP Vf Vl;
+
+LUPDATE_LENGTH大⊢ @ Cbool$! | Vxs @ Cbool$! | Vx @ Cbool$! | Vy @ Cbool$! | Vys @ @ Cmin$= @ @ @ Clist$LUPDATE Vx @ Clist$LENGTH Vxs @ @ Clist$APPEND Vxs @ @ Clist$CONS Vy Vys @ @ Clist$APPEND Vxs @ @ Clist$CONS Vx Vys;
+
+LUPDATE_compute大⊢ @ @ Cbool$/\ @ Cbool$! | Ve @ Cbool$! | Vn @ @ Cmin$= @ @ @ Clist$LUPDATE Ve Vn Clist$NIL Clist$NIL @ @ Cbool$/\ @ Cbool$! | Ve @ Cbool$! | Vx @ Cbool$! | Vl @ @ Cmin$= @ @ @ Clist$LUPDATE Ve Cnum$0 @ @ Clist$CONS Vx Vl @ @ Clist$CONS Ve Vl @ @ Cbool$/\ @ Cbool$! | Ve @ Cbool$! | Vn @ Cbool$! | Vx @ Cbool$! | Vl @ @ Cmin$= @ @ @ Clist$LUPDATE Ve @ Carithmetic$NUMERAL @ Carithmetic$BIT1 Vn @ @ Clist$CONS Vx Vl @ @ Clist$CONS Vx @ @ @ Clist$LUPDATE Ve @ @ Carithmetic$- @ Carithmetic$NUMERAL @ Carithmetic$BIT1 Vn @ Carithmetic$NUMERAL @ Carithmetic$BIT1 Carithmetic$ZERO Vl @ Cbool$! | Ve @ Cbool$! | Vn @ Cbool$! | Vx @ Cbool$! | Vl @ @ Cmin$= @ @ @ Clist$LUPDATE Ve @ Carithmetic$NUMERAL @ Carithmetic$BIT2 Vn @ @ Clist$CONS Vx Vl @ @ Clist$CONS Vx @ @ @ Clist$LUPDATE Ve @ Carithmetic$NUMERAL @ Carithmetic$BIT1 Vn Vl;
+
+lupdate_append2大⊢ @ Cbool$! | Vv @ Cbool$! | Vl1 @ Cbool$! | Vx @ Cbool$! | Vl2 @ Cbool$! | Vl3 @ @ Cmin$= @ @ @ Clist$LUPDATE Vv @ Clist$LENGTH Vl1 @ @ Clist$APPEND @ @ Clist$APPEND Vl1 @ @ Clist$CONS Vx Clist$NIL Vl2 @ @ Clist$APPEND @ @ Clist$APPEND Vl1 @ @ Clist$CONS Vv Clist$NIL Vl2;
+
+lupdate_append大⊢ @ Cbool$! | Vx @ Cbool$! | Vn @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ @ Cmin$==> @ @ Cprim_rec$< Vn @ Clist$LENGTH Vl1 @ @ Cmin$= @ @ @ Clist$LUPDATE Vx Vn @ @ Clist$APPEND Vl1 Vl2 @ @ Clist$APPEND @ @ @ Clist$LUPDATE Vx Vn Vl1 Vl2;
+
+LRC_MEM_right大⊢ @ @ Cmin$==> @ @ Cbool$/\ @ @ @ @ Clist$LRC VR @ @ Clist$CONS Vh Vt Vx Vy @ @ Cbool$IN Ve @ Clist$LIST_TO_SET Vt @ Cbool$? | Vz @ Cbool$? | Vp @ @ Cbool$/\ @ @ VR Vz Ve @ @ @ @ Clist$LRC VR Vp Vx Vz;
+
+LRC_MEM大⊢ @ @ Cmin$==> @ @ Cbool$/\ @ @ @ @ Clist$LRC VR Vls Vx Vy @ @ Cbool$IN Ve @ Clist$LIST_TO_SET Vls @ Cbool$? | Vz @ Cbool$? | Vt @ @ Cbool$/\ @ @ VR Ve Vz @ @ @ @ Clist$LRC VR Vt Vz Vy;
+
+LLEX_transitive大⊢ @ @ Cmin$==> @ Crelation$transitive VR @ Crelation$transitive @ Clist$LLEX VR;
+
+LLEX_total大⊢ @ @ Cmin$==> @ Crelation$total @ Crelation$RC VR @ Crelation$total @ Crelation$RC @ Clist$LLEX VR;
+
+LLEX_THM大⊢ @ @ Cbool$/\ @ @ Cbool$/\ @ Cbool$~ @ @ @ Clist$LLEX VR Clist$NIL Clist$NIL @ Cbool$~ @ @ @ Clist$LLEX VR @ @ Clist$CONS Vh1 Vt1 Clist$NIL @ @ Cbool$/\ @ @ @ Clist$LLEX VR Clist$NIL @ @ Clist$CONS Vh2 Vt2 @ @ Cmin$= @ @ @ Clist$LLEX VR @ @ Clist$CONS Vh1 Vt1 @ @ Clist$CONS Vh2 Vt2 @ @ Cbool$\/ @ @ VR Vh1 Vh2 @ @ Cbool$/\ @ @ Cmin$= Vh1 Vh2 @ @ @ Clist$LLEX VR Vt1 Vt2;
+
+LLEX_not_WF大⊢ @ @ Cmin$==> @ Cbool$? | Va @ Cbool$? | Vb @ @ VR Va Vb @ Cbool$~ @ Crelation$WF @ Clist$LLEX VR;
+
+LLEX_NIL2大⊢ @ Cbool$~ @ @ @ Clist$LLEX VR Vl Clist$NIL;
+
+LLEX_MONO大⊢ @ @ Cmin$==> @ Cbool$! | Vx @ Cbool$! | Vy @ @ Cmin$==> @ @ VR1 Vx Vy @ @ VR2 Vx Vy @ @ Cmin$==> @ @ @ Clist$LLEX VR1 Vx Vy @ @ @ Clist$LLEX VR2 Vx Vy;
+
+LLEX_EL_THM大⊢ @ Cbool$! | VR @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ @ Cmin$= @ @ @ Clist$LLEX VR Vl1 Vl2 @ Cbool$? | Vn @ @ Cbool$/\ @ @ Carithmetic$<= Vn @ Clist$LENGTH Vl1 @ @ Cbool$/\ @ @ Cprim_rec$< Vn @ Clist$LENGTH Vl2 @ @ Cbool$/\ @ @ Cmin$= @ @ Clist$TAKE Vn Vl1 @ @ Clist$TAKE Vn Vl2 @ @ Cmin$==> @ @ Cprim_rec$< Vn @ Clist$LENGTH Vl1 @ @ VR @ @ Clist$EL Vn Vl1 @ @ Clist$EL Vn Vl2;
+
+LLEX_CONG大⊢ @ Cbool$! | VR @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ Cbool$! | VR' @ Cbool$! | Vl1' @ Cbool$! | Vl2' @ @ Cmin$==> @ @ Cbool$/\ @ @ Cmin$= Vl1 Vl1' @ @ Cbool$/\ @ @ Cmin$= Vl2 Vl2' @ Cbool$! | Va @ Cbool$! | Vb @ @ Cmin$==> @ @ Cbool$/\ @ @ Cbool$IN Va @ Clist$LIST_TO_SET Vl1' @ @ Cbool$IN Vb @ Clist$LIST_TO_SET Vl2' @ @ Cmin$= @ @ VR Va Vb @ @ VR' Va Vb @ @ Cmin$= @ @ @ Clist$LLEX VR Vl1 Vl2 @ @ @ Clist$LLEX VR' Vl1' Vl2';
+
+LIST_TO_SET_THM大⊢ @ @ Cbool$/\ @ @ Cmin$= @ Clist$LIST_TO_SET Clist$NIL Cpred_set$EMPTY @ @ Cmin$= @ Clist$LIST_TO_SET @ @ Clist$CONS Vh Vt @ @ Cpred_set$INSERT Vh @ Clist$LIST_TO_SET Vt;
+
+LIST_TO_SET_SNOC大⊢ @ @ Cmin$= @ Clist$LIST_TO_SET @ @ Clist$SNOC Vx Vls @ @ Cpred_set$INSERT Vx @ Clist$LIST_TO_SET Vls;
+
+LIST_TO_SET_REVERSE大⊢ @ Cbool$! | Vls @ @ Cmin$= @ Clist$LIST_TO_SET @ Clist$REVERSE Vls @ Clist$LIST_TO_SET Vls;
+
+LIST_TO_SET_MAP大⊢ @ Cbool$! | Vf @ Cbool$! | Vl @ @ Cmin$= @ Clist$LIST_TO_SET @ @ Clist$MAP Vf Vl @ @ Cpred_set$IMAGE Vf @ Clist$LIST_TO_SET Vl;
+
+LIST_TO_SET_GENLIST大⊢ @ Cbool$! | Vf @ Cbool$! | Vn @ @ Cmin$= @ Clist$LIST_TO_SET @ @ Clist$GENLIST Vf Vn @ @ Cpred_set$IMAGE Vf @ Cpred_set$count Vn;
+
+LIST_TO_SET_FLAT大⊢ @ Cbool$! | Vls @ @ Cmin$= @ Clist$LIST_TO_SET @ Clist$FLAT Vls @ Cpred_set$BIGUNION @ Clist$LIST_TO_SET @ @ Clist$MAP Clist$LIST_TO_SET Vls;
+
+LIST_TO_SET_FILTER大⊢ @ @ Cmin$= @ Clist$LIST_TO_SET @ @ Clist$FILTER VP Vl @ @ Cpred_set$INTER @ Cpred_set$GSPEC | Vx @ @ Cpair$, Vx @ VP Vx @ Clist$LIST_TO_SET Vl;
+
+LIST_TO_SET_EQ_EMPTY大⊢ @ @ Cbool$/\ @ @ Cmin$= @ @ Cmin$= @ Clist$LIST_TO_SET Vl Cpred_set$EMPTY @ @ Cmin$= Vl Clist$NIL @ @ Cmin$= @ @ Cmin$= Cpred_set$EMPTY @ Clist$LIST_TO_SET Vl @ @ Cmin$= Vl Clist$NIL;
+
+list_to_set_diff大⊢ @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ @ Cmin$= @ @ Cpred_set$DIFF @ Clist$LIST_TO_SET Vl2 @ Clist$LIST_TO_SET Vl1 @ Clist$LIST_TO_SET @ @ Clist$FILTER | Vx @ Cbool$~ @ @ Cbool$IN Vx @ Clist$LIST_TO_SET Vl1 Vl2;
+
+LIST_TO_SET_APPEND大⊢ @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ @ Cmin$= @ Clist$LIST_TO_SET @ @ Clist$APPEND Vl1 Vl2 @ @ Cpred_set$UNION @ Clist$LIST_TO_SET Vl1 @ Clist$LIST_TO_SET Vl2;
+
+LIST_TO_SET大⊢ @ @ Cbool$/\ @ @ Cmin$= @ Clist$LIST_TO_SET Clist$NIL Cpred_set$EMPTY @ @ Cmin$= @ Clist$LIST_TO_SET @ @ Clist$CONS Vh Vt @ @ Cpred_set$INSERT Vh @ Clist$LIST_TO_SET Vt;
+
+list_size_cong大⊢ @ Cbool$! | VM @ Cbool$! | VN @ Cbool$! | Vf @ Cbool$! | Vf' @ @ Cmin$==> @ @ Cbool$/\ @ @ Cmin$= VM VN @ Cbool$! | Vx @ @ Cmin$==> @ @ Cbool$IN Vx @ Clist$LIST_TO_SET VN @ @ Cmin$= @ Vf Vx @ Vf' Vx @ @ Cmin$= @ @ Clist$list_size Vf VM @ @ Clist$list_size Vf' VN;
+
+LIST_REL_trans大⊢ @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ Cbool$! | Vl3 @ @ Cmin$==> @ @ Cbool$/\ @ Cbool$! | Vn @ @ Cmin$==> @ @ Cbool$/\ @ @ Cprim_rec$< Vn @ Clist$LENGTH Vl1 @ @ Cbool$/\ @ @ VR @ @ Clist$EL Vn Vl1 @ @ Clist$EL Vn Vl2 @ @ VR @ @ Clist$EL Vn Vl2 @ @ Clist$EL Vn Vl3 @ @ VR @ @ Clist$EL Vn Vl1 @ @ Clist$EL Vn Vl3 @ @ Cbool$/\ @ @ @ Clist$LIST_REL VR Vl1 Vl2 @ @ @ Clist$LIST_REL VR Vl2 Vl3 @ @ @ Clist$LIST_REL VR Vl1 Vl3;
+
+LIST_REL_strongind大⊢ @ Cbool$! | VR @ Cbool$! | VLIST_REL' @ @ Cmin$==> @ @ Cbool$/\ @ @ VLIST_REL' Clist$NIL Clist$NIL @ Cbool$! | Vh1 @ Cbool$! | Vh2 @ Cbool$! | Vt1 @ Cbool$! | Vt2 @ @ Cmin$==> @ @ Cbool$/\ @ @ VR Vh1 Vh2 @ @ Cbool$/\ @ @ @ Clist$LIST_REL VR Vt1 Vt2 @ @ VLIST_REL' Vt1 Vt2 @ @ VLIST_REL' @ @ Clist$CONS Vh1 Vt1 @ @ Clist$CONS Vh2 Vt2 @ Cbool$! | Va0 @ Cbool$! | Va1 @ @ Cmin$==> @ @ @ Clist$LIST_REL VR Va0 Va1 @ @ VLIST_REL' Va0 Va1;
+
+LIST_REL_SPLIT2大⊢ @ Cbool$! | Vxs1 @ Cbool$! | Vzs @ @ Cmin$= @ @ @ Clist$LIST_REL VP Vzs @ @ Clist$APPEND Vxs1 Vxs2 @ Cbool$? | Vys1 @ Cbool$? | Vys2 @ @ Cbool$/\ @ @ Cmin$= Vzs @ @ Clist$APPEND Vys1 Vys2 @ @ Cbool$/\ @ @ @ Clist$LIST_REL VP Vys1 Vxs1 @ @ @ Clist$LIST_REL VP Vys2 Vxs2;
+
+LIST_REL_SPLIT1大⊢ @ Cbool$! | Vxs1 @ Cbool$! | Vzs @ @ Cmin$= @ @ @ Clist$LIST_REL VP @ @ Clist$APPEND Vxs1 Vxs2 Vzs @ Cbool$? | Vys1 @ Cbool$? | Vys2 @ @ Cbool$/\ @ @ Cmin$= Vzs @ @ Clist$APPEND Vys1 Vys2 @ @ Cbool$/\ @ @ @ Clist$LIST_REL VP Vxs1 Vys1 @ @ @ Clist$LIST_REL VP Vxs2 Vys2;
+
+LIST_REL_SNOC大⊢ @ @ Cbool$/\ @ @ Cmin$= @ @ @ Clist$LIST_REL VR @ @ Clist$SNOC Vx Vxs Vyys @ Cbool$? | Vy @ Cbool$? | Vys @ @ Cbool$/\ @ @ Cmin$= Vyys @ @ Clist$SNOC Vy Vys @ @ Cbool$/\ @ @ @ Clist$LIST_REL VR Vxs Vys @ @ VR Vx Vy @ @ Cmin$= @ @ @ Clist$LIST_REL VR Vxxs @ @ Clist$SNOC Vy Vys @ Cbool$? | Vx @ Cbool$? | Vxs @ @ Cbool$/\ @ @ Cmin$= Vxxs @ @ Clist$SNOC Vx Vxs @ @ Cbool$/\ @ @ @ Clist$LIST_REL VR Vxs Vys @ @ VR Vx Vy;
+
+LIST_REL_rules大⊢ @ Cbool$! | VR @ @ Cbool$/\ @ @ @ Clist$LIST_REL VR Clist$NIL Clist$NIL @ Cbool$! | Vh1 @ Cbool$! | Vh2 @ Cbool$! | Vt1 @ Cbool$! | Vt2 @ @ Cmin$==> @ @ Cbool$/\ @ @ VR Vh1 Vh2 @ @ @ Clist$LIST_REL VR Vt1 Vt2 @ @ @ Clist$LIST_REL VR @ @ Clist$CONS Vh1 Vt1 @ @ Clist$CONS Vh2 Vt2;
+
+LIST_REL_O大⊢ @ Cbool$! | VR1 @ Cbool$! | VR2 @ @ Cmin$= @ Clist$LIST_REL @ @ Crelation$O VR1 VR2 @ @ Crelation$O @ Clist$LIST_REL VR1 @ Clist$LIST_REL VR2;
+
+LIST_REL_NIL大⊢ @ @ Cbool$/\ @ @ Cmin$= @ @ @ Clist$LIST_REL VR Clist$NIL Vy @ @ Cmin$= Vy Clist$NIL @ @ Cmin$= @ @ @ Clist$LIST_REL VR Vx Clist$NIL @ @ Cmin$= Vx Clist$NIL;
+
+LIST_REL_mono大⊢ @ @ Cmin$==> @ Cbool$! | Vx @ Cbool$! | Vy @ @ Cmin$==> @ @ VR1 Vx Vy @ @ VR2 Vx Vy @ @ Cmin$==> @ @ @ Clist$LIST_REL VR1 Vl1 Vl2 @ @ @ Clist$LIST_REL VR2 Vl1 Vl2;
+
+LIST_REL_MEM_IMP大⊢ @ Cbool$! | Vxs @ Cbool$! | Vys @ Cbool$! | VP @ Cbool$! | Vx @ @ Cmin$==> @ @ Cbool$/\ @ @ @ Clist$LIST_REL VP Vxs Vys @ @ Cbool$IN Vx @ Clist$LIST_TO_SET Vxs @ Cbool$? | Vy @ @ Cbool$/\ @ @ Cbool$IN Vy @ Clist$LIST_TO_SET Vys @ @ VP Vx Vy;
+
+LIST_REL_MAP_inv_image大⊢ @ @ Cmin$= @ @ @ Clist$LIST_REL VR @ @ Clist$MAP Vf Vl1 @ @ Clist$MAP Vf Vl2 @ @ @ Clist$LIST_REL @ @ Crelation$inv_image VR Vf Vl1 Vl2;
+
+LIST_REL_MAP2大⊢ @ @ Cmin$= @ @ @ Clist$LIST_REL | Va | Vb @ @ VR Va Vb Vl1 @ @ Clist$MAP Vf Vl2 @ @ @ Clist$LIST_REL | Va | Vb @ @ VR Va @ Vf Vb Vl1 Vl2;
+
+LIST_REL_MAP1大⊢ @ @ Cmin$= @ @ @ Clist$LIST_REL VR @ @ Clist$MAP Vf Vl1 Vl2 @ @ @ Clist$LIST_REL @ @ Ccombin$o VR Vf Vl1 Vl2;
+
+LIST_REL_LENGTH大⊢ @ Cbool$! | Vx @ Cbool$! | Vy @ @ Cmin$==> @ @ @ Clist$LIST_REL VR Vx Vy @ @ Cmin$= @ Clist$LENGTH Vx @ Clist$LENGTH Vy;
+
+LIST_REL_ind大⊢ @ Cbool$! | VR @ Cbool$! | VLIST_REL' @ @ Cmin$==> @ @ Cbool$/\ @ @ VLIST_REL' Clist$NIL Clist$NIL @ Cbool$! | Vh1 @ Cbool$! | Vh2 @ Cbool$! | Vt1 @ Cbool$! | Vt2 @ @ Cmin$==> @ @ Cbool$/\ @ @ VR Vh1 Vh2 @ @ VLIST_REL' Vt1 Vt2 @ @ VLIST_REL' @ @ Clist$CONS Vh1 Vt1 @ @ Clist$CONS Vh2 Vt2 @ Cbool$! | Va0 @ Cbool$! | Va1 @ @ Cmin$==> @ @ @ Clist$LIST_REL VR Va0 Va1 @ @ VLIST_REL' Va0 Va1;
+
+LIST_REL_EVERY_ZIP大⊢ @ Cbool$! | VR @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ @ Cmin$= @ @ @ Clist$LIST_REL VR Vl1 Vl2 @ @ Cbool$/\ @ @ Cmin$= @ Clist$LENGTH Vl1 @ Clist$LENGTH Vl2 @ @ Clist$EVERY @ Cpair$UNCURRY VR @ Clist$ZIP @ @ Cpair$, Vl1 Vl2;
+
+LIST_REL_eq大⊢ @ @ Cmin$= @ Clist$LIST_REL Cmin$= Cmin$=;
+
+LIST_REL_EL_EQN大⊢ @ Cbool$! | VR @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ @ Cmin$= @ @ @ Clist$LIST_REL VR Vl1 Vl2 @ @ Cbool$/\ @ @ Cmin$= @ Clist$LENGTH Vl1 @ Clist$LENGTH Vl2 @ Cbool$! | Vn @ @ Cmin$==> @ @ Cprim_rec$< Vn @ Clist$LENGTH Vl1 @ @ VR @ @ Clist$EL Vn Vl1 @ @ Clist$EL Vn Vl2;
+
+LIST_REL_def大⊢ @ @ Cbool$/\ @ @ Cmin$= @ @ @ Clist$LIST_REL VR Clist$NIL Clist$NIL Cbool$T @ @ Cbool$/\ @ @ Cmin$= @ @ @ Clist$LIST_REL VR @ @ Clist$CONS Va Vas Clist$NIL Cbool$F @ @ Cbool$/\ @ @ Cmin$= @ @ @ Clist$LIST_REL VR Clist$NIL @ @ Clist$CONS Vb Vbs Cbool$F @ @ Cmin$= @ @ @ Clist$LIST_REL VR @ @ Clist$CONS Va Vas @ @ Clist$CONS Vb Vbs @ @ Cbool$/\ @ @ VR Va Vb @ @ @ Clist$LIST_REL VR Vas Vbs;
+
+LIST_REL_CONS2大⊢ @ @ Cmin$= @ @ @ Clist$LIST_REL VR Vxs @ @ Clist$CONS Vh Vt @ Cbool$? | Vh' @ Cbool$? | Vt' @ @ Cbool$/\ @ @ Cmin$= Vxs @ @ Clist$CONS Vh' Vt' @ @ Cbool$/\ @ @ VR Vh' Vh @ @ @ Clist$LIST_REL VR Vt' Vt;
+
+LIST_REL_CONS1大⊢ @ @ Cmin$= @ @ @ Clist$LIST_REL VR @ @ Clist$CONS Vh Vt Vxs @ Cbool$? | Vh' @ Cbool$? | Vt' @ @ Cbool$/\ @ @ Cmin$= Vxs @ @ Clist$CONS Vh' Vt' @ @ Cbool$/\ @ @ VR Vh Vh' @ @ @ Clist$LIST_REL VR Vt Vt';
+
+LIST_REL_CONJ大⊢ @ @ Cmin$= @ @ @ Clist$LIST_REL | Va | Vb @ @ Cbool$/\ @ @ VP Va Vb @ @ VQ Va Vb Vl1 Vl2 @ @ Cbool$/\ @ @ @ Clist$LIST_REL | Va | Vb @ @ VP Va Vb Vl1 Vl2 @ @ @ Clist$LIST_REL | Va | Vb @ @ VQ Va Vb Vl1 Vl2;
+
+LIST_REL_cases大⊢ @ Cbool$! | VR @ Cbool$! | Va0 @ Cbool$! | Va1 @ @ Cmin$= @ @ @ Clist$LIST_REL VR Va0 Va1 @ @ Cbool$\/ @ @ Cbool$/\ @ @ Cmin$= Va0 Clist$NIL @ @ Cmin$= Va1 Clist$NIL @ Cbool$? | Vh1 @ Cbool$? | Vh2 @ Cbool$? | Vt1 @ Cbool$? | Vt2 @ @ Cbool$/\ @ @ Cmin$= Va0 @ @ Clist$CONS Vh1 Vt1 @ @ Cbool$/\ @ @ Cmin$= Va1 @ @ Clist$CONS Vh2 Vt2 @ @ Cbool$/\ @ @ VR Vh1 Vh2 @ @ @ Clist$LIST_REL VR Vt1 Vt2;
+
+LIST_REL_APPEND_suff大⊢ @ @ Cmin$==> @ @ Cbool$/\ @ @ @ Clist$LIST_REL VR Vl1 Vl2 @ @ @ Clist$LIST_REL VR Vl3 Vl4 @ @ @ Clist$LIST_REL VR @ @ Clist$APPEND Vl1 Vl3 @ @ Clist$APPEND Vl2 Vl4;
+
+LIST_REL_APPEND_IMP大⊢ @ Cbool$! | Vxs @ Cbool$! | Vys @ Cbool$! | Vxs1 @ Cbool$! | Vys1 @ @ Cmin$==> @ @ Cbool$/\ @ @ @ Clist$LIST_REL VP @ @ Clist$APPEND Vxs Vxs1 @ @ Clist$APPEND Vys Vys1 @ @ Cmin$= @ Clist$LENGTH Vxs @ Clist$LENGTH Vys @ @ Cbool$/\ @ @ @ Clist$LIST_REL VP Vxs Vys @ @ @ Clist$LIST_REL VP Vxs1 Vys1;
+
+LIST_REL_APPEND_EQ大⊢ @ @ Cmin$==> @ @ Cmin$= @ Clist$LENGTH Vx1 @ Clist$LENGTH Vx2 @ @ Cmin$= @ @ @ Clist$LIST_REL VR @ @ Clist$APPEND Vx1 Vy1 @ @ Clist$APPEND Vx2 Vy2 @ @ Cbool$/\ @ @ @ Clist$LIST_REL VR Vx1 Vx2 @ @ @ Clist$LIST_REL VR Vy1 Vy2;
+
+LIST_REL_APPEND大⊢ @ @ Cmin$= @ @ Cbool$/\ @ @ @ Clist$LIST_REL VR Vl1 Vl2 @ @ @ Clist$LIST_REL VR Vl3 Vl4 @ @ Cbool$/\ @ @ @ Clist$LIST_REL VR @ @ Clist$APPEND Vl1 Vl3 @ @ Clist$APPEND Vl2 Vl4 @ @ Cbool$/\ @ @ Cmin$= @ Clist$LENGTH Vl1 @ Clist$LENGTH Vl2 @ @ Cmin$= @ Clist$LENGTH Vl3 @ Clist$LENGTH Vl4;
+
+LIST_NOT_EQ大⊢ @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ @ Cmin$==> @ Cbool$~ @ @ Cmin$= Vl1 Vl2 @ Cbool$! | Vh1 @ Cbool$! | Vh2 @ Cbool$~ @ @ Cmin$= @ @ Clist$CONS Vh1 Vl1 @ @ Clist$CONS Vh2 Vl2;
+
+list_nchotomy大⊢ @ Cbool$! | Vl @ @ Cbool$\/ @ @ Cmin$= Vl Clist$NIL @ Cbool$? | Vh @ Cbool$? | Vt @ @ Cmin$= Vl @ @ Clist$CONS Vh Vt;
+
+list_induction大⊢ @ Cbool$! | VP @ @ Cmin$==> @ @ Cbool$/\ @ VP Clist$NIL @ Cbool$! | Vt @ @ Cmin$==> @ VP Vt @ Cbool$! | Vh @ VP @ @ Clist$CONS Vh Vt @ Cbool$! | Vl @ VP Vl;
+
+list_INDUCT0大⊢ @ Cbool$! | VP @ @ Cmin$==> @ @ Cbool$/\ @ VP Clist$NIL @ Cbool$! | Vl @ @ Cmin$==> @ VP Vl @ Cbool$! | Va @ VP @ @ Clist$CONS Va Vl @ Cbool$! | Vl @ VP Vl;
+
+list_INDUCT大⊢ @ Cbool$! | VP @ @ Cmin$==> @ @ Cbool$/\ @ VP Clist$NIL @ Cbool$! | Vt @ @ Cmin$==> @ VP Vt @ Cbool$! | Vh @ VP @ @ Clist$CONS Vh Vt @ Cbool$! | Vl @ VP Vl;
+
+LIST_EQ_REWRITE大⊢ @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ @ Cmin$= @ @ Cmin$= Vl1 Vl2 @ @ Cbool$/\ @ @ Cmin$= @ Clist$LENGTH Vl1 @ Clist$LENGTH Vl2 @ Cbool$! | Vx @ @ Cmin$==> @ @ Cprim_rec$< Vx @ Clist$LENGTH Vl1 @ @ Cmin$= @ @ Clist$EL Vx Vl1 @ @ Clist$EL Vx Vl2;
+
+LIST_EQ_MAP_PAIR大⊢ @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ @ Cmin$==> @ @ Cbool$/\ @ @ Cmin$= @ @ Clist$MAP Cpair$FST Vl1 @ @ Clist$MAP Cpair$FST Vl2 @ @ Cmin$= @ @ Clist$MAP Cpair$SND Vl1 @ @ Clist$MAP Cpair$SND Vl2 @ @ Cmin$= Vl1 Vl2;
+
+LIST_EQ大⊢ @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ @ Cmin$==> @ @ Cbool$/\ @ @ Cmin$= @ Clist$LENGTH Vl1 @ Clist$LENGTH Vl2 @ Cbool$! | Vx @ @ Cmin$==> @ @ Cprim_rec$< Vx @ Clist$LENGTH Vl1 @ @ Cmin$= @ @ Clist$EL Vx Vl1 @ @ Clist$EL Vx Vl2 @ @ Cmin$= Vl1 Vl2;
+
+list_distinct大⊢ @ Cbool$! | Va1 @ Cbool$! | Va0 @ Cbool$~ @ @ Cmin$= Clist$NIL @ @ Clist$CONS Va0 Va1;
+
+list_CASES大⊢ @ Cbool$! | Vl @ @ Cbool$\/ @ @ Cmin$= Vl Clist$NIL @ Cbool$? | Vh @ Cbool$? | Vt @ @ Cmin$= Vl @ @ Clist$CONS Vh Vt;
+
+list_case_eq大⊢ @ @ Cmin$= @ @ Cmin$= @ @ @ Clist$list_CASE Vx Vv Vf Vv' @ @ Cbool$\/ @ @ Cbool$/\ @ @ Cmin$= Vx Clist$NIL @ @ Cmin$= Vv Vv' @ Cbool$? | Va @ Cbool$? | Vl @ @ Cbool$/\ @ @ Cmin$= Vx @ @ Clist$CONS Va Vl @ @ Cmin$= @ @ Vf Va Vl Vv';
+
+list_case_cong大⊢ @ Cbool$! | VM @ Cbool$! | VM' @ Cbool$! | Vv @ Cbool$! | Vf @ @ Cmin$==> @ @ Cbool$/\ @ @ Cmin$= VM VM' @ @ Cbool$/\ @ @ Cmin$==> @ @ Cmin$= VM' Clist$NIL @ @ Cmin$= Vv Vv' @ Cbool$! | Va0 @ Cbool$! | Va1 @ @ Cmin$==> @ @ Cmin$= VM' @ @ Clist$CONS Va0 Va1 @ @ Cmin$= @ @ Vf Va0 Va1 @ @ Vf' Va0 Va1 @ @ Cmin$= @ @ @ Clist$list_CASE VM Vv Vf @ @ @ Clist$list_CASE VM' Vv' Vf';
+
+list_case_compute大⊢ @ Cbool$! | Vl @ @ Cmin$= @ @ @ Clist$list_CASE Vl Vb Vf @ @ @ Cbool$COND @ Clist$NULL Vl Vb @ @ Vf @ Clist$HD Vl @ Clist$TL Vl;
+
+LIST_BIND_THM大⊢ @ @ Cbool$/\ @ @ Cmin$= @ @ Clist$LIST_BIND Clist$NIL Vf Clist$NIL @ @ Cmin$= @ @ Clist$LIST_BIND @ @ Clist$CONS Vh Vt Vf @ @ Clist$APPEND @ Vf Vh @ @ Clist$LIST_BIND Vt Vf;
+
+LIST_BIND_MAP大⊢ @ @ Cmin$= @ @ Clist$LIST_BIND @ @ Clist$MAP Vf Vl Vg @ @ Clist$LIST_BIND Vl @ @ Ccombin$o Vg Vf;
+
+LIST_BIND_LIST_BIND大⊢ @ @ Cmin$= @ @ Clist$LIST_BIND @ @ Clist$LIST_BIND Vl Vg Vf @ @ Clist$LIST_BIND Vl @ @ Ccombin$o @ @ Ccombin$C Clist$LIST_BIND Vf Vg;
+
+LIST_BIND_ID大⊢ @ @ Cbool$/\ @ @ Cmin$= @ @ Clist$LIST_BIND Vl | Vx Vx @ Clist$FLAT Vl @ @ Cmin$= @ @ Clist$LIST_BIND Vl Ccombin$I @ Clist$FLAT Vl;
+
+LIST_BIND_APPEND大⊢ @ @ Cmin$= @ @ Clist$LIST_BIND @ @ Clist$APPEND Vl1 Vl2 Vf @ @ Clist$APPEND @ @ Clist$LIST_BIND Vl1 Vf @ @ Clist$LIST_BIND Vl2 Vf;
+
+list_Axiom_old大⊢ @ Cbool$! | Vx @ Cbool$! | Vf @ Cbool$?! | Vfn1 @ @ Cbool$/\ @ @ Cmin$= @ Vfn1 Clist$NIL Vx @ Cbool$! | Vh @ Cbool$! | Vt @ @ Cmin$= @ Vfn1 @ @ Clist$CONS Vh Vt @ @ @ Vf @ Vfn1 Vt Vh Vt;
+
+list_Axiom大⊢ @ Cbool$! | Vf0 @ Cbool$! | Vf1 @ Cbool$? | Vfn @ @ Cbool$/\ @ @ Cmin$= @ Vfn Clist$NIL Vf0 @ Cbool$! | Va0 @ Cbool$! | Va1 @ @ Cmin$= @ Vfn @ @ Clist$CONS Va0 Va1 @ @ @ Vf1 Va0 Va1 @ Vfn Va1;
+
+LIST_APPLY_o大⊢ @ @ Cmin$= @ @ Clist$LIST_APPLY @ @ Clist$LIST_APPLY @ @ Clist$LIST_APPLY @ @ Clist$CONS Ccombin$o Clist$NIL Vfs Vgs Vxs @ @ Clist$LIST_APPLY Vfs @ @ Clist$LIST_APPLY Vgs Vxs;
+
+list_11大⊢ @ Cbool$! | Va0 @ Cbool$! | Va1 @ Cbool$! | Va0' @ Cbool$! | Va1' @ @ Cmin$= @ @ Cmin$= @ @ Clist$CONS Va0 Va1 @ @ Clist$CONS Va0' Va1' @ @ Cbool$/\ @ @ Cmin$= Va0 Va0' @ @ Cmin$= Va1 Va1';
+
+LENGTH_ZIP_MIN大⊢ @ Cbool$! | Vxs @ Cbool$! | Vys @ @ Cmin$= @ Clist$LENGTH @ Clist$ZIP @ @ Cpair$, Vxs Vys @ @ Carithmetic$MIN @ Clist$LENGTH Vxs @ Clist$LENGTH Vys;
+
+LENGTH_ZIP大⊢ @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ @ Cmin$==> @ @ Cmin$= @ Clist$LENGTH Vl1 @ Clist$LENGTH Vl2 @ @ Cbool$/\ @ @ Cmin$= @ Clist$LENGTH @ Clist$ZIP @ @ Cpair$, Vl1 Vl2 @ Clist$LENGTH Vl1 @ @ Cmin$= @ Clist$LENGTH @ Clist$ZIP @ @ Cpair$, Vl1 Vl2 @ Clist$LENGTH Vl2;
+
+LENGTH_UNZIP大⊢ @ Cbool$! | Vpl @ @ Cbool$/\ @ @ Cmin$= @ Clist$LENGTH @ Cpair$FST @ Clist$UNZIP Vpl @ Clist$LENGTH Vpl @ @ Cmin$= @ Clist$LENGTH @ Cpair$SND @ Clist$UNZIP Vpl @ Clist$LENGTH Vpl;
+
+LENGTH_TL大⊢ @ Cbool$! | Vl @ @ Cmin$==> @ @ Cprim_rec$< Cnum$0 @ Clist$LENGTH Vl @ @ Cmin$= @ Clist$LENGTH @ Clist$TL Vl @ @ Carithmetic$- @ Clist$LENGTH Vl @ Carithmetic$NUMERAL @ Carithmetic$BIT1 Carithmetic$ZERO;
+
+LENGTH_TAKE_EQ大⊢ @ @ Cmin$= @ Clist$LENGTH @ @ Clist$TAKE Vn Vxs @ @ @ Cbool$COND @ @ Carithmetic$<= Vn @ Clist$LENGTH Vxs Vn @ Clist$LENGTH Vxs;
+
+LENGTH_TAKE大⊢ @ Cbool$! | Vn @ Cbool$! | Vl @ @ Cmin$==> @ @ Carithmetic$<= Vn @ Clist$LENGTH Vl @ @ Cmin$= @ Clist$LENGTH @ @ Clist$TAKE Vn Vl Vn;
+
+LENGTH_SNOC大⊢ @ Cbool$! | Vx @ Cbool$! | Vl @ @ Cmin$= @ Clist$LENGTH @ @ Clist$SNOC Vx Vl @ Cnum$SUC @ Clist$LENGTH Vl;
+
+LENGTH_REVERSE大⊢ @ Cbool$! | Vl @ @ Cmin$= @ Clist$LENGTH @ Clist$REVERSE Vl @ Clist$LENGTH Vl;
+
+LENGTH_o_REVERSE大⊢ @ @ Cbool$/\ @ @ Cmin$= @ @ Ccombin$o Clist$LENGTH Clist$REVERSE Clist$LENGTH @ @ Cmin$= @ @ Ccombin$o Clist$LENGTH @ @ Ccombin$o Clist$REVERSE Vf @ @ Ccombin$o Clist$LENGTH Vf;
+
+length_nub_append大⊢ @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ @ Cmin$= @ Clist$LENGTH @ Clist$nub @ @ Clist$APPEND Vl1 Vl2 @ @ Carithmetic$+ @ Clist$LENGTH @ Clist$nub Vl1 @ Clist$LENGTH @ Clist$nub @ @ Clist$FILTER | Vx @ Cbool$~ @ @ Cbool$IN Vx @ Clist$LIST_TO_SET Vl1 Vl2;
+
+LENGTH_NIL_SYM大⊢ @ @ Cmin$= @ @ Cmin$= Cnum$0 @ Clist$LENGTH Vl @ @ Cmin$= Vl Clist$NIL;
+
+LENGTH_NIL大⊢ @ Cbool$! | Vl @ @ Cmin$= @ @ Cmin$= @ Clist$LENGTH Vl Cnum$0 @ @ Cmin$= Vl Clist$NIL;
+
+LENGTH_MAP2大⊢ @ Cbool$! | Vxs @ Cbool$! | Vys @ @ Cmin$= @ Clist$LENGTH @ @ @ Clist$MAP2 Vf Vxs Vys @ @ Carithmetic$MIN @ Clist$LENGTH Vxs @ Clist$LENGTH Vys;
+
+LENGTH_MAP大⊢ @ Cbool$! | Vl @ Cbool$! | Vf @ @ Cmin$= @ Clist$LENGTH @ @ Clist$MAP Vf Vl @ Clist$LENGTH Vl;
+
+LENGTH_LUPDATE大⊢ @ Cbool$! | Vx @ Cbool$! | Vn @ Cbool$! | Vys @ @ Cmin$= @ Clist$LENGTH @ @ @ Clist$LUPDATE Vx Vn Vys @ Clist$LENGTH Vys;
+
+LENGTH_LT_SHORTLEX大⊢ @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ @ Cmin$==> @ @ Cprim_rec$< @ Clist$LENGTH Vl1 @ Clist$LENGTH Vl2 @ @ @ Clist$SHORTLEX VR Vl1 Vl2;
+
+LENGTH_LEN大⊢ @ Cbool$! | VL @ @ Cmin$= @ Clist$LENGTH VL @ @ Clist$LEN VL Cnum$0;
+
+LENGTH_GENLIST大⊢ @ Cbool$! | Vf @ Cbool$! | Vn @ @ Cmin$= @ Clist$LENGTH @ @ Clist$GENLIST Vf Vn Vn;
+
+LENGTH_FRONT_CONS大⊢ @ Cbool$! | Vx @ Cbool$! | Vxs @ @ Cmin$= @ Clist$LENGTH @ Clist$FRONT @ @ Clist$CONS Vx Vxs @ Clist$LENGTH Vxs;
+
+LENGTH_FILTER_LEQ_MONO大⊢ @ Cbool$! | VP @ Cbool$! | VQ @ @ Cmin$==> @ Cbool$! | Vx @ @ Cmin$==> @ VP Vx @ VQ Vx @ Cbool$! | Vls @ @ Carithmetic$<= @ Clist$LENGTH @ @ Clist$FILTER VP Vls @ Clist$LENGTH @ @ Clist$FILTER VQ Vls;
+
+LENGTH_EQ_SUM大⊢ @ Cbool$! | Vl @ Cbool$! | Vn1 @ Cbool$! | Vn2 @ @ Cmin$= @ @ Cmin$= @ Clist$LENGTH Vl @ @ Carithmetic$+ Vn1 Vn2 @ Cbool$? | Vl1 @ Cbool$? | Vl2 @ @ Cbool$/\ @ @ Cmin$= @ Clist$LENGTH Vl1 Vn1 @ @ Cbool$/\ @ @ Cmin$= @ Clist$LENGTH Vl2 Vn2 @ @ Cmin$= Vl @ @ Clist$APPEND Vl1 Vl2;
+
+LENGTH_EQ_NUM_compute大⊢ @ @ Cbool$/\ @ Cbool$! | Vl @ @ Cmin$= @ @ Cmin$= @ Clist$LENGTH Vl Cnum$0 @ @ Cmin$= Vl Clist$NIL @ @ Cbool$/\ @ Cbool$! | Vl @ Cbool$! | Vn @ @ Cmin$= @ @ Cmin$= @ Clist$LENGTH Vl @ Carithmetic$NUMERAL @ Carithmetic$BIT1 Vn @ Cbool$? | Vh @ Cbool$? | Vl' @ @ Cbool$/\ @ @ Cmin$= @ Clist$LENGTH Vl' @ @ Carithmetic$- @ Carithmetic$NUMERAL @ Carithmetic$BIT1 Vn @ Carithmetic$NUMERAL @ Carithmetic$BIT1 Carithmetic$ZERO @ @ Cmin$= Vl @ @ Clist$CONS Vh Vl' @ @ Cbool$/\ @ Cbool$! | Vl @ Cbool$! | Vn @ @ Cmin$= @ @ Cmin$= @ Clist$LENGTH Vl @ Carithmetic$NUMERAL @ Carithmetic$BIT2 Vn @ Cbool$? | Vh @ Cbool$? | Vl' @ @ Cbool$/\ @ @ Cmin$= @ Clist$LENGTH Vl' @ Carithmetic$NUMERAL @ Carithmetic$BIT1 Vn @ @ Cmin$= Vl @ @ Clist$CONS Vh Vl' @ Cbool$! | Vl @ Cbool$! | Vn1 @ Cbool$! | Vn2 @ @ Cmin$= @ @ Cmin$= @ Clist$LENGTH Vl @ @ Carithmetic$+ Vn1 Vn2 @ Cbool$? | Vl1 @ Cbool$? | Vl2 @ @ Cbool$/\ @ @ Cmin$= @ Clist$LENGTH Vl1 Vn1 @ @ Cbool$/\ @ @ Cmin$= @ Clist$LENGTH Vl2 Vn2 @ @ Cmin$= Vl @ @ Clist$APPEND Vl1 Vl2;
+
+LENGTH_EQ_NUM大⊢ @ @ Cbool$/\ @ Cbool$! | Vl @ @ Cmin$= @ @ Cmin$= @ Clist$LENGTH Vl Cnum$0 @ @ Cmin$= Vl Clist$NIL @ @ Cbool$/\ @ Cbool$! | Vl @ Cbool$! | Vn @ @ Cmin$= @ @ Cmin$= @ Clist$LENGTH Vl @ Cnum$SUC Vn @ Cbool$? | Vh @ Cbool$? | Vl' @ @ Cbool$/\ @ @ Cmin$= @ Clist$LENGTH Vl' Vn @ @ Cmin$= Vl @ @ Clist$CONS Vh Vl' @ Cbool$! | Vl @ Cbool$! | Vn1 @ Cbool$! | Vn2 @ @ Cmin$= @ @ Cmin$= @ Clist$LENGTH Vl @ @ Carithmetic$+ Vn1 Vn2 @ Cbool$? | Vl1 @ Cbool$? | Vl2 @ @ Cbool$/\ @ @ Cmin$= @ Clist$LENGTH Vl1 Vn1 @ @ Cbool$/\ @ @ Cmin$= @ Clist$LENGTH Vl2 Vn2 @ @ Cmin$= Vl @ @ Clist$APPEND Vl1 Vl2;
+
+LENGTH_EQ_NIL大⊢ @ Cbool$! | VP @ @ Cmin$= @ Cbool$! | Vl @ @ Cmin$==> @ @ Cmin$= @ Clist$LENGTH Vl Cnum$0 @ VP Vl @ VP Clist$NIL;
+
+LENGTH_EQ_CONS大⊢ @ Cbool$! | VP @ Cbool$! | Vn @ @ Cmin$= @ Cbool$! | Vl @ @ Cmin$==> @ @ Cmin$= @ Clist$LENGTH Vl @ Cnum$SUC Vn @ VP Vl @ Cbool$! | Vl @ @ Cmin$==> @ @ Cmin$= @ Clist$LENGTH Vl Vn @ | Vl @ Cbool$! | Vx @ VP @ @ Clist$CONS Vx Vl Vl;
+
+LENGTH_dropWhile_LESS_EQ大⊢ @ Cbool$! | VP @ Cbool$! | Vls @ @ Carithmetic$<= @ Clist$LENGTH @ @ Clist$dropWhile VP Vls @ Clist$LENGTH Vls;
+
+LENGTH_DROP大⊢ @ Cbool$! | Vn @ Cbool$! | Vl @ @ Cmin$= @ Clist$LENGTH @ @ Clist$DROP Vn Vl @ @ Carithmetic$- @ Clist$LENGTH Vl Vn;
+
+LENGTH_CONS大⊢ @ Cbool$! | Vl @ Cbool$! | Vn @ @ Cmin$= @ @ Cmin$= @ Clist$LENGTH Vl @ Cnum$SUC Vn @ Cbool$? | Vh @ Cbool$? | Vl' @ @ Cbool$/\ @ @ Cmin$= @ Clist$LENGTH Vl' Vn @ @ Cmin$= Vl @ @ Clist$CONS Vh Vl';
+
+LENGTH_APPEND大⊢ @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ @ Cmin$= @ Clist$LENGTH @ @ Clist$APPEND Vl1 Vl2 @ @ Carithmetic$+ @ Clist$LENGTH Vl1 @ Clist$LENGTH Vl2;
+
+LEN_LENGTH_LEM大⊢ @ Cbool$! | VL @ Cbool$! | Vn @ @ Cmin$= @ @ Clist$LEN VL Vn @ @ Carithmetic$+ @ Clist$LENGTH VL Vn;
+
+lazy_list_case_compute大⊢ @ @ Cmin$= Clist$list_CASE | Vl | Vb | Vf @ @ @ Cbool$COND @ Clist$NULL Vl Vb @ @ Vf @ Clist$HD Vl @ Clist$TL Vl;
+
+LAST_SNOC大⊢ @ Cbool$! | Vx @ Cbool$! | Vl @ @ Cmin$= @ Clist$LAST @ @ Clist$SNOC Vx Vl Vx;
+
+LAST_REVERSE大⊢ @ Cbool$! | Vls @ @ Cmin$==> @ Cbool$~ @ @ Cmin$= Vls Clist$NIL @ @ Cmin$= @ Clist$LAST @ Clist$REVERSE Vls @ Clist$HD Vls;
+
+LAST_MAP大⊢ @ Cbool$! | Vl @ Cbool$! | Vf @ @ Cmin$==> @ Cbool$~ @ @ Cmin$= Vl Clist$NIL @ @ Cmin$= @ Clist$LAST @ @ Clist$MAP Vf Vl @ Vf @ Clist$LAST Vl;
+
+LAST_EL大⊢ @ Cbool$! | Vls @ @ Cmin$==> @ Cbool$~ @ @ Cmin$= Vls Clist$NIL @ @ Cmin$= @ Clist$LAST Vls @ @ Clist$EL @ Cprim_rec$PRE @ Clist$LENGTH Vls Vls;
+
+last_drop大⊢ @ Cbool$! | Vl @ Cbool$! | Vn @ @ Cmin$==> @ @ Cprim_rec$< Vn @ Clist$LENGTH Vl @ @ Cmin$= @ Clist$LAST @ @ Clist$DROP Vn Vl @ Clist$LAST Vl;
+
+LAST_CONS_cond大⊢ @ @ Cmin$= @ Clist$LAST @ @ Clist$CONS Vh Vt @ @ @ Cbool$COND @ @ Cmin$= Vt Clist$NIL Vh @ Clist$LAST Vt;
+
+LAST_CONS大⊢ @ @ Cbool$/\ @ Cbool$! | Vx @ @ Cmin$= @ Clist$LAST @ @ Clist$CONS Vx Clist$NIL Vx @ Cbool$! | Vx @ Cbool$! | Vy @ Cbool$! | Vz @ @ Cmin$= @ Clist$LAST @ @ Clist$CONS Vx @ @ Clist$CONS Vy Vz @ Clist$LAST @ @ Clist$CONS Vy Vz;
+
+LAST_compute大⊢ @ @ Cbool$/\ @ Cbool$! | Vx @ @ Cmin$= @ Clist$LAST @ @ Clist$CONS Vx Clist$NIL Vx @ Cbool$! | Vh1 @ Cbool$! | Vh2 @ Cbool$! | Vt @ @ Cmin$= @ Clist$LAST @ @ Clist$CONS Vh1 @ @ Clist$CONS Vh2 Vt @ Clist$LAST @ @ Clist$CONS Vh2 Vt;
+
+LAST_APPEND_CONS大⊢ @ Cbool$! | Vh @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ @ Cmin$= @ Clist$LAST @ @ Clist$APPEND Vl1 @ @ Clist$CONS Vh Vl2 @ Clist$LAST @ @ Clist$CONS Vh Vl2;
+
+ITSET_eq_FOLDL_SET_TO_LIST大⊢ @ Cbool$! | Vs @ @ Cmin$==> @ Cpred_set$FINITE Vs @ Cbool$! | Vf @ Cbool$! | Va @ @ Cmin$= @ @ @ Cpred_set$ITSET Vf Vs Va @ @ @ Clist$FOLDL @ Ccombin$C Vf Va @ Clist$SET_TO_LIST Vs;
+
+isPREFIX_THM大⊢ @ @ Cbool$/\ @ @ Cmin$= @ @ Clist$isPREFIX Clist$NIL Vl Cbool$T @ @ Cbool$/\ @ @ Cmin$= @ @ Clist$isPREFIX @ @ Clist$CONS Vh Vt Clist$NIL Cbool$F @ @ Cmin$= @ @ Clist$isPREFIX @ @ Clist$CONS Vh1 Vt1 @ @ Clist$CONS Vh2 Vt2 @ @ Cbool$/\ @ @ Cmin$= Vh1 Vh2 @ @ Clist$isPREFIX Vt1 Vt2;
+
+isPREFIX_NILR大⊢ @ @ Cmin$= @ @ Clist$isPREFIX Vx Clist$NIL @ @ Cmin$= Vx Clist$NIL;
+
+isPREFIX_CONSR大⊢ @ @ Cmin$= @ @ Clist$isPREFIX Vx @ @ Clist$CONS Vy Vys @ @ Cbool$\/ @ @ Cmin$= Vx Clist$NIL @ Cbool$? | Vxs @ @ Cbool$/\ @ @ Cmin$= Vx @ @ Clist$CONS Vy Vxs @ @ Clist$isPREFIX Vxs Vys;
+
+INJ_MAP_EQ_IFF大⊢ @ Cbool$! | Vf @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ @ Cmin$==> @ @ @ Cpred_set$INJ Vf @ @ Cpred_set$UNION @ Clist$LIST_TO_SET Vl1 @ Clist$LIST_TO_SET Vl2 Cpred_set$UNIV @ @ Cmin$= @ @ Cmin$= @ @ Clist$MAP Vf Vl1 @ @ Clist$MAP Vf Vl2 @ @ Cmin$= Vl1 Vl2;
+
+INJ_MAP_EQ大⊢ @ Cbool$! | Vf @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ @ Cmin$==> @ @ Cbool$/\ @ @ @ Cpred_set$INJ Vf @ @ Cpred_set$UNION @ Clist$LIST_TO_SET Vl1 @ Clist$LIST_TO_SET Vl2 Cpred_set$UNIV @ @ Cmin$= @ @ Clist$MAP Vf Vl1 @ @ Clist$MAP Vf Vl2 @ @ Cmin$= Vl1 Vl2;
+
+INFINITE_LIST_UNIV大⊢ @ Cbool$~ @ Cpred_set$FINITE Cpred_set$UNIV;
+
+IMP_EVERY_LUPDATE大⊢ @ Cbool$! | Vxs @ Cbool$! | Vh @ Cbool$! | Vi @ @ Cmin$==> @ @ Cbool$/\ @ VP Vh @ @ Clist$EVERY VP Vxs @ @ Clist$EVERY VP @ @ @ Clist$LUPDATE Vh Vi Vxs;
+
+IMAGE_EL_count_LENGTH大⊢ @ Cbool$! | Vf @ Cbool$! | Vls @ @ Cmin$= @ @ Cpred_set$IMAGE | Vn @ Vf @ @ Clist$EL Vn Vls @ Cpred_set$count @ Clist$LENGTH Vls @ @ Cpred_set$IMAGE Vf @ Clist$LIST_TO_SET Vls;
+
+HD_REVERSE大⊢ @ Cbool$! | Vx @ @ Cmin$==> @ Cbool$~ @ @ Cmin$= Vx Clist$NIL @ @ Cmin$= @ Clist$HD @ Clist$REVERSE Vx @ Clist$LAST Vx;
+
+HD_GENLIST_COR大⊢ @ Cbool$! | Vn @ Cbool$! | Vf @ @ Cmin$==> @ @ Cprim_rec$< Cnum$0 Vn @ @ Cmin$= @ Clist$HD @ @ Clist$GENLIST Vf Vn @ Vf Cnum$0;
+
+HD_GENLIST大⊢ @ @ Cmin$= @ Clist$HD @ @ Clist$GENLIST Vf @ Cnum$SUC Vn @ Vf Cnum$0;
+
+HD_dropWhile大⊢ @ Cbool$! | VP @ Cbool$! | Vls @ @ Cmin$==> @ @ Clist$EXISTS @ @ Ccombin$o Cbool$~ VP Vls @ Cbool$~ @ VP @ Clist$HD @ @ Clist$dropWhile VP Vls;
+
+HD_DROP大⊢ @ Cbool$! | Vn @ Cbool$! | Vl @ @ Cmin$==> @ @ Cprim_rec$< Vn @ Clist$LENGTH Vl @ @ Cmin$= @ Clist$HD @ @ Clist$DROP Vn Vl @ @ Clist$EL Vn Vl;
+
+GENLIST_PLUS_APPEND大⊢ @ @ Cmin$= @ @ Clist$APPEND @ @ Clist$GENLIST @ Carithmetic$+ Va Vn1 @ @ Clist$GENLIST @ Carithmetic$+ @ @ Carithmetic$+ Vn1 Va Vn2 @ @ Clist$GENLIST @ Carithmetic$+ Va @ @ Carithmetic$+ Vn1 Vn2;
+
+GENLIST_NUMERALS大⊢ @ @ Cbool$/\ @ @ Cmin$= @ @ Clist$GENLIST Vf Cnum$0 Clist$NIL @ @ Cmin$= @ @ Clist$GENLIST Vf @ Carithmetic$NUMERAL Vn @ @ @ Clist$GENLIST_AUX Vf @ Carithmetic$NUMERAL Vn Clist$NIL;
+
+GENLIST_ID大⊢ @ Cbool$! | Vx @ @ Cmin$= @ @ Clist$GENLIST | Vi @ @ Clist$EL Vi Vx @ Clist$LENGTH Vx Vx;
+
+GENLIST_GENLIST_AUX大⊢ @ Cbool$! | Vn @ @ Cmin$= @ @ Clist$GENLIST Vf Vn @ @ @ Clist$GENLIST_AUX Vf Vn Clist$NIL;
+
+GENLIST_FUN_EQ大⊢ @ Cbool$! | Vn @ Cbool$! | Vf @ Cbool$! | Vg @ @ Cmin$= @ @ Cmin$= @ @ Clist$GENLIST Vf Vn @ @ Clist$GENLIST Vg Vn @ Cbool$! | Vx @ @ Cmin$==> @ @ Cprim_rec$< Vx Vn @ @ Cmin$= @ Vf Vx @ Vg Vx;
+
+GENLIST_EL_MAP大⊢ @ Cbool$! | Vf @ Cbool$! | Vls @ @ Cmin$= @ @ Clist$GENLIST | Vn @ Vf @ @ Clist$EL Vn Vls @ Clist$LENGTH Vls @ @ Clist$MAP Vf Vls;
+
+GENLIST_EL大⊢ @ Cbool$! | Vls @ Cbool$! | Vf @ Cbool$! | Vn @ @ Cmin$==> @ @ Cbool$/\ @ @ Cmin$= Vn @ Clist$LENGTH Vls @ Cbool$! | Vi @ @ Cmin$==> @ @ Cprim_rec$< Vi Vn @ @ Cmin$= @ Vf Vi @ @ Clist$EL Vi Vls @ @ Cmin$= @ @ Clist$GENLIST Vf Vn Vls;
+
+GENLIST_CONS大⊢ @ @ Cmin$= @ @ Clist$GENLIST Vf @ Cnum$SUC Vn @ @ Clist$CONS @ Vf Cnum$0 @ @ Clist$GENLIST @ @ Ccombin$o Vf Cnum$SUC Vn;
+
+GENLIST_AUX_compute大⊢ @ @ Cbool$/\ @ Cbool$! | Vf @ Cbool$! | Vl @ @ Cmin$= @ @ @ Clist$GENLIST_AUX Vf Cnum$0 Vl Vl @ @ Cbool$/\ @ Cbool$! | Vf @ Cbool$! | Vn @ Cbool$! | Vl @ @ Cmin$= @ @ @ Clist$GENLIST_AUX Vf @ Carithmetic$NUMERAL @ Carithmetic$BIT1 Vn Vl @ @ @ Clist$GENLIST_AUX Vf @ @ Carithmetic$- @ Carithmetic$NUMERAL @ Carithmetic$BIT1 Vn @ Carithmetic$NUMERAL @ Carithmetic$BIT1 Carithmetic$ZERO @ @ Clist$CONS @ Vf @ @ Carithmetic$- @ Carithmetic$NUMERAL @ Carithmetic$BIT1 Vn @ Carithmetic$NUMERAL @ Carithmetic$BIT1 Carithmetic$ZERO Vl @ Cbool$! | Vf @ Cbool$! | Vn @ Cbool$! | Vl @ @ Cmin$= @ @ @ Clist$GENLIST_AUX Vf @ Carithmetic$NUMERAL @ Carithmetic$BIT2 Vn Vl @ @ @ Clist$GENLIST_AUX Vf @ Carithmetic$NUMERAL @ Carithmetic$BIT1 Vn @ @ Clist$CONS @ Vf @ Carithmetic$NUMERAL @ Carithmetic$BIT1 Vn Vl;
+
+GENLIST_APPEND大⊢ @ Cbool$! | Vf @ Cbool$! | Va @ Cbool$! | Vb @ @ Cmin$= @ @ Clist$GENLIST Vf @ @ Carithmetic$+ Va Vb @ @ Clist$APPEND @ @ Clist$GENLIST Vf Vb @ @ Clist$GENLIST | Vt @ Vf @ @ Carithmetic$+ Vt Vb Va;
+
+FRONT_SNOC大⊢ @ Cbool$! | Vx @ Cbool$! | Vl @ @ Cmin$= @ Clist$FRONT @ @ Clist$SNOC Vx Vl Vl;
+
+FRONT_CONS_EQ_NIL大⊢ @ @ Cbool$/\ @ Cbool$! | Vx @ Cbool$! | Vxs @ @ Cmin$= @ @ Cmin$= @ Clist$FRONT @ @ Clist$CONS Vx Vxs Clist$NIL @ @ Cmin$= Vxs Clist$NIL @ @ Cbool$/\ @ Cbool$! | Vx @ Cbool$! | Vxs @ @ Cmin$= @ @ Cmin$= Clist$NIL @ Clist$FRONT @ @ Clist$CONS Vx Vxs @ @ Cmin$= Vxs Clist$NIL @ Cbool$! | Vx @ Cbool$! | Vxs @ @ Cmin$= @ Clist$NULL @ Clist$FRONT @ @ Clist$CONS Vx Vxs @ Clist$NULL Vxs;
+
+FRONT_CONS大⊢ @ @ Cbool$/\ @ Cbool$! | Vx @ @ Cmin$= @ Clist$FRONT @ @ Clist$CONS Vx Clist$NIL Clist$NIL @ Cbool$! | Vx @ Cbool$! | Vy @ Cbool$! | Vz @ @ Cmin$= @ Clist$FRONT @ @ Clist$CONS Vx @ @ Clist$CONS Vy Vz @ @ Clist$CONS Vx @ Clist$FRONT @ @ Clist$CONS Vy Vz;
+
+FORALL_LIST大⊢ @ @ Cmin$= @ Cbool$! | Vl @ VP Vl @ @ Cbool$/\ @ VP Clist$NIL @ Cbool$! | Vh @ Cbool$! | Vt @ VP @ @ Clist$CONS Vh Vt;
+
+FOLDR_CONS大⊢ @ Cbool$! | Vf @ Cbool$! | Vls @ Cbool$! | Va @ @ Cmin$= @ @ @ Clist$FOLDR | Vx | Vy @ @ Clist$CONS @ Vf Vx Vy Va Vls @ @ Clist$APPEND @ @ Clist$MAP Vf Vls Va;
+
+FOLDR_CONG大⊢ @ Cbool$! | Vl @ Cbool$! | Vl' @ Cbool$! | Vb @ Cbool$! | Vb' @ Cbool$! | Vf @ Cbool$! | Vf' @ @ Cmin$==> @ @ Cbool$/\ @ @ Cmin$= Vl Vl' @ @ Cbool$/\ @ @ Cmin$= Vb Vb' @ Cbool$! | Vx @ Cbool$! | Va @ @ Cmin$==> @ @ Cbool$IN Vx @ Clist$LIST_TO_SET Vl' @ @ Cmin$= @ @ Vf Vx Va @ @ Vf' Vx Va @ @ Cmin$= @ @ @ Clist$FOLDR Vf Vb Vl @ @ @ Clist$FOLDR Vf' Vb' Vl';
+
+FOLDL_ZIP_SAME大⊢ @ Cbool$! | Vls @ Cbool$! | Vf @ Cbool$! | Ve @ @ Cmin$= @ @ @ Clist$FOLDL Vf Ve @ Clist$ZIP @ @ Cpair$, Vls Vls @ @ @ Clist$FOLDL | Vx | Vy @ @ Vf Vx @ @ Cpair$, Vy Vy Ve Vls;
+
+FOLDL_UNION_BIGUNION_paired大⊢ @ Cbool$! | Vf @ Cbool$! | Vls @ Cbool$! | Vs @ @ Cmin$= @ @ @ Clist$FOLDL | Vs @ Cpair$UNCURRY | Vx | Vy @ @ Cpred_set$UNION Vs @ @ Vf Vx Vy Vs Vls @ @ Cpred_set$UNION Vs @ Cpred_set$BIGUNION @ @ Cpred_set$IMAGE @ Cpair$UNCURRY Vf @ Clist$LIST_TO_SET Vls;
+
+FOLDL_UNION_BIGUNION大⊢ @ Cbool$! | Vf @ Cbool$! | Vls @ Cbool$! | Vs @ @ Cmin$= @ @ @ Clist$FOLDL | Vs | Vx @ @ Cpred_set$UNION Vs @ Vf Vx Vs Vls @ @ Cpred_set$UNION Vs @ Cpred_set$BIGUNION @ @ Cpred_set$IMAGE Vf @ Clist$LIST_TO_SET Vls;
+
+FOLDL_SNOC大⊢ @ Cbool$! | Vf @ Cbool$! | Ve @ Cbool$! | Vx @ Cbool$! | Vl @ @ Cmin$= @ @ @ Clist$FOLDL Vf Ve @ @ Clist$SNOC Vx Vl @ @ Vf @ @ @ Clist$FOLDL Vf Ve Vl Vx;
+
+FOLDL_EQ_FOLDR大⊢ @ Cbool$! | Vf @ Cbool$! | Vl @ Cbool$! | Ve @ @ Cmin$==> @ @ Cbool$/\ @ Ccombin$ASSOC Vf @ Ccombin$COMM Vf @ @ Cmin$= @ @ @ Clist$FOLDL Vf Ve Vl @ @ @ Clist$FOLDR Vf Ve Vl;
+
+FOLDL_CONG大⊢ @ Cbool$! | Vl @ Cbool$! | Vl' @ Cbool$! | Vb @ Cbool$! | Vb' @ Cbool$! | Vf @ Cbool$! | Vf' @ @ Cmin$==> @ @ Cbool$/\ @ @ Cmin$= Vl Vl' @ @ Cbool$/\ @ @ Cmin$= Vb Vb' @ Cbool$! | Vx @ Cbool$! | Va @ @ Cmin$==> @ @ Cbool$IN Vx @ Clist$LIST_TO_SET Vl' @ @ Cmin$= @ @ Vf Va Vx @ @ Vf' Va Vx @ @ Cmin$= @ @ @ Clist$FOLDL Vf Vb Vl @ @ @ Clist$FOLDL Vf' Vb' Vl';
+
+FOLDL2_ind大⊢ @ Cbool$! | VP @ @ Cmin$==> @ @ Cbool$/\ @ Cbool$! | Vf @ Cbool$! | Va @ Cbool$! | Vb @ Cbool$! | Vbs @ Cbool$! | Vc @ Cbool$! | Vcs @ @ Cmin$==> @ @ @ @ VP Vf @ @ @ Vf Va Vb Vc Vbs Vcs @ @ @ @ VP Vf Va @ @ Clist$CONS Vb Vbs @ @ Clist$CONS Vc Vcs @ @ Cbool$/\ @ Cbool$! | Vf @ Cbool$! | Va @ Cbool$! | Vcs @ @ @ @ VP Vf Va Clist$NIL Vcs @ Cbool$! | Vf @ Cbool$! | Va @ Cbool$! | Vv6 @ Cbool$! | Vv7 @ @ @ @ VP Vf Va @ @ Clist$CONS Vv6 Vv7 Clist$NIL @ Cbool$! | Vv @ Cbool$! | Vv1 @ Cbool$! | Vv2 @ Cbool$! | Vv3 @ @ @ @ VP Vv Vv1 Vv2 Vv3;
+
+FOLDL2_FOLDL大⊢ @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ @ Cmin$==> @ @ Cmin$= @ Clist$LENGTH Vl1 @ Clist$LENGTH Vl2 @ Cbool$! | Vf @ Cbool$! | Va @ @ Cmin$= @ @ @ @ Clist$FOLDL2 Vf Va Vl1 Vl2 @ @ @ Clist$FOLDL | Va @ Cpair$UNCURRY @ Vf Va Va @ Clist$ZIP @ @ Cpair$, Vl1 Vl2;
+
+FOLDL2_def大⊢ @ @ Cbool$/\ @ Cbool$! | Vf @ Cbool$! | Vcs @ Cbool$! | Vc @ Cbool$! | Vbs @ Cbool$! | Vb @ Cbool$! | Va @ @ Cmin$= @ @ @ @ Clist$FOLDL2 Vf Va @ @ Clist$CONS Vb Vbs @ @ Clist$CONS Vc Vcs @ @ @ @ Clist$FOLDL2 Vf @ @ @ Vf Va Vb Vc Vbs Vcs @ @ Cbool$/\ @ Cbool$! | Vf @ Cbool$! | Vcs @ Cbool$! | Va @ @ Cmin$= @ @ @ @ Clist$FOLDL2 Vf Va Clist$NIL Vcs Va @ Cbool$! | Vv7 @ Cbool$! | Vv6 @ Cbool$! | Vf @ Cbool$! | Va @ @ Cmin$= @ @ @ @ Clist$FOLDL2 Vf Va @ @ Clist$CONS Vv6 Vv7 Clist$NIL Va;
+
+FOLDL2_cong大⊢ @ Cbool$! | Vl1 @ Cbool$! | Vl1' @ Cbool$! | Vl2 @ Cbool$! | Vl2' @ Cbool$! | Va @ Cbool$! | Va' @ Cbool$! | Vf @ Cbool$! | Vf' @ @ Cmin$==> @ @ Cbool$/\ @ @ Cmin$= Vl1 Vl1' @ @ Cbool$/\ @ @ Cmin$= Vl2 Vl2' @ @ Cbool$/\ @ @ Cmin$= Va Va' @ Cbool$! | Vz @ Cbool$! | Vb @ Cbool$! | Vc @ @ Cmin$==> @ @ Cbool$/\ @ @ Cbool$IN Vb @ Clist$LIST_TO_SET Vl1' @ @ Cbool$IN Vc @ Clist$LIST_TO_SET Vl2' @ @ Cmin$= @ @ @ Vf Vz Vb Vc @ @ @ Vf' Vz Vb Vc @ @ Cmin$= @ @ @ @ Clist$FOLDL2 Vf Va Vl1 Vl2 @ @ @ @ Clist$FOLDL2 Vf' Va' Vl1' Vl2';
+
+FLAT_EQ_NIL大⊢ @ Cbool$! | Vls @ @ Cmin$= @ @ Cmin$= @ Clist$FLAT Vls Clist$NIL @ @ Clist$EVERY @ Cmin$= Clist$NIL Vls;
+
+FLAT_compute大⊢ @ @ Cbool$/\ @ @ Cmin$= @ Clist$FLAT Clist$NIL Clist$NIL @ @ Cbool$/\ @ @ Cmin$= @ Clist$FLAT @ @ Clist$CONS Clist$NIL Vt @ Clist$FLAT Vt @ @ Cmin$= @ Clist$FLAT @ @ Clist$CONS @ @ Clist$CONS Vh Vt1 Vt2 @ @ Clist$CONS Vh @ Clist$FLAT @ @ Clist$CONS Vt1 Vt2;
+
+FLAT_APPEND大⊢ @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ @ Cmin$= @ Clist$FLAT @ @ Clist$APPEND Vl1 Vl2 @ @ Clist$APPEND @ Clist$FLAT Vl1 @ Clist$FLAT Vl2;
+
+FINITE_LIST_TO_SET大⊢ @ Cbool$! | Vl @ Cpred_set$FINITE @ Clist$LIST_TO_SET Vl;
+
+FILTER_T大⊢ @ Cbool$! | Vxs @ @ Cmin$= @ @ Clist$FILTER | Vx Cbool$T Vxs Vxs;
+
+FILTER_REVERSE大⊢ @ Cbool$! | Vl @ Cbool$! | VP @ @ Cmin$= @ @ Clist$FILTER VP @ Clist$REVERSE Vl @ Clist$REVERSE @ @ Clist$FILTER VP Vl;
+
+FILTER_NEQ_NIL大⊢ @ Cbool$! | VP @ Cbool$! | Vl @ @ Cmin$= @ Cbool$~ @ @ Cmin$= @ @ Clist$FILTER VP Vl Clist$NIL @ Cbool$? | Vx @ @ Cbool$/\ @ @ Cbool$IN Vx @ Clist$LIST_TO_SET Vl @ VP Vx;
+
+FILTER_NEQ_ID大⊢ @ Cbool$! | VP @ Cbool$! | Vl @ @ Cmin$= @ Cbool$~ @ @ Cmin$= @ @ Clist$FILTER VP Vl Vl @ Cbool$? | Vx @ @ Cbool$/\ @ @ Cbool$IN Vx @ Clist$LIST_TO_SET Vl @ Cbool$~ @ VP Vx;
+
+FILTER_F大⊢ @ Cbool$! | Vxs @ @ Cmin$= @ @ Clist$FILTER | Vx Cbool$F Vxs Clist$NIL;
+
+FILTER_EQ_NIL大⊢ @ Cbool$! | VP @ Cbool$! | Vl @ @ Cmin$= @ @ Cmin$= @ @ Clist$FILTER VP Vl Clist$NIL @ @ Clist$EVERY | Vx @ Cbool$~ @ VP Vx Vl;
+
+FILTER_EQ_ID大⊢ @ Cbool$! | VP @ Cbool$! | Vl @ @ Cmin$= @ @ Cmin$= @ @ Clist$FILTER VP Vl Vl @ @ Clist$EVERY VP Vl;
+
+FILTER_EQ_CONS大⊢ @ Cbool$! | VP @ Cbool$! | Vl @ Cbool$! | Vh @ Cbool$! | Vlr @ @ Cmin$= @ @ Cmin$= @ @ Clist$FILTER VP Vl @ @ Clist$CONS Vh Vlr @ Cbool$? | Vl1 @ Cbool$? | Vl2 @ @ Cbool$/\ @ @ Cmin$= Vl @ @ Clist$APPEND @ @ Clist$APPEND Vl1 @ @ Clist$CONS Vh Clist$NIL Vl2 @ @ Cbool$/\ @ @ Cmin$= @ @ Clist$FILTER VP Vl1 Clist$NIL @ @ Cbool$/\ @ @ Cmin$= @ @ Clist$FILTER VP Vl2 Vlr @ VP Vh;
+
+FILTER_EQ_APPEND大⊢ @ Cbool$! | VP @ Cbool$! | Vl @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ @ Cmin$= @ @ Cmin$= @ @ Clist$FILTER VP Vl @ @ Clist$APPEND Vl1 Vl2 @ Cbool$? | Vl3 @ Cbool$? | Vl4 @ @ Cbool$/\ @ @ Cmin$= Vl @ @ Clist$APPEND Vl3 Vl4 @ @ Cbool$/\ @ @ Cmin$= @ @ Clist$FILTER VP Vl3 Vl1 @ @ Cmin$= @ @ Clist$FILTER VP Vl4 Vl2;
+
+FILTER_COND_REWRITE大⊢ @ @ Cbool$/\ @ @ Cmin$= @ @ Clist$FILTER VP Clist$NIL Clist$NIL @ @ Cbool$/\ @ Cbool$! | Vh @ @ Cmin$==> @ VP Vh @ @ Cmin$= @ @ Clist$FILTER VP @ @ Clist$CONS Vh Vl @ @ Clist$CONS Vh @ @ Clist$FILTER VP Vl @ Cbool$! | Vh @ @ Cmin$==> @ Cbool$~ @ VP Vh @ @ Cmin$= @ @ Clist$FILTER VP @ @ Clist$CONS Vh Vl @ @ Clist$FILTER VP Vl;
+
+FILTER_APPEND_DISTRIB大⊢ @ Cbool$! | VP @ Cbool$! | VL @ Cbool$! | VM @ @ Cmin$= @ @ Clist$FILTER VP @ @ Clist$APPEND VL VM @ @ Clist$APPEND @ @ Clist$FILTER VP VL @ @ Clist$FILTER VP VM;
+
+FILTER_ALL_DISTINCT大⊢ @ Cbool$! | VP @ Cbool$! | Vl @ @ Cmin$==> @ Clist$ALL_DISTINCT Vl @ Clist$ALL_DISTINCT @ @ Clist$FILTER VP Vl;
+
+EXISTS_SNOC大⊢ @ Cbool$! | VP @ Cbool$! | Vx @ Cbool$! | Vl @ @ Cmin$= @ @ Clist$EXISTS VP @ @ Clist$SNOC Vx Vl @ @ Cbool$\/ @ VP Vx @ @ Clist$EXISTS VP Vl;
+
+EXISTS_SIMP大⊢ @ Cbool$! | Vc @ Cbool$! | Vl @ @ Cmin$= @ @ Clist$EXISTS | Vx Vc Vl @ @ Cbool$/\ @ Cbool$~ @ @ Cmin$= Vl Clist$NIL Vc;
+
+EXISTS_NOT_EVERY大⊢ @ Cbool$! | VP @ Cbool$! | Vl @ @ Cmin$= @ @ Clist$EXISTS VP Vl @ Cbool$~ @ @ Clist$EVERY | Vx @ Cbool$~ @ VP Vx Vl;
+
+EXISTS_MEM大⊢ @ Cbool$! | VP @ Cbool$! | Vl @ @ Cmin$= @ @ Clist$EXISTS VP Vl @ Cbool$? | Ve @ @ Cbool$/\ @ @ Cbool$IN Ve @ Clist$LIST_TO_SET Vl @ VP Ve;
+
+EXISTS_MAP大⊢ @ Cbool$! | VP @ Cbool$! | Vf @ Cbool$! | Vl @ @ Cmin$= @ @ Clist$EXISTS VP @ @ Clist$MAP Vf Vl @ @ Clist$EXISTS | Vx @ VP @ Vf Vx Vl;
+
+exists_list_GENLIST大⊢ @ @ Cmin$= @ Cbool$? | Vls @ VP Vls @ Cbool$? | Vn @ Cbool$? | Vf @ VP @ @ Clist$GENLIST Vf Vn;
+
+EXISTS_LIST_EQ_MAP大⊢ @ Cbool$! | Vls @ Cbool$! | Vf @ @ Cmin$==> @ @ Clist$EVERY | Vx @ Cbool$? | Vy @ @ Cmin$= Vx @ Vf Vy Vls @ Cbool$? | Vl @ @ Cmin$= Vls @ @ Clist$MAP Vf Vl;
+
+EXISTS_LIST大⊢ @ @ Cmin$= @ Cbool$? | Vl @ VP Vl @ @ Cbool$\/ @ VP Clist$NIL @ Cbool$? | Vh @ Cbool$? | Vt @ VP @ @ Clist$CONS Vh Vt;
+
+EXISTS_GENLIST大⊢ @ Cbool$! | Vn @ @ Cmin$= @ @ Clist$EXISTS VP @ @ Clist$GENLIST Vf Vn @ Cbool$? | Vi @ @ Cbool$/\ @ @ Cprim_rec$< Vi Vn @ VP @ Vf Vi;
+
+EXISTS_CONG大⊢ @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ Cbool$! | VP @ Cbool$! | VP' @ @ Cmin$==> @ @ Cbool$/\ @ @ Cmin$= Vl1 Vl2 @ Cbool$! | Vx @ @ Cmin$==> @ @ Cbool$IN Vx @ Clist$LIST_TO_SET Vl2 @ @ Cmin$= @ VP Vx @ VP' Vx @ @ Cmin$= @ @ Clist$EXISTS VP Vl1 @ @ Clist$EXISTS VP' Vl2;
+
+EXISTS_APPEND大⊢ @ Cbool$! | VP @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ @ Cmin$= @ @ Clist$EXISTS VP @ @ Clist$APPEND Vl1 Vl2 @ @ Cbool$\/ @ @ Clist$EXISTS VP Vl1 @ @ Clist$EXISTS VP Vl2;
+
+every_zip_snd大⊢ @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ Cbool$! | VP @ @ Cmin$==> @ @ Cmin$= @ Clist$LENGTH Vl1 @ Clist$LENGTH Vl2 @ @ Cmin$= @ @ Clist$EVERY | Vx @ VP @ Cpair$SND Vx @ Clist$ZIP @ @ Cpair$, Vl1 Vl2 @ @ Clist$EVERY VP Vl2;
+
+every_zip_fst大⊢ @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ Cbool$! | VP @ @ Cmin$==> @ @ Cmin$= @ Clist$LENGTH Vl1 @ Clist$LENGTH Vl2 @ @ Cmin$= @ @ Clist$EVERY | Vx @ VP @ Cpair$FST Vx @ Clist$ZIP @ @ Cpair$, Vl1 Vl2 @ @ Clist$EVERY VP Vl1;
+
+EVERY_SNOC大⊢ @ Cbool$! | VP @ Cbool$! | Vx @ Cbool$! | Vl @ @ Cmin$= @ @ Clist$EVERY VP @ @ Clist$SNOC Vx Vl @ @ Cbool$/\ @ @ Clist$EVERY VP Vl @ VP Vx;
+
+EVERY_SIMP大⊢ @ Cbool$! | Vc @ Cbool$! | Vl @ @ Cmin$= @ @ Clist$EVERY | Vx Vc Vl @ @ Cbool$\/ @ @ Cmin$= Vl Clist$NIL Vc;
+
+EVERY_NOT_EXISTS大⊢ @ Cbool$! | VP @ Cbool$! | Vl @ @ Cmin$= @ @ Clist$EVERY VP Vl @ Cbool$~ @ @ Clist$EXISTS | Vx @ Cbool$~ @ VP Vx Vl;
+
+EVERY_MONOTONIC大⊢ @ Cbool$! | VP @ Cbool$! | VQ @ @ Cmin$==> @ Cbool$! | Vx @ @ Cmin$==> @ VP Vx @ VQ Vx @ Cbool$! | Vl @ @ Cmin$==> @ @ Clist$EVERY VP Vl @ @ Clist$EVERY VQ Vl;
+
+EVERY_MEM_MONO大⊢ @ Cbool$! | VP @ Cbool$! | VQ @ Cbool$! | Vl @ @ Cmin$==> @ @ Cbool$/\ @ Cbool$! | Vx @ @ Cmin$==> @ @ Cbool$/\ @ @ Cbool$IN Vx @ Clist$LIST_TO_SET Vl @ VP Vx @ VQ Vx @ @ Clist$EVERY VP Vl @ @ Clist$EVERY VQ Vl;
+
+EVERY_MEM大⊢ @ Cbool$! | VP @ Cbool$! | Vl @ @ Cmin$= @ @ Clist$EVERY VP Vl @ Cbool$! | Ve @ @ Cmin$==> @ @ Cbool$IN Ve @ Clist$LIST_TO_SET Vl @ VP Ve;
+
+EVERY_MAP大⊢ @ Cbool$! | VP @ Cbool$! | Vf @ Cbool$! | Vl @ @ Cmin$= @ @ Clist$EVERY VP @ @ Clist$MAP Vf Vl @ @ Clist$EVERY | Vx @ VP @ Vf Vx Vl;
+
+EVERY_GENLIST大⊢ @ Cbool$! | Vn @ @ Cmin$= @ @ Clist$EVERY VP @ @ Clist$GENLIST Vf Vn @ Cbool$! | Vi @ @ Cmin$==> @ @ Cprim_rec$< Vi Vn @ VP @ Vf Vi;
+
+EVERY_FLAT大⊢ @ @ Cmin$= @ @ Clist$EVERY VP @ Clist$FLAT Vls @ @ Clist$EVERY @ Clist$EVERY VP Vls;
+
+EVERY_FILTER_IMP大⊢ @ Cbool$! | VP1 @ Cbool$! | VP2 @ Cbool$! | Vl @ @ Cmin$==> @ @ Clist$EVERY VP1 Vl @ @ Clist$EVERY VP1 @ @ Clist$FILTER VP2 Vl;
+
+EVERY_FILTER大⊢ @ Cbool$! | VP1 @ Cbool$! | VP2 @ Cbool$! | Vl @ @ Cmin$= @ @ Clist$EVERY VP1 @ @ Clist$FILTER VP2 Vl @ @ Clist$EVERY | Vx @ @ Cmin$==> @ VP2 Vx @ VP1 Vx Vl;
+
+EVERY_EL大⊢ @ Cbool$! | Vl @ Cbool$! | VP @ @ Cmin$= @ @ Clist$EVERY VP Vl @ Cbool$! | Vn @ @ Cmin$==> @ @ Cprim_rec$< Vn @ Clist$LENGTH Vl @ VP @ @ Clist$EL Vn Vl;
+
+EVERY_CONJ大⊢ @ Cbool$! | VP @ Cbool$! | VQ @ Cbool$! | Vl @ @ Cmin$= @ @ Clist$EVERY | Vx @ @ Cbool$/\ @ VP Vx @ VQ Vx Vl @ @ Cbool$/\ @ @ Clist$EVERY VP Vl @ @ Clist$EVERY VQ Vl;
+
+EVERY_CONG大⊢ @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ Cbool$! | VP @ Cbool$! | VP' @ @ Cmin$==> @ @ Cbool$/\ @ @ Cmin$= Vl1 Vl2 @ Cbool$! | Vx @ @ Cmin$==> @ @ Cbool$IN Vx @ Clist$LIST_TO_SET Vl2 @ @ Cmin$= @ VP Vx @ VP' Vx @ @ Cmin$= @ @ Clist$EVERY VP Vl1 @ @ Clist$EVERY VP' Vl2;
+
+EVERY_APPEND大⊢ @ Cbool$! | VP @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ @ Cmin$= @ @ Clist$EVERY VP @ @ Clist$APPEND Vl1 Vl2 @ @ Cbool$/\ @ @ Clist$EVERY VP Vl1 @ @ Clist$EVERY VP Vl2;
+
+EVERY2_trans大⊢ @ @ Cmin$==> @ Cbool$! | Vx @ Cbool$! | Vy @ Cbool$! | Vz @ @ Cmin$==> @ @ Cbool$/\ @ @ VR Vx Vy @ @ VR Vy Vz @ @ VR Vx Vz @ Cbool$! | Vx @ Cbool$! | Vy @ Cbool$! | Vz @ @ Cmin$==> @ @ Cbool$/\ @ @ @ Clist$LIST_REL VR Vx Vy @ @ @ Clist$LIST_REL VR Vy Vz @ @ @ Clist$LIST_REL VR Vx Vz;
+
+EVERY2_THM大⊢ @ @ Cbool$/\ @ Cbool$! | VP @ Cbool$! | Vys @ @ Cmin$= @ @ @ Clist$LIST_REL VP Clist$NIL Vys @ @ Cmin$= Vys Clist$NIL @ @ Cbool$/\ @ Cbool$! | VP @ Cbool$! | Vyys @ Cbool$! | Vx @ Cbool$! | Vxs @ @ Cmin$= @ @ @ Clist$LIST_REL VP @ @ Clist$CONS Vx Vxs Vyys @ Cbool$? | Vy @ Cbool$? | Vys @ @ Cbool$/\ @ @ Cmin$= Vyys @ @ Clist$CONS Vy Vys @ @ Cbool$/\ @ @ VP Vx Vy @ @ @ Clist$LIST_REL VP Vxs Vys @ @ Cbool$/\ @ Cbool$! | VP @ Cbool$! | Vxs @ @ Cmin$= @ @ @ Clist$LIST_REL VP Vxs Clist$NIL @ @ Cmin$= Vxs Clist$NIL @ Cbool$! | VP @ Cbool$! | Vxxs @ Cbool$! | Vy @ Cbool$! | Vys @ @ Cmin$= @ @ @ Clist$LIST_REL VP Vxxs @ @ Clist$CONS Vy Vys @ Cbool$? | Vx @ Cbool$? | Vxs @ @ Cbool$/\ @ @ Cmin$= Vxxs @ @ Clist$CONS Vx Vxs @ @ Cbool$/\ @ @ VP Vx Vy @ @ @ Clist$LIST_REL VP Vxs Vys;
+
+EVERY2_sym大⊢ @ @ Cmin$==> @ Cbool$! | Vx @ Cbool$! | Vy @ @ Cmin$==> @ @ VR1 Vx Vy @ @ VR2 Vy Vx @ Cbool$! | Vx @ Cbool$! | Vy @ @ Cmin$==> @ @ @ Clist$LIST_REL VR1 Vx Vy @ @ @ Clist$LIST_REL VR2 Vy Vx;
+
+EVERY2_REVERSE大⊢ @ Cbool$! | VR @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ @ Cmin$==> @ @ @ Clist$LIST_REL VR Vl1 Vl2 @ @ @ Clist$LIST_REL VR @ Clist$REVERSE Vl1 @ Clist$REVERSE Vl2;
+
+EVERY2_refl大⊢ @ @ Cmin$==> @ Cbool$! | Vx @ @ Cmin$==> @ @ Cbool$IN Vx @ Clist$LIST_TO_SET Vls @ @ VR Vx Vx @ @ @ Clist$LIST_REL VR Vls Vls;
+
+EVERY2_mono大⊢ @ @ Cmin$==> @ Cbool$! | Vx @ Cbool$! | Vy @ @ Cmin$==> @ @ VR1 Vx Vy @ @ VR2 Vx Vy @ @ Cmin$==> @ @ @ Clist$LIST_REL VR1 Vl1 Vl2 @ @ @ Clist$LIST_REL VR2 Vl1 Vl2;
+
+EVERY2_MEM_MONO大⊢ @ Cbool$! | VP @ Cbool$! | VQ @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ @ Cmin$==> @ @ Cbool$/\ @ Cbool$! | Vx @ @ Cmin$==> @ @ Cbool$/\ @ @ Cbool$IN Vx @ Clist$LIST_TO_SET @ Clist$ZIP @ @ Cpair$, Vl1 Vl2 @ @ Cpair$UNCURRY VP Vx @ @ Cpair$UNCURRY VQ Vx @ @ @ Clist$LIST_REL VP Vl1 Vl2 @ @ @ Clist$LIST_REL VQ Vl1 Vl2;
+
+EVERY2_MAP大⊢ @ @ Cbool$/\ @ @ Cmin$= @ @ @ Clist$LIST_REL VP @ @ Clist$MAP Vf Vl1 Vl2 @ @ @ Clist$LIST_REL | Vx | Vy @ @ VP @ Vf Vx Vy Vl1 Vl2 @ @ Cmin$= @ @ @ Clist$LIST_REL VQ Vl1 @ @ Clist$MAP Vg Vl2 @ @ @ Clist$LIST_REL | Vx | Vy @ @ VQ Vx @ Vg Vy Vl1 Vl2;
+
+EVERY2_LUPDATE_same大⊢ @ Cbool$! | VP @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ Cbool$! | Vv1 @ Cbool$! | Vv2 @ Cbool$! | Vn @ @ Cmin$==> @ @ Cbool$/\ @ @ VP Vv1 Vv2 @ @ @ Clist$LIST_REL VP Vl1 Vl2 @ @ @ Clist$LIST_REL VP @ @ @ Clist$LUPDATE Vv1 Vn Vl1 @ @ @ Clist$LUPDATE Vv2 Vn Vl2;
+
+EVERY2_LENGTH大⊢ @ Cbool$! | VP @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ @ Cmin$==> @ @ @ Clist$LIST_REL VP Vl1 Vl2 @ @ Cmin$= @ Clist$LENGTH Vl1 @ Clist$LENGTH Vl2;
+
+EVERY2_EVERY大⊢ @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ Cbool$! | Vf @ @ Cmin$= @ @ @ Clist$LIST_REL Vf Vl1 Vl2 @ @ Cbool$/\ @ @ Cmin$= @ Clist$LENGTH Vl1 @ Clist$LENGTH Vl2 @ @ Clist$EVERY @ Cpair$UNCURRY Vf @ Clist$ZIP @ @ Cpair$, Vl1 Vl2;
+
+EVERY2_cong大⊢ @ Cbool$! | Vl1 @ Cbool$! | Vl1' @ Cbool$! | Vl2 @ Cbool$! | Vl2' @ Cbool$! | VP @ Cbool$! | VP' @ @ Cmin$==> @ @ Cbool$/\ @ @ Cmin$= Vl1 Vl1' @ @ Cbool$/\ @ @ Cmin$= Vl2 Vl2' @ Cbool$! | Vx @ Cbool$! | Vy @ @ Cmin$==> @ @ Cbool$/\ @ @ Cbool$IN Vx @ Clist$LIST_TO_SET Vl1' @ @ Cbool$IN Vy @ Clist$LIST_TO_SET Vl2' @ @ Cmin$= @ @ VP Vx Vy @ @ VP' Vx Vy @ @ Cmin$= @ @ @ Clist$LIST_REL VP Vl1 Vl2 @ @ @ Clist$LIST_REL VP' Vl1' Vl2';
+
+EQ_LIST大⊢ @ Cbool$! | Vh1 @ Cbool$! | Vh2 @ @ Cmin$==> @ @ Cmin$= Vh1 Vh2 @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ @ Cmin$==> @ @ Cmin$= Vl1 Vl2 @ @ Cmin$= @ @ Clist$CONS Vh1 Vl1 @ @ Clist$CONS Vh2 Vl2;
+
+EL_ZIP大⊢ @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ Cbool$! | Vn @ @ Cmin$==> @ @ Cbool$/\ @ @ Cmin$= @ Clist$LENGTH Vl1 @ Clist$LENGTH Vl2 @ @ Cprim_rec$< Vn @ Clist$LENGTH Vl1 @ @ Cmin$= @ @ Clist$EL Vn @ Clist$ZIP @ @ Cpair$, Vl1 Vl2 @ @ Cpair$, @ @ Clist$EL Vn Vl1 @ @ Clist$EL Vn Vl2;
+
+EL_TAKE大⊢ @ Cbool$! | Vn @ Cbool$! | Vx @ Cbool$! | Vl @ @ Cmin$==> @ @ Cprim_rec$< Vx Vn @ @ Cmin$= @ @ Clist$EL Vx @ @ Clist$TAKE Vn Vl @ @ Clist$EL Vx Vl;
+
+EL_SNOC大⊢ @ Cbool$! | Vn @ Cbool$! | Vl @ @ Cmin$==> @ @ Cprim_rec$< Vn @ Clist$LENGTH Vl @ Cbool$! | Vx @ @ Cmin$= @ @ Clist$EL Vn @ @ Clist$SNOC Vx Vl @ @ Clist$EL Vn Vl;
+
+EL_simp_restricted大⊢ @ @ Cbool$/\ @ @ Cmin$= @ @ Clist$EL @ Carithmetic$NUMERAL @ Carithmetic$BIT1 Vn @ @ Clist$CONS Vl Vls @ @ Clist$EL @ Cprim_rec$PRE @ Carithmetic$NUMERAL @ Carithmetic$BIT1 Vn Vls @ @ Cmin$= @ @ Clist$EL @ Carithmetic$NUMERAL @ Carithmetic$BIT2 Vn @ @ Clist$CONS Vl Vls @ @ Clist$EL @ Carithmetic$NUMERAL @ Carithmetic$BIT1 Vn Vls;
+
+EL_simp大⊢ @ @ Cbool$/\ @ @ Cmin$= @ @ Clist$EL @ Carithmetic$NUMERAL @ Carithmetic$BIT1 Vn Vl @ @ Clist$EL @ Cprim_rec$PRE @ Carithmetic$NUMERAL @ Carithmetic$BIT1 Vn @ Clist$TL Vl @ @ Cmin$= @ @ Clist$EL @ Carithmetic$NUMERAL @ Carithmetic$BIT2 Vn Vl @ @ Clist$EL @ Carithmetic$NUMERAL @ Carithmetic$BIT1 Vn @ Clist$TL Vl;
+
+EL_REVERSE大⊢ @ Cbool$! | Vn @ Cbool$! | Vl @ @ Cmin$==> @ @ Cprim_rec$< Vn @ Clist$LENGTH Vl @ @ Cmin$= @ @ Clist$EL Vn @ Clist$REVERSE Vl @ @ Clist$EL @ Cprim_rec$PRE @ @ Carithmetic$- @ Clist$LENGTH Vl Vn Vl;
+
+EL_restricted大⊢ @ @ Cbool$/\ @ @ Cmin$= @ Clist$EL Cnum$0 Clist$HD @ @ Cmin$= @ @ Clist$EL @ Cnum$SUC Vn @ @ Clist$CONS Vl Vls @ @ Clist$EL Vn Vls;
+
+EL_MAP2大⊢ @ Cbool$! | Vts @ Cbool$! | Vtt @ Cbool$! | Vn @ @ Cmin$==> @ @ Cprim_rec$< Vn @ @ Carithmetic$MIN @ Clist$LENGTH Vts @ Clist$LENGTH Vtt @ @ Cmin$= @ @ Clist$EL Vn @ @ @ Clist$MAP2 Vf Vts Vtt @ @ Vf @ @ Clist$EL Vn Vts @ @ Clist$EL Vn Vtt;
+
+EL_MAP大⊢ @ Cbool$! | Vn @ Cbool$! | Vl @ @ Cmin$==> @ @ Cprim_rec$< Vn @ Clist$LENGTH Vl @ Cbool$! | Vf @ @ Cmin$= @ @ Clist$EL Vn @ @ Clist$MAP Vf Vl @ Vf @ @ Clist$EL Vn Vl;
+
+EL_LUPDATE大⊢ @ Cbool$! | Vys @ Cbool$! | Vx @ Cbool$! | Vi @ Cbool$! | Vk @ @ Cmin$= @ @ Clist$EL Vi @ @ @ Clist$LUPDATE Vx Vk Vys @ @ @ Cbool$COND @ @ Cbool$/\ @ @ Cmin$= Vi Vk @ @ Cprim_rec$< Vk @ Clist$LENGTH Vys Vx @ @ Clist$EL Vi Vys;
+
+EL_LENGTH_SNOC大⊢ @ Cbool$! | Vl @ Cbool$! | Vx @ @ Cmin$= @ @ Clist$EL @ Clist$LENGTH Vl @ @ Clist$SNOC Vx Vl Vx;
+
+EL_LENGTH_dropWhile_REVERSE大⊢ @ Cbool$! | VP @ Cbool$! | Vls @ Cbool$! | Vk @ @ Cmin$==> @ @ Cbool$/\ @ @ Carithmetic$<= @ Clist$LENGTH @ @ Clist$dropWhile VP @ Clist$REVERSE Vls Vk @ @ Cprim_rec$< Vk @ Clist$LENGTH Vls @ VP @ @ Clist$EL Vk Vls;
+
+EL_GENLIST大⊢ @ Cbool$! | Vf @ Cbool$! | Vn @ Cbool$! | Vx @ @ Cmin$==> @ @ Cprim_rec$< Vx Vn @ @ Cmin$= @ @ Clist$EL Vx @ @ Clist$GENLIST Vf Vn @ Vf Vx;
+
+EL_DROP大⊢ @ Cbool$! | Vm @ Cbool$! | Vn @ Cbool$! | Vl @ @ Cmin$==> @ @ Cprim_rec$< @ @ Carithmetic$+ Vm Vn @ Clist$LENGTH Vl @ @ Cmin$= @ @ Clist$EL Vm @ @ Clist$DROP Vn Vl @ @ Clist$EL @ @ Carithmetic$+ Vm Vn Vl;
+
+EL_compute大⊢ @ Cbool$! | Vn @ @ Cmin$= @ @ Clist$EL Vn Vl @ @ @ Cbool$COND @ @ Cmin$= Vn Cnum$0 @ Clist$HD Vl @ @ Clist$EL @ Cprim_rec$PRE Vn @ Clist$TL Vl;
+
+EL_APPEND_EQN大⊢ @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ Cbool$! | Vn @ @ Cmin$= @ @ Clist$EL Vn @ @ Clist$APPEND Vl1 Vl2 @ @ @ Cbool$COND @ @ Cprim_rec$< Vn @ Clist$LENGTH Vl1 @ @ Clist$EL Vn Vl1 @ @ Clist$EL @ @ Carithmetic$- Vn @ Clist$LENGTH Vl1 Vl2;
+
+el_append3大⊢ @ Cbool$! | Vl1 @ Cbool$! | Vx @ Cbool$! | Vl2 @ @ Cmin$= @ @ Clist$EL @ Clist$LENGTH Vl1 @ @ Clist$APPEND @ @ Clist$APPEND Vl1 @ @ Clist$CONS Vx Clist$NIL Vl2 Vx;
+
+EL_ALL_DISTINCT_EL_EQ大⊢ @ Cbool$! | Vl @ @ Cmin$= @ Clist$ALL_DISTINCT Vl @ Cbool$! | Vn1 @ Cbool$! | Vn2 @ @ Cmin$==> @ @ Cbool$/\ @ @ Cprim_rec$< Vn1 @ Clist$LENGTH Vl @ @ Cprim_rec$< Vn2 @ Clist$LENGTH Vl @ @ Cmin$= @ @ Cmin$= @ @ Clist$EL Vn1 Vl @ @ Clist$EL Vn2 Vl @ @ Cmin$= Vn1 Vn2;
+
+dropWhile_splitAtPki大⊢ @ Cbool$! | VP @ @ Cmin$= @ Clist$dropWhile VP @ @ Clist$splitAtPki @ Ccombin$C @ @ Ccombin$o Ccombin$K @ @ Ccombin$o Cbool$~ VP @ Ccombin$K Ccombin$I;
+
+dropWhile_eq_nil大⊢ @ Cbool$! | VP @ Cbool$! | Vls @ @ Cmin$= @ @ Cmin$= @ @ Clist$dropWhile VP Vls Clist$NIL @ @ Clist$EVERY VP Vls;
+
+dropWhile_APPEND_EXISTS大⊢ @ Cbool$! | VP @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ @ Cmin$==> @ @ Clist$EXISTS @ @ Ccombin$o Cbool$~ VP Vl1 @ @ Cmin$= @ @ Clist$dropWhile VP @ @ Clist$APPEND Vl1 Vl2 @ @ Clist$APPEND @ @ Clist$dropWhile VP Vl1 Vl2;
+
+dropWhile_APPEND_EVERY大⊢ @ Cbool$! | VP @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ @ Cmin$==> @ @ Clist$EVERY VP Vl1 @ @ Cmin$= @ @ Clist$dropWhile VP @ @ Clist$APPEND Vl1 Vl2 @ @ Clist$dropWhile VP Vl2;
+
+DROP_TAKE大⊢ @ Cbool$! | Vxs @ Cbool$! | Vn @ Cbool$! | Vk @ @ Cmin$= @ @ Clist$DROP Vn @ @ Clist$TAKE Vk Vxs @ @ Clist$TAKE @ @ Carithmetic$- Vk Vn @ @ Clist$DROP Vn Vxs;
+
+DROP_splitAtPki大⊢ @ @ Cmin$= @ @ Clist$DROP Vn Vl @ @ @ Clist$splitAtPki @ @ Ccombin$o Ccombin$K @ Cmin$= Vn @ Ccombin$K Ccombin$I Vl;
+
+DROP_nil大⊢ @ Cbool$! | Vn @ @ Cmin$= @ @ Clist$DROP Vn Clist$NIL Clist$NIL;
+
+DROP_NIL大⊢ @ Cbool$! | Vls @ Cbool$! | Vn @ @ Cmin$= @ @ Cmin$= @ @ Clist$DROP Vn Vls Clist$NIL @ @ Carithmetic$>= Vn @ Clist$LENGTH Vls;
+
+DROP_LENGTH_TOO_LONG大⊢ @ Cbool$! | Vl @ Cbool$! | Vn @ @ Cmin$==> @ @ Carithmetic$<= @ Clist$LENGTH Vl Vn @ @ Cmin$= @ @ Clist$DROP Vn Vl Clist$NIL;
+
+DROP_GENLIST大⊢ @ @ Cmin$= @ @ Clist$DROP Vn @ @ Clist$GENLIST Vf Vm @ @ Clist$GENLIST @ @ Ccombin$o Vf @ Carithmetic$+ Vn @ @ Carithmetic$- Vm Vn;
+
+DROP_cons大⊢ @ @ Cmin$==> @ @ Cprim_rec$< Cnum$0 Vn @ @ Cmin$= @ @ Clist$DROP Vn @ @ Clist$CONS Vx Vxs @ @ Clist$DROP @ @ Carithmetic$- Vn @ Carithmetic$NUMERAL @ Carithmetic$BIT1 Carithmetic$ZERO Vxs;
+
+DROP_compute大⊢ @ @ Cbool$/\ @ Cbool$! | Vl @ @ Cmin$= @ @ Clist$DROP Cnum$0 Vl Vl @ @ Cbool$/\ @ Cbool$! | Vn @ @ Cmin$= @ @ Clist$DROP @ Carithmetic$NUMERAL @ Carithmetic$BIT1 Vn Clist$NIL Clist$NIL @ @ Cbool$/\ @ Cbool$! | Vn @ @ Cmin$= @ @ Clist$DROP @ Carithmetic$NUMERAL @ Carithmetic$BIT2 Vn Clist$NIL Clist$NIL @ @ Cbool$/\ @ Cbool$! | Vn @ Cbool$! | Vh @ Cbool$! | Vt @ @ Cmin$= @ @ Clist$DROP @ Carithmetic$NUMERAL @ Carithmetic$BIT1 Vn @ @ Clist$CONS Vh Vt @ @ Clist$DROP @ @ Carithmetic$- @ Carithmetic$NUMERAL @ Carithmetic$BIT1 Vn @ Carithmetic$NUMERAL @ Carithmetic$BIT1 Carithmetic$ZERO Vt @ Cbool$! | Vn @ Cbool$! | Vh @ Cbool$! | Vt @ @ Cmin$= @ @ Clist$DROP @ Carithmetic$NUMERAL @ Carithmetic$BIT2 Vn @ @ Clist$CONS Vh Vt @ @ Clist$DROP @ Carithmetic$NUMERAL @ Carithmetic$BIT1 Vn Vt;
+
+DROP_0大⊢ @ @ Cmin$= @ @ Clist$DROP Cnum$0 Vl Vl;
+
+DISJOINT_GENLIST_PLUS大⊢ @ @ Cmin$==> @ @ Cpred_set$DISJOINT Vx @ Clist$LIST_TO_SET @ @ Clist$GENLIST @ Carithmetic$+ Vn @ @ Carithmetic$+ Va Vb @ @ Cbool$/\ @ @ Cpred_set$DISJOINT Vx @ Clist$LIST_TO_SET @ @ Clist$GENLIST @ Carithmetic$+ Vn Va @ @ Cpred_set$DISJOINT Vx @ Clist$LIST_TO_SET @ @ Clist$GENLIST @ Carithmetic$+ @ @ Carithmetic$+ Vn Va Vb;
+
+datatype_list大⊢ @ Cbool$DATATYPE @ @ Vlist Clist$NIL Clist$CONS;
+
+CONS_ACYCLIC大⊢ @ Cbool$! | Vl @ Cbool$! | Vx @ @ Cbool$/\ @ Cbool$~ @ @ Cmin$= Vl @ @ Clist$CONS Vx Vl @ Cbool$~ @ @ Cmin$= @ @ Clist$CONS Vx Vl Vl;
+
+CONS_11大⊢ @ Cbool$! | Va0 @ Cbool$! | Va1 @ Cbool$! | Va0' @ Cbool$! | Va1' @ @ Cmin$= @ @ Cmin$= @ @ Clist$CONS Va0 Va1 @ @ Clist$CONS Va0' Va1' @ @ Cbool$/\ @ @ Cmin$= Va0 Va0' @ @ Cmin$= Va1 Va1';
+
+CONS大⊢ @ Cbool$! | Vl @ @ Cmin$==> @ Cbool$~ @ Clist$NULL Vl @ @ Cmin$= @ @ Clist$CONS @ Clist$HD Vl @ Clist$TL Vl Vl;
+
+CARD_LIST_TO_SET_ALL_DISTINCT大⊢ @ Cbool$! | Vls @ @ Cmin$==> @ @ Cmin$= @ Cpred_set$CARD @ Clist$LIST_TO_SET Vls @ Clist$LENGTH Vls @ Clist$ALL_DISTINCT Vls;
+
+CARD_LIST_TO_SET大⊢ @ @ Carithmetic$<= @ Cpred_set$CARD @ Clist$LIST_TO_SET Vls @ Clist$LENGTH Vls;
+
+BIGUNION_IMAGE_set_SUBSET大⊢ @ @ Cmin$= @ @ Cpred_set$SUBSET @ Cpred_set$BIGUNION @ @ Cpred_set$IMAGE Vf @ Clist$LIST_TO_SET Vls Vs @ Cbool$! | Vx @ @ Cmin$==> @ @ Cbool$IN Vx @ Clist$LIST_TO_SET Vls @ @ Cpred_set$SUBSET @ Vf Vx Vs;
+
+APPEND_SNOC大⊢ @ Cbool$! | Vl1 @ Cbool$! | Vx @ Cbool$! | Vl2 @ @ Cmin$= @ @ Clist$APPEND Vl1 @ @ Clist$SNOC Vx Vl2 @ @ Clist$SNOC Vx @ @ Clist$APPEND Vl1 Vl2;
+
+APPEND_NIL大⊢ @ Cbool$! | Vl @ @ Cmin$= @ @ Clist$APPEND Vl Clist$NIL Vl;
+
+APPEND_LENGTH_EQ大⊢ @ Cbool$! | Vl1 @ Cbool$! | Vl1' @ @ Cmin$==> @ @ Cmin$= @ Clist$LENGTH Vl1 @ Clist$LENGTH Vl1' @ Cbool$! | Vl2 @ Cbool$! | Vl2' @ @ Cmin$==> @ @ Cmin$= @ Clist$LENGTH Vl2 @ Clist$LENGTH Vl2' @ @ Cmin$= @ @ Cmin$= @ @ Clist$APPEND Vl1 Vl2 @ @ Clist$APPEND Vl1' Vl2' @ @ Cbool$/\ @ @ Cmin$= Vl1 Vl1' @ @ Cmin$= Vl2 Vl2';
+
+APPEND_FRONT_LAST大⊢ @ Cbool$! | Vl @ @ Cmin$==> @ Cbool$~ @ @ Cmin$= Vl Clist$NIL @ @ Cmin$= @ @ Clist$APPEND @ Clist$FRONT Vl @ @ Clist$CONS @ Clist$LAST Vl Clist$NIL Vl;
+
+APPEND_EQ_SING大⊢ @ @ Cmin$= @ @ Cmin$= @ @ Clist$APPEND Vl1 Vl2 @ @ Clist$CONS Ve Clist$NIL @ @ Cbool$\/ @ @ Cbool$/\ @ @ Cmin$= Vl1 @ @ Clist$CONS Ve Clist$NIL @ @ Cmin$= Vl2 Clist$NIL @ @ Cbool$/\ @ @ Cmin$= Vl1 Clist$NIL @ @ Cmin$= Vl2 @ @ Clist$CONS Ve Clist$NIL;
+
+APPEND_EQ_SELF大⊢ @ @ Cbool$/\ @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ @ Cmin$= @ @ Cmin$= @ @ Clist$APPEND Vl1 Vl2 Vl1 @ @ Cmin$= Vl2 Clist$NIL @ @ Cbool$/\ @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ @ Cmin$= @ @ Cmin$= @ @ Clist$APPEND Vl1 Vl2 Vl2 @ @ Cmin$= Vl1 Clist$NIL @ @ Cbool$/\ @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ @ Cmin$= @ @ Cmin$= Vl1 @ @ Clist$APPEND Vl1 Vl2 @ @ Cmin$= Vl2 Clist$NIL @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ @ Cmin$= @ @ Cmin$= Vl2 @ @ Clist$APPEND Vl1 Vl2 @ @ Cmin$= Vl1 Clist$NIL;
+
+APPEND_eq_NIL大⊢ @ @ Cbool$/\ @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ @ Cmin$= @ @ Cmin$= Clist$NIL @ @ Clist$APPEND Vl1 Vl2 @ @ Cbool$/\ @ @ Cmin$= Vl1 Clist$NIL @ @ Cmin$= Vl2 Clist$NIL @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ @ Cmin$= @ @ Cmin$= @ @ Clist$APPEND Vl1 Vl2 Clist$NIL @ @ Cbool$/\ @ @ Cmin$= Vl1 Clist$NIL @ @ Cmin$= Vl2 Clist$NIL;
+
+APPEND_EQ_CONS大⊢ @ @ Cmin$= @ @ Cmin$= @ @ Clist$APPEND Vl1 Vl2 @ @ Clist$CONS Vh Vt @ @ Cbool$\/ @ @ Cbool$/\ @ @ Cmin$= Vl1 Clist$NIL @ @ Cmin$= Vl2 @ @ Clist$CONS Vh Vt @ Cbool$? | Vlt @ @ Cbool$/\ @ @ Cmin$= Vl1 @ @ Clist$CONS Vh Vlt @ @ Cmin$= Vt @ @ Clist$APPEND Vlt Vl2;
+
+APPEND_EQ_APPEND_MID大⊢ @ @ Cmin$= @ @ Cmin$= @ @ Clist$APPEND @ @ Clist$APPEND Vl1 @ @ Clist$CONS Ve Clist$NIL Vl2 @ @ Clist$APPEND Vm1 Vm2 @ @ Cbool$\/ @ Cbool$? | Vl @ @ Cbool$/\ @ @ Cmin$= Vm1 @ @ Clist$APPEND @ @ Clist$APPEND Vl1 @ @ Clist$CONS Ve Clist$NIL Vl @ @ Cmin$= Vl2 @ @ Clist$APPEND Vl Vm2 @ Cbool$? | Vl @ @ Cbool$/\ @ @ Cmin$= Vl1 @ @ Clist$APPEND Vm1 Vl @ @ Cmin$= Vm2 @ @ Clist$APPEND @ @ Clist$APPEND Vl @ @ Clist$CONS Ve Clist$NIL Vl2;
+
+APPEND_EQ_APPEND大⊢ @ @ Cmin$= @ @ Cmin$= @ @ Clist$APPEND Vl1 Vl2 @ @ Clist$APPEND Vm1 Vm2 @ @ Cbool$\/ @ Cbool$? | Vl @ @ Cbool$/\ @ @ Cmin$= Vl1 @ @ Clist$APPEND Vm1 Vl @ @ Cmin$= Vm2 @ @ Clist$APPEND Vl Vl2 @ Cbool$? | Vl @ @ Cbool$/\ @ @ Cmin$= Vm1 @ @ Clist$APPEND Vl1 Vl @ @ Cmin$= Vl2 @ @ Clist$APPEND Vl Vm2;
+
+APPEND_ASSOC大⊢ @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ Cbool$! | Vl3 @ @ Cmin$= @ @ Clist$APPEND Vl1 @ @ Clist$APPEND Vl2 Vl3 @ @ Clist$APPEND @ @ Clist$APPEND Vl1 Vl2 Vl3;
+
+APPEND_11_LENGTH大⊢ @ @ Cbool$/\ @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ Cbool$! | Vl1' @ Cbool$! | Vl2' @ @ Cmin$==> @ @ Cmin$= @ Clist$LENGTH Vl1 @ Clist$LENGTH Vl1' @ @ Cmin$= @ @ Cmin$= @ @ Clist$APPEND Vl1 Vl2 @ @ Clist$APPEND Vl1' Vl2' @ @ Cbool$/\ @ @ Cmin$= Vl1 Vl1' @ @ Cmin$= Vl2 Vl2' @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ Cbool$! | Vl1' @ Cbool$! | Vl2' @ @ Cmin$==> @ @ Cmin$= @ Clist$LENGTH Vl2 @ Clist$LENGTH Vl2' @ @ Cmin$= @ @ Cmin$= @ @ Clist$APPEND Vl1 Vl2 @ @ Clist$APPEND Vl1' Vl2' @ @ Cbool$/\ @ @ Cmin$= Vl1 Vl1' @ @ Cmin$= Vl2 Vl2';
+
+APPEND_11大⊢ @ @ Cbool$/\ @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ Cbool$! | Vl3 @ @ Cmin$= @ @ Cmin$= @ @ Clist$APPEND Vl1 Vl2 @ @ Clist$APPEND Vl1 Vl3 @ @ Cmin$= Vl2 Vl3 @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ Cbool$! | Vl3 @ @ Cmin$= @ @ Cmin$= @ @ Clist$APPEND Vl2 Vl1 @ @ Clist$APPEND Vl3 Vl1 @ @ Cmin$= Vl2 Vl3;
+
+ALL_DISTINCT_ZIP_SWAP大⊢ @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ @ Cmin$==> @ @ Cbool$/\ @ Clist$ALL_DISTINCT @ Clist$ZIP @ @ Cpair$, Vl1 Vl2 @ @ Cmin$= @ Clist$LENGTH Vl1 @ Clist$LENGTH Vl2 @ Clist$ALL_DISTINCT @ Clist$ZIP @ @ Cpair$, Vl2 Vl1;
+
+ALL_DISTINCT_ZIP大⊢ @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ @ Cmin$==> @ @ Cbool$/\ @ Clist$ALL_DISTINCT Vl1 @ @ Cmin$= @ Clist$LENGTH Vl1 @ Clist$LENGTH Vl2 @ Clist$ALL_DISTINCT @ Clist$ZIP @ @ Cpair$, Vl1 Vl2;
+
+ALL_DISTINCT_SNOC大⊢ @ Cbool$! | Vx @ Cbool$! | Vl @ @ Cmin$= @ Clist$ALL_DISTINCT @ @ Clist$SNOC Vx Vl @ @ Cbool$/\ @ Cbool$~ @ @ Cbool$IN Vx @ Clist$LIST_TO_SET Vl @ Clist$ALL_DISTINCT Vl;
+
+ALL_DISTINCT_SING大⊢ @ Cbool$! | Vx @ Clist$ALL_DISTINCT @ @ Clist$CONS Vx Clist$NIL;
+
+ALL_DISTINCT_SET_TO_LIST大⊢ @ Cbool$! | Vs @ @ Cmin$==> @ Cpred_set$FINITE Vs @ Clist$ALL_DISTINCT @ Clist$SET_TO_LIST Vs;
+
+ALL_DISTINCT_REVERSE大⊢ @ Cbool$! | Vl @ @ Cmin$= @ Clist$ALL_DISTINCT @ Clist$REVERSE Vl @ Clist$ALL_DISTINCT Vl;
+
+all_distinct_nub大⊢ @ Cbool$! | Vl @ Clist$ALL_DISTINCT @ Clist$nub Vl;
+
+ALL_DISTINCT_MAP_INJ大⊢ @ Cbool$! | Vls @ Cbool$! | Vf @ @ Cmin$==> @ @ Cbool$/\ @ Cbool$! | Vx @ Cbool$! | Vy @ @ Cmin$==> @ @ Cbool$/\ @ @ Cbool$IN Vx @ Clist$LIST_TO_SET Vls @ @ Cbool$/\ @ @ Cbool$IN Vy @ Clist$LIST_TO_SET Vls @ @ Cmin$= @ Vf Vx @ Vf Vy @ @ Cmin$= Vx Vy @ Clist$ALL_DISTINCT Vls @ Clist$ALL_DISTINCT @ @ Clist$MAP Vf Vls;
+
+ALL_DISTINCT_MAP大⊢ @ Cbool$! | Vf @ Cbool$! | Vls @ @ Cmin$==> @ Clist$ALL_DISTINCT @ @ Clist$MAP Vf Vls @ Clist$ALL_DISTINCT Vls;
+
+ALL_DISTINCT_GENLIST大⊢ @ @ Cmin$= @ Clist$ALL_DISTINCT @ @ Clist$GENLIST Vf Vn @ Cbool$! | Vm1 @ Cbool$! | Vm2 @ @ Cmin$==> @ @ Cbool$/\ @ @ Cprim_rec$< Vm1 Vn @ @ Cbool$/\ @ @ Cprim_rec$< Vm2 Vn @ @ Cmin$= @ Vf Vm1 @ Vf Vm2 @ @ Cmin$= Vm1 Vm2;
+
+ALL_DISTINCT_FLAT_REVERSE大⊢ @ Cbool$! | Vxs @ @ Cmin$= @ Clist$ALL_DISTINCT @ Clist$FLAT @ Clist$REVERSE Vxs @ Clist$ALL_DISTINCT @ Clist$FLAT Vxs;
+
+ALL_DISTINCT_FILTER_EL_IMP大⊢ @ Cbool$! | VP @ Cbool$! | Vl @ Cbool$! | Vn1 @ Cbool$! | Vn2 @ @ Cmin$==> @ @ Cbool$/\ @ Clist$ALL_DISTINCT @ @ Clist$FILTER VP Vl @ @ Cbool$/\ @ @ Cprim_rec$< Vn1 @ Clist$LENGTH Vl @ @ Cbool$/\ @ @ Cprim_rec$< Vn2 @ Clist$LENGTH Vl @ @ Cbool$/\ @ VP @ @ Clist$EL Vn1 Vl @ @ Cmin$= @ @ Clist$EL Vn1 Vl @ @ Clist$EL Vn2 Vl @ @ Cmin$= Vn1 Vn2;
+
+ALL_DISTINCT_FILTER大⊢ @ Cbool$! | Vl @ @ Cmin$= @ Clist$ALL_DISTINCT Vl @ Cbool$! | Vx @ @ Cmin$==> @ @ Cbool$IN Vx @ Clist$LIST_TO_SET Vl @ @ Cmin$= @ @ Clist$FILTER @ Cmin$= Vx Vl @ @ Clist$CONS Vx Clist$NIL;
+
+ALL_DISTINCT_EL_IMP大⊢ @ Cbool$! | Vl @ Cbool$! | Vn1 @ Cbool$! | Vn2 @ @ Cmin$==> @ @ Cbool$/\ @ Clist$ALL_DISTINCT Vl @ @ Cbool$/\ @ @ Cprim_rec$< Vn1 @ Clist$LENGTH Vl @ @ Cprim_rec$< Vn2 @ Clist$LENGTH Vl @ @ Cmin$= @ @ Cmin$= @ @ Clist$EL Vn1 Vl @ @ Clist$EL Vn2 Vl @ @ Cmin$= Vn1 Vn2;
+
+ALL_DISTINCT_DROP大⊢ @ Cbool$! | Vls @ Cbool$! | Vn @ @ Cmin$==> @ Clist$ALL_DISTINCT Vls @ Clist$ALL_DISTINCT @ @ Clist$DROP Vn Vls;
+
+ALL_DISTINCT_CARD_LIST_TO_SET大⊢ @ Cbool$! | Vls @ @ Cmin$==> @ Clist$ALL_DISTINCT Vls @ @ Cmin$= @ Cpred_set$CARD @ Clist$LIST_TO_SET Vls @ Clist$LENGTH Vls;
+
+ALL_DISTINCT_APPEND大⊢ @ Cbool$! | Vl1 @ Cbool$! | Vl2 @ @ Cmin$= @ Clist$ALL_DISTINCT @ @ Clist$APPEND Vl1 Vl2 @ @ Cbool$/\ @ Clist$ALL_DISTINCT Vl1 @ @ Cbool$/\ @ Clist$ALL_DISTINCT Vl2 @ Cbool$! | Ve @ @ Cmin$==> @ @ Cbool$IN Ve @ Clist$LIST_TO_SET Vl1 @ Cbool$~ @ @ Cbool$IN Ve @ Clist$LIST_TO_SET Vl2;

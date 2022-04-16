@@ -1,0 +1,96 @@
+l1 ++ l2 = [e] ⇔ l1 = [e] ∧ l2 = [] ∨ l1 = [] ∧ l2 = [e]
+Proof
+Induct_on ‘l1’ >>
+ASM_REWRITE_TAC [listTheory.APPEND, listTheory.NOT_NIL_CONS,
+listTheory.CONS_11, listTheory.APPEND_eq_NIL,
+listTheory.NOT_CONS_NIL] >>
+metis_tac[]
+QED
+
+clustering the output of encoder
+
+*policy gradient + replay buffers
+
+*policy gradient + batch learning
+
+*the paper Christian pointed to
+
+10 theorems
+
+run the agent
+
+6 proved
+
+4 unproved 
+
+
+foo : !n. n + 1 > n
+
+
+!n. n + 1 > n
+Induct_on `n`, do whatever
+
+simp[foo]
+
+1. if we can disable this feature in tactictoe
+
+2. we can let our agent do the same
+
+2 evidences of generalization:
+
+1. 
++ theorems in the validation set are mathematically equivalent forms of those in the training set constructed by renaming variables and swapping terms
++ the theorems in the validation set look same as those in the training set from a human perspective, but because they are different strings, they have different numerical representations. (Imitation learning is probably also difficult to do due to this.)
++ the performance on validation set goes up as the performance on training set goes up
++ random rollout: 40-50% provable in a single iteration vs. training: 85~90% provable in a single iteration
+
+2.
++ training ∀c l. EXISTS (λx. c) l ⇔ l ≠ [] ∧ c for 2000 episodes has a 413/2000 success rate.
++ training ∀c l. EXISTS (λx. c) l ⇔ l ≠ [] ∧ c together with the other 9 theorems for 2000 episodes each has a 1324/2000 success rate.
+
++ note that in both case, ∀c l. EXISTS (λx. c) l ⇔ l ≠ [] ∧ c is only trained for 2000 episodes
+
+
+Curriculum learning:
+
++ definitely works, but requires carefully early termination to prevent overfitting. If it knows too much about a specific theorem, then it's not going to explore when looking at other theorems.
++ example: curriculums of ∀c l. EXISTS (λx. c) l ⇔ l ≠ [] ∧ c and ¬SHORTLEX R l [] are incompatible
+
+Current Trick:
++ Dynamic reward shaping: the system knows what theorems are difficult and what are easy in real time during training. We give the agent a larger reward when a difficult theorem is proved in order to encourage this very discovery.
+
+
+
+
+
+SMALL = ["∀c l. EXISTS (λx. c) l ⇔ l ≠ [] ∧ c",
+             "REVERSE l = [] ⇔ l = []",
+             "∀l. l = [] ∨ ∃h t. l = h::t",
+             "∀l1 l2 l3. l1 ++ (l2 ++ l3) = l1 ++ l2 ++ l3",
+             "∀M M' v f. M = M' ∧ (M' = [] ⇒ v = v') ∧ (∀a0 a1. M' = a0::a1 ⇒ f a0 a1 = f' a0 a1) ⇒ list_CASE M v f = list_CASE M' v' f'",
+             "l1 ++ l2 = [e] ⇔ l1 = [e] ∧ l2 = [] ∨ l1 = [] ∧ l2 = [e]",
+             "LAST (h::t) = if t = [] then h else LAST t",
+             "0 = LENGTH l ⇔ l = []",
+             "¬SHORTLEX R l []",
+             "list_CASE x v f = v' ⇔ x = [] ∧ v = v' ∨ ∃a l. x = a::l ∧ f a l = v'"]
+	     
+VALIDATION_SET = ["∀p y. EXISTS (λx. p) y ⇔ y ≠ [] ∧ p",
+                  "[] = REVERSE l ⇔ l = []",
+                  "∀x. x = [] ∨ ∃y t. y::t = x",
+                  "∀l2 l1 l3. l2 ++ (l1 ++ l3) = l2 ++ l1 ++ l3",
+                  "∀M M' v f. M = M' ⇒ (M' = [] ⇒ v = v') ⇒ (∀a0 a1. M' = a0::a1 ⇒ f a0 a1 = f' a0 a1) ⇒ list_CASE M v f = list_CASE M' v' f'",
+                  "l2 ++ l1 = [e] ⇔ l1 = [e] ∧ l2 = [] ∨ l1 = [] ∧ l2 = [e]",
+                  "LAST (h::l) = if l = [] then h else LAST l",
+                  "LENGTH l = 0 ⇔ l = []",
+                  "¬SHORTLEX R x []",
+                  "list_CASE x v f = v' ⇔ x = [] ∧ v = v' ∨ ∃h l. x = h::l ∧ f h l = v'",
+                  "∀p l3. EXISTS (λx. p) l3 ⇔  p ∧ l3 ≠ []",
+                  "[] = REVERSE l1 ⇔ l1 = []",
+                  "x = [] ∨ ∃y t. y::t = x",
+                  "l2 ++ (l1 ++ l3) = l2 ++ l1 ++ l3",
+                  "M = M' ⇒ (M' = [] ⇒ v = v') ⇒ (∀a0 a1. M' = a0::a1 ⇒ f a0 a1 = f' a0 a1) ⇒ list_CASE M v f = list_CASE M' v' f'",
+                  "l2 ++ l1 = [x] ⇔ l1 = [x] ∧ l2 = [] ∨ l1 = [] ∧ l2 = [x]",
+                  "LAST (h::l2) = if l2 = [] then h else LAST l2",
+                  "LENGTH l = 0 ⇔ l = []",
+                  "¬SHORTLEX R y []",
+                  "list_CASE x v f = v' ⇔ x = [] ∧ v = v' ∨ ∃h l1. x = h::l1 ∧ f h l1 = v'"]

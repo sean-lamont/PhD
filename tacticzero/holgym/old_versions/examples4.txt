@@ -1,0 +1,57 @@
+∀P. P [] ∧ (∀l. P l ⇒ ∀a. P (a::l)) ⇒ ∀l. P l.
+Proved in 44 steps.
+Reward pool: [-1, -1, 0, -1, 0, 0, -1, -1, -1, -1, -1, -1, 0, -1, -1, 0, 0, -1, -1, 0, 0, -1, -1, 0, -1, -1, -1, 0, -1, 0, -1, 0, -1, 0, -1, -1, 0, -1, 0, 0, -1, 0, -1, 20]
+Total reward: -6
+Proof trace: [('strip_tac', '∀P. P [] ∧ (∀l. P l ⇒ ∀a. P (a::l)) ⇒ ∀l. P l'), ('strip_tac', 'P [] ∧ (∀l. P l ⇒ ∀a. P (a::l)) ⇒ ∀l. P l'), ('rpt strip_tac >> simp[INDEX_OF_def, INDEX_OF_def, HD, list_case_def, LEN_DEF]', '(P []) ==> ((∀l. P l ⇒ ∀a. P (a::l)) ==> (∀l. P l))'), ('rpt strip_tac >> Induct_on `l`', '(P []) ==> ((∀l. P l ⇒ ∀a. P (a::l)) ==> (P l))'), ('rpt strip_tac >> simp[GENLIST, EXISTS_DEF, LAST_DEF, PAD_LEFT, ALL_DISTINCT]', '(P []) ==> ((∀l. P l ⇒ ∀a. P (a::l)) ==> (P []))'), ('rpt strip_tac >> simp[LIST_GUARD_def, EXISTS_DEF, LIST_IGNORE_BIND_def, TAKE_def, list_size_def]', '(P []) ==> ((∀l. P l ⇒ ∀a. P (a::l)) ==> ((P l) ==> (∀h. P (h::l))))')]
+Time: 18.326551175006898
+
+
+Initialization done. Main goal is:
+∀v l1 x l2 l3. LUPDATE v (LENGTH l1) (l1 ++ [x] ++ l2) = l1 ++ [v] ++ l2.
+Exception: irule GENLIST to ∀v l1 x l2 l3. LUPDATE v (LENGTH l1) (l1 ++ [x] ++ l2) = l1 ++ [v] ++ l2.
+Exception: drule SUM_ACC_DEF to ∀v l1 x l2. LUPDATE v (LENGTH l1) (l1 ⧺ [x] ⧺ l2) = l1 ⧺ [v] ⧺ l2.
+Exception: irule isPREFIX to ∀v l1 x l2. LUPDATE v (LENGTH l1) (l1 ⧺ [x] ⧺ l2) = l1 ⧺ [v] ⧺ l2.
+Exception: metis_tac[FIND_def, nub_def, HD, EVERY_DEF, dropWhile_def, LAST_DEF, list_case_def, FOLDR, SNOC, EVERY_DEF] to ∀v l1 x l2. LUPDATE v (LENGTH l1) (l1 ⧺ [x] ⧺ l2) = l1 ⧺ [v] ⧺ l2.
+Exception: drule APPEND to ∀v l1 x l2. LUPDATE v (LENGTH l1) (l1 ⧺ [x] ⧺ l2) = l1 ⧺ [v] ⧺ l2.
+Exception: irule SNOC to ∀v l1 x l2. LUPDATE v (LENGTH l1) (l1 ⧺ [x] ⧺ l2) = l1 ⧺ [v] ⧺ l2.
+Exception: irule NULL_DEF to ∀v l1 x l2. LUPDATE v (LENGTH l1) (l1 ⧺ [x] ⧺ l2) = l1 ⧺ [v] ⧺ l2.
+Exception: drule APPEND to ∀v l1 x l2. LUPDATE v (LENGTH l1) (l1 ⧺ [x] ⧺ l2) = l1 ⧺ [v] ⧺ l2.
+Exception: metis_tac[dropWhile_def, isPREFIX, LRC_def, LIST_BIND_def, SET_TO_LIST_primitive_def, ALL_DISTINCT, REV_DEF, LIST_APPLY_def, SET_TO_LIST_primitive_def, nub_def] to ∀v l1 x l2. LUPDATE v (LENGTH l1) (l1 ⧺ [x] ⧺ l2) = l1 ⧺ [v] ⧺ l2.
+Exception: irule dropWhile_def to ∀v l1 x l2. LUPDATE v (LENGTH l1) (l1 ⧺ [x] ⧺ l2) = l1 ⧺ [v] ⧺ l2.
+Exception: irule EVERYi_def to ∀v l1 x l2. LUPDATE v (LENGTH l1) (l1 ⧺ [x] ⧺ l2) = l1 ⧺ [v] ⧺ l2.
+Exception: Induct_on `v` to ∀v l1 x l2. LUPDATE v (LENGTH l1) (l1 ⧺ [x] ⧺ l2) = l1 ⧺ [v] ⧺ l2.
+Exception: drule ZIP_def to ∀v l1 x l2. LUPDATE v (LENGTH l1) (l1 ⧺ [x] ⧺ l2) = l1 ⧺ [v] ⧺ l2.
+Exception: metis_tac[SUM_ACC_DEF, SHORTLEX_def, EXISTS_DEF, EL, LENGTH, UNZIP, NULL_DEF, isPREFIX, FOLDL, isPREFIX] to ∀l1 x l2. LUPDATE v (LENGTH l1) (l1 ⧺ [x] ⧺ l2) = l1 ⧺ [v] ⧺ l2.
+Exception: drule EXISTS_DEF to ∀x l2. LUPDATE v 0 (x::l2) = v::l2.
+Exception: Induct_on to LUPDATE v 0 (x::l2) = v::l2.
+Exception: strip_tac to LUPDATE v 0 (x::l2) = v::l2.
+Exception: strip_tac to LUPDATE v 0 (x::l2) = v::l2.
+Proved in 52 steps.
+Reward pool: [-1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, 0, -1, 0, 0, 0, 0, 0, -1, -1, -1, -1, -1, 0, -1, 0, -1, -1, 0, -1, 0, 0, 0, -1, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, -1, -1, -1, 20]
+Total reward: 2
+Proof trace: [('fs[NULL_DEF, splitAtPki_def, SHORTLEX_def, INDEX_FIND_def, SUM, APPEND, FILTER, PAD_LEFT, GENLIST, FLAT]', '∀v l1 x l2 l3. LUPDATE v (LENGTH l1) (l1 ++ [x] ++ l2) = l1 ++ [v] ++ l2'), ('strip_tac', '∀v l1 x l2. LUPDATE v (LENGTH l1) (l1 ⧺ [x] ⧺ l2) = l1 ⧺ [v] ⧺ l2'), ('Induct_on `l1`', '∀l1 x l2. LUPDATE v (LENGTH l1) (l1 ⧺ [x] ⧺ l2) = l1 ⧺ [v] ⧺ l2'), ('fs[list_TY_DEF, LIST_LIFT2_def, NULL_DEF, EVERY_DEF, EXISTS_DEF, ALL_DISTINCT, oEL_def, APPEND, LIST_IGNORE_BIND_def, FIND_def]', '∀x l2. LUPDATE v (LENGTH []) ([] ⧺ [x] ⧺ l2) = [] ⧺ [v] ⧺ l2'), ('rpt strip_tac >> fs[PAD_LEFT, SNOC, EVERYi_def, LIST_GUARD_def, LENGTH, SUM, INDEX_OF_def, list_case_def, LUPDATE_def, ZIP_def]', '(∀x l2. LUPDATE v (LENGTH l1) (l1 ⧺ [x] ⧺ l2) = l1 ⧺ [v] ⧺ l2) ==> (∀h x l2. LUPDATE v (LENGTH (h::l1)) (h::l1 ⧺ [x] ⧺ l2) = h::l1 ⧺ [v] ⧺ l2)'), ('strip_tac', '∀x l2. LUPDATE v 0 (x::l2) = v::l2'), ('strip_tac', '∀l2. LUPDATE v 0 (x::l2) = v::l2'), ('fs[LUPDATE_def, REV_DEF, GENLIST, SHORTLEX_def, FIND_def, HD, SUM, UNZIP, PAD_LEFT, nub_def]', 'LUPDATE v 0 (x::l2) = v::l2')]
+
+
+Initialization done. Main goal is:
+∀l n. LENGTH l ≤ n ⇒ DROP n l = [].
+Exception: irule oEL_def to ∀l n. LENGTH l ≤ n ⇒ DROP n l = [].
+Exception: Induct_on to ∀l n. LENGTH l ≤ n ⇒ DROP n l = [].
+Exception: Induct_on to ∀l n. LENGTH l ≤ n ⇒ DROP n l = [].
+Exception: drule HD to ∀l n. LENGTH l ≤ n ⇒ DROP n l = [].
+Exception: irule LUPDATE_def to ∀l n. LENGTH l ≤ n ⇒ DROP n l = [].
+Exception: irule TL_DEF to ∀l n. LENGTH l ≤ n ⇒ DROP n l = [].
+Exception: irule SNOC to ∀l n. LENGTH l ≤ n ⇒ DROP n l = [].
+Exception: metis_tac[FLAT, UNZIP, EXISTS_DEF, FIND_def, FOLDL, REVERSE_DEF, TL_DEF, list_size_def, FOLDR, INDEX_OF_def] to ∀l n. LENGTH l ≤ n ⇒ DROP n l = [].
+Exception: drule PAD_RIGHT to ∀l n. LENGTH l ≤ n ⇒ DROP n l = [].
+Exception: drule LRC_def to ∀l n. LENGTH l ≤ n ⇒ DROP n l = [].
+Exception: irule LIST_TO_SET_DEF to ∀l n. LENGTH l ≤ n ⇒ DROP n l = [].
+Exception: drule UNZIP to ∀n. LENGTH l ≤ n ⇒ DROP n l = [].
+Exception: drule GENLIST to ∀n. LENGTH l ≤ n ⇒ DROP n l = [].
+Exception: irule FOLDR to ∀n. LENGTH l ≤ n ⇒ DROP n l = [].
+Exception: irule nub_def to ∀n. LENGTH l ≤ n ⇒ DROP n l = [].
+Exception: Induct_on to ∀n. LENGTH l ≤ n ⇒ DROP n l = [].
+Exception: metis_tac[FOLDL, UNZIP, SET_TO_LIST_primitive_def, LAST_DEF, LIST_IGNORE_BIND_def, splitAtPki_def, list_case_def, EL, ZIP_def, SUM] to ∀n. LENGTH [] ≤ n ⇒ DROP n [] = [].
+Proved in 52 steps.
+Reward pool: [0, 0, -1, 0, 0, 0, 0, 0, -1, 0, -1, 0, -1, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, -1, -1, -1, 0, -1, -1, 0, 0, -1, 0, -1, 0, 0, 0, 0, -1, 0, 0, -1, 0, -1, 0, -1, 0, 20]
+Total reward: 3
+Proof trace: [('strip_tac', '∀l n. LENGTH l ≤ n ⇒ DROP n l = []'), ('Induct_on `l`', '∀n. LENGTH l ≤ n ⇒ DROP n l = []'), ('fs[LIST_APPLY_def, LEN_DEF, oHD_def, LIST_BIND_def, REVERSE_DEF, LRC_def, LENGTH, list_case_def, LIST_IGNORE_BIND_def, LLEX_def]', '∀n. LENGTH [] ≤ n ⇒ DROP n [] = []'), ('rpt strip_tac >> fs[LIST_APPLY_def, FOLDR, TL_DEF, PAD_RIGHT, GENLIST, list_case_def, LIST_TO_SET_DEF, FILTER, TAKE_def, LENGTH]', '(∀n. LENGTH l ≤ n ⇒ DROP n l = []) ==> (∀h n. LENGTH (h::l) ≤ n ⇒ DROP n (h::l) = [])')]

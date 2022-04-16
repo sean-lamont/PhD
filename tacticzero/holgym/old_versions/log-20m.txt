@@ -1,0 +1,42 @@
+First 20 theorems of list theory.
+Trained for 1000 episodes.
+
+
+Python 3.7.3 (default, Mar 27 2019, 22:11:17) 
+[GCC 7.3.0] :: Anaconda, Inc. on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> python.el: native completion setup loaded
+>>>
+
+Updating all 3 networks:
+Average total reward: -14.531
+Average steps taken for a proof: 5.506578947368421
+Average proved reward: 92.48684210526316
+Average recent 2000 rewards: -14.531
+Average recent 1000 rewards: -14.531
+Average recent 500 rewards: -13.118
+Average recent 200 rewards: -12.725
+Average recent 100 rewards: -13.21
+Average recent 50 rewards: -17.62
+
+Random playouts:
+Average total reward: -21.098
+Average steps taken for a proof: 9.153061224489797
+Average proved reward: 85.96938775510205
+Average recent 2000 rewards: -21.098
+Average recent 1000 rewards: -21.098
+Average recent 500 rewards: -20.714
+Average recent 200 rewards: -21.695
+Average recent 100 rewards: -18.59
+Average recent 50 rewards: -14.02
+
+Updating only tac and arg networks but not term:
+Average total reward: -17.529
+Average steps taken for a proof: 6.0588235294117645
+Average proved reward: 91.68067226890756
+Average recent 2000 rewards: -17.529
+Average recent 1000 rewards: -17.529
+Average recent 500 rewards: -14.232
+Average recent 200 rewards: -13.905
+Average recent 100 rewards: -12.06
+Average recent 50 rewards: -11.22

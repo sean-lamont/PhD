@@ -1,0 +1,1127 @@
+⊢ ∀l. ZIP (UNZIP l) = l
+
+⊢ ∀l1 l2 f1 f2.
+      LENGTH l1 = LENGTH l2 ⇒
+      ZIP (MAP f1 l1,l2) = MAP (λp. (f1 (FST p),SND p)) (ZIP (l1,l2)) ∧
+      ZIP (l1,MAP f2 l2) = MAP (λp. (FST p,f2 (SND p))) (ZIP (l1,l2))
+
+⊢ ∀l f n. LENGTH l = n ⇒ ZIP (l,GENLIST f n) = GENLIST (λx. (EL x l,f x)) n
+
+⊢ ∀l1 l2. LENGTH l1 = LENGTH l2 ⇒ (ZIP (l1,l2) = [] ⇔ l1 = [] ∧ l2 = [])
+
+⊢ ∀a b n.
+      n ≤ LENGTH a ∧ LENGTH a = LENGTH b ⇒
+      ZIP (DROP n a,DROP n b) = DROP n (ZIP (a,b))
+
+⊢ ZIP ([],[]) = [] ∧ ∀x1 l1 x2 l2. ZIP (x1::l1,x2::l2) = (x1,x2)::ZIP (l1,l2)
+
+⊢ WF R ⇒
+  ∀l s.
+      (∀d. d ∈ s ⇒ LENGTH d = l) ∧ (∃a. a ∈ s) ⇒
+      ∃b. b ∈ s ∧ ∀c. SHORTLEX R c b ⇒ c ∉ s
+
+⊢ WF R ⇒ WF (SHORTLEX R)
+
+⊢ WF (λL1 L2. ∃h. L2 = h::L1)
+
+⊢ ∀l1 l2. LENGTH l1 = LENGTH l2 ⇒ UNZIP (ZIP (l1,l2)) = (l1,l2)
+
+⊢ UNZIP [] = ([],[]) ∧
+  UNZIP ((x,y)::t) = (let (L1,L2) = UNZIP t in (x::L1,y::L2))
+
+⊢ ∀L. UNZIP L = (MAP FST L,MAP SND L)
+
+⊢ ∀e L. UNIQUE e L ⇔ LENGTH (FILTER ($= e) L) = 1
+
+⊢ ∀e L. UNIQUE e L ⇔ FILTER ($= e) L = [e]
+
+⊢ ∀l1 l2. set l1 ∪ set l2 = set (l1 ⧺ l2)
+
+⊢ ∀f n. TL (GENLIST f (SUC n)) = GENLIST (f ∘ SUC) n
+
+⊢ ∀h t. TL (h::t) = t
+
+⊢ ∀m n. TAKE n (TAKE m l) = TAKE (MIN n m) l
+
+⊢ ∀n m l. TAKE (n + m) l = TAKE n l ⧺ TAKE m (DROP n l)
+
+⊢ TAKE n l = splitAtPki (K ∘ $= n) K l
+
+⊢ ∀n. TAKE n [] = []
+
+⊢ ∀l n. LENGTH l ≤ n ⇒ TAKE n l = l
+
+⊢ ∀l m. m = LENGTH l ⇒ TAKE m l = l
+
+⊢ ∀l. TAKE (LENGTH l) l = l
+
+⊢ TAKE n (GENLIST f m) = GENLIST f (MIN n m)
+
+⊢ TAKE n l = [] ⇔ n = 0 ∨ l = []
+
+⊢ ∀n l. TAKE n l ⧺ DROP n l = l
+
+⊢ 0 < n ⇒ TAKE n (x::xs) = x::TAKE (n − 1) xs
+
+⊢ (∀l. TAKE 0 l = []) ∧ (∀n. TAKE (NUMERAL (BIT1 n)) [] = []) ∧
+  (∀n. TAKE (NUMERAL (BIT2 n)) [] = []) ∧
+  (∀n h t. TAKE (NUMERAL (BIT1 n)) (h::t) = h::TAKE (NUMERAL (BIT1 n) − 1) t) ∧
+  ∀n h t. TAKE (NUMERAL (BIT2 n)) (h::t) = h::TAKE (NUMERAL (BIT1 n)) t
+
+⊢ ∀n. LENGTH l1 < n ⇒ TAKE n (l1 ⧺ l2) = l1 ⧺ TAKE (n − LENGTH l1) l2
+
+⊢ ∀n. n ≤ LENGTH l1 ⇒ TAKE n (l1 ⧺ l2) = TAKE n l1
+
+⊢ TAKE 0 l = []
+
+⊢ ∀n l. n < LENGTH l ⇒ TAKE 1 (DROP n l) = [EL n l]
+
+⊢ ∀l. l ≠ [] ⇒ TAKE 1 l = [EL 0 l]
+
+⊢ ∀l1 l2. REVERSE l1 = l2 ⇔ l1 = REVERSE l2
+
+⊢ ∀l1 l2. l1 = REVERSE l2 ⇔ l2 = REVERSE l1
+
+⊢ ∀L. SUM L = SUM_ACC L 0
+
+⊢ ∀x l. SUM (SNOC x l) = SUM l + x
+
+⊢ ∀ls1 ls2.
+      LENGTH ls1 = LENGTH ls2 ∧ (∀x y. f (x,y) = g x + h y) ⇒
+      SUM (MAP f (ZIP (ls1,ls2))) = SUM (MAP g ls1) + SUM (MAP h ls2)
+
+⊢ ∀f g ls. SUM (MAP (λx. f x + g x) ls) = SUM (MAP f ls) + SUM (MAP g ls)
+
+⊢ ∀f x ls. MEM x ls ⇒ f x ≤ SUM (MAP f ls)
+
+⊢ ∀ls. SUM (MAP f ls) = FOLDL (λa e. a + f e) 0 ls
+
+⊢ ∀ls. ∑ f (set ls) ≤ SUM (MAP f ls)
+
+⊢ FINITE s ⇒ ∑ f s = SUM (MAP f (SET_TO_LIST s))
+
+⊢ ∀ls. SUM ls = 0 ⇔ ∀x. MEM x ls ⇒ x = 0
+
+⊢ ∀l1 l2. SUM (l1 ⧺ l2) = SUM l1 + SUM l2
+
+⊢ ∀L n. SUM_ACC L n = SUM L + n
+
+⊢ f (splitAtPki P k l) = splitAtPki P ($o f ∘ k) l
+
+⊢ splitAtPki P k (MAP f l) =
+  splitAtPki (combin$C ($o ∘ P) f) (combin$C ($o ∘ k ∘ MAP f) (MAP f)) l
+
+⊢ splitAtPki P k l =
+  case OLEAST i. i < LENGTH l ∧ P i (EL i l) of
+    NONE => k l []
+  | SOME i => k (TAKE i l) (DROP i l)
+
+⊢ (∀i. i < LENGTH l ⇒ (P1 i (EL i l) ⇔ P2 i (EL i l))) ⇒
+  splitAtPki P1 k l = splitAtPki P2 k l
+
+⊢ ∀l1 l2 P k.
+      EVERYi (λi. $~ ∘ P i) l1 ∧ (0 < LENGTH l2 ⇒ P (LENGTH l1) (HD l2)) ⇒
+      splitAtPki P k (l1 ⧺ l2) = k l1 l2
+
+⊢ ∀P. P [] ∧ (∀l. P l ⇒ ∀x. P (SNOC x l)) ⇒ ∀l. P l
+
+⊢ ∀ll. ll = [] ∨ ∃x l. ll = SNOC x l
+
+⊢ ∀e f. ∃fn. fn [] = e ∧ ∀x l. fn (SNOC x l) = f x l (fn l)
+
+⊢ ∀x l. SNOC x l = l ⧺ [x]
+
+⊢ ∀x y a b. SNOC x y = SNOC a b ⇔ x = a ∧ y = b
+
+⊢ [f] <*> [x] = [f x]
+
+⊢ LIST_BIND l (λx. [x]) = l
+
+⊢ LIST_BIND [x] f = f x
+
+⊢ fs <*> [x] = [(λf. f x)] <*> fs
+
+⊢ [f] <*> l = MAP f l
+
+⊢ ([HD xs] = xs ⇔ LENGTH xs = 1) ∧ (xs = [HD xs] ⇔ LENGTH xs = 1)
+
+⊢ transitive R ⇒ transitive (SHORTLEX R)
+
+⊢ total (RC R) ⇒ total (RC (SHORTLEX R))
+
+⊢ (¬SHORTLEX R [] [] ∧ ¬SHORTLEX R (h1::t1) []) ∧ SHORTLEX R [] (h2::t2) ∧
+  (SHORTLEX R (h1::t1) (h2::t2) ⇔
+   LENGTH t1 < LENGTH t2 ∨
+   LENGTH t1 = LENGTH t2 ∧ (R h1 h2 ∨ h1 = h2 ∧ SHORTLEX R t1 t2))
+
+⊢ ¬SHORTLEX R l []
+
+⊢ (∀x y. R1 x y ⇒ R2 x y) ⇒ SHORTLEX R1 x y ⇒ SHORTLEX R2 x y
+
+⊢ ∀l1 l2. SHORTLEX R l1 l2 ⇒ LENGTH l1 ≤ LENGTH l2
+
+⊢ FINITE s ⇒
+  SET_TO_LIST s = if s = ∅ then [] else CHOICE s::SET_TO_LIST (REST s)
+
+⊢ SET_TO_LIST {x} = [x]
+
+⊢ ∀s. FINITE s ⇒ set (SET_TO_LIST s) = s
+
+⊢ ∀P. (∀s. (FINITE s ∧ s ≠ ∅ ⇒ P (REST s)) ⇒ P s) ⇒ ∀v. P v
+
+⊢ ∀s. FINITE s ⇒ ∀x. x ∈ s ⇔ MEM x (SET_TO_LIST s)
+
+⊢ SET_TO_LIST ∅ = []
+
+⊢ ∀s. FINITE s ⇒ LENGTH (SET_TO_LIST s) = CARD s
+
+⊢ REVERSE [] = [] ∧ ∀x l. REVERSE (x::l) = SNOC x (REVERSE l)
+
+⊢ ∀x l. REVERSE (SNOC x l) = x::REVERSE l
+
+⊢ ∀l. REVERSE (REVERSE l) = l
+
+⊢ ∀L. REVERSE L = REV L []
+
+⊢ REVERSE ∘ REVERSE ∘ f = f
+
+⊢ REVERSE (GENLIST f n) = GENLIST (λm. f (PRE n − m)) n
+
+⊢ REVERSE l = [e] ⇔ l = [e]
+
+⊢ REVERSE l = [] ⇔ l = []
+
+⊢ ∀l1 l2. REVERSE (l1 ⧺ l2) = REVERSE l2 ⧺ REVERSE l1
+
+⊢ ∀l1 l2. REVERSE l1 = REVERSE l2 ⇔ l1 = l2
+
+⊢ ∀L1 L2. REV L1 L2 = REVERSE L1 ⧺ L2
+
+⊢ ∀f1 f2 x1 x2.
+      x1 = x2 ∧ (∀a. MEM a x2 ⇒ f1 a = f2 a) ⇒
+      OPT_MMAP f1 x1 = OPT_MMAP f2 x2
+
+⊢ oHD [] = NONE ∧ oHD (h::t) = SOME h
+
+⊢ ∀xs n. oEL n xs = if n < LENGTH xs then SOME (EL n xs) else NONE
+
+⊢ oEL n (TAKE m xs) = SOME x ⇒ oEL n xs = SOME x
+
+⊢ ∀xs i n x.
+      oEL n (LUPDATE x i xs) =
+      if i ≠ n then oEL n xs else if i < LENGTH xs then SOME x else NONE
+
+⊢ ∀xs n y. oEL n xs = SOME y ⇔ n < LENGTH xs ∧ y = EL n xs
+
+⊢ oEL n (DROP m xs) = oEL (m + n) xs
+
+⊢ ∀l. NULL l ⇔ LENGTH l = 0
+
+⊢ ∀n f. NULL (GENLIST f n) ⇔ n = 0
+
+⊢ ∀P ls. NULL (FILTER P ls) ⇔ ∀x. MEM x ls ⇒ ¬P x
+
+⊢ ∀l. NULL l ⇔ l = []
+
+⊢ NULL (l1 ⧺ l2) ⇔ NULL l1 ∧ NULL l2
+
+⊢ NULL [] ∧ ∀h t. ¬NULL (h::t)
+
+⊢ ∀l. set (nub l) = set l
+
+⊢ ∀l1 l2. nub (l1 ⧺ l2) = nub (FILTER (λx. ¬MEM x l2) l1) ⧺ nub l2
+
+⊢ NRC R n x y ⇔ ∃ls. LRC R ls x y ∧ LENGTH ls = n
+
+⊢ ∀l. ¬NULL l ⇔ ∃e. MEM e l
+
+⊢ x ≠ [] ⇔ 0 < LENGTH x
+
+⊢ ∀a1 a0. [] ≠ a0::a1
+
+⊢ ∀P l. ¬EXISTS P l ⇔ EVERY ($~ ∘ P) l
+
+⊢ ∀P l. ¬EVERY P l ⇔ EXISTS ($~ ∘ P) l
+
+⊢ ∀h1 h2. h1 ≠ h2 ⇒ ∀l1 l2. h1::l1 ≠ h2::l2
+
+⊢ ∀a1 a0. a0::a1 ≠ []
+
+⊢ (∀x. P x ⇒ Q x) ⇒ EXISTS P l ⇒ EXISTS Q l
+
+⊢ (∀x. P x ⇒ Q x) ⇒ EVERY P l ⇒ EVERY Q l
+
+⊢ LENGTH (FST ps) = LENGTH (SND ps) ∧ MEM p (ZIP ps) ⇒
+  MEM (FST p) (FST ps) ∧ MEM (SND p) (SND ps)
+
+⊢ ∀l1 l2 p.
+      LENGTH l1 = LENGTH l2 ⇒
+      (MEM p (ZIP (l1,l2)) ⇔ ∃n. n < LENGTH l1 ∧ p = (EL n l1,EL n l2))
+
+⊢ MEM e l ⇔ ∃pfx sfx. l = pfx ⧺ [e] ⧺ sfx ∧ ¬MEM e sfx
+
+⊢ MEM e l ⇔ ∃pfx sfx. l = pfx ⧺ [e] ⧺ sfx ∧ ¬MEM e pfx
+
+⊢ ∀x l. MEM x l ⇔ ∃l1 l2. l = l1 ⧺ x::l2
+
+⊢ ∀y x l. MEM y (SNOC x l) ⇔ y = x ∨ MEM y l
+
+⊢ ∀s. FINITE s ⇒ ∀x. MEM x (SET_TO_LIST s) ⇔ x ∈ s
+
+⊢ ∀l x. MEM x (REVERSE l) ⇔ MEM x l
+
+⊢ ∀l f x. MEM x (MAP f l) ⇔ ∃y. x = f y ∧ MEM y l
+
+⊢ ∀l x y i. MEM x (LUPDATE y i l) ⇒ x = y ∨ MEM x l
+
+⊢ ∀l x y i.
+      MEM x (LUPDATE y i l) ⇔
+      i < LENGTH l ∧ x = y ∨ ∃j. j < LENGTH l ∧ i ≠ j ∧ EL j l = x
+
+⊢ MEM x (GENLIST f n) ⇔ ∃m. m < n ∧ x = f m
+
+⊢ ∀x L. MEM x (FLAT L) ⇔ ∃l. MEM l L ∧ MEM x l
+
+⊢ ∀P L x. MEM x (FILTER P L) ⇔ P x ∧ MEM x L
+
+⊢ ∀x y l. MEM (x,y) l ⇒ ∃z. x = FST z ∧ MEM z l
+
+⊢ ∀l x. MEM x l ⇔ ∃n. n < LENGTH l ∧ x = EL n l
+
+⊢ ∀P ls x. MEM x (dropWhile P ls) ⇒ MEM x ls
+
+⊢ ∀x ls n. MEM x (DROP n ls) ⇔ ∃m. m + n < LENGTH ls ∧ x = EL (m + n) ls
+
+⊢ ∀a b c d x. a ⧺ [x] ⧺ b = c ⧺ [x] ⧺ d ∧ ¬MEM x b ∧ ¬MEM x a ⇒ a = c ∧ b = d
+
+⊢ ∀e l1 l2. MEM e (l1 ⧺ l2) ⇔ MEM e l1 ∨ MEM e l2
+
+⊢ (∀x. MEM x [] ⇔ F) ∧ ∀x h t. MEM x (h::t) ⇔ x = h ∨ MEM x t
+
+⊢ ∀ls f. MAP f (ZIP (ls,ls)) = MAP (λx. f (x,x)) ls
+
+⊢ LENGTH l1 = LENGTH l2 ⇒
+  MAP FST (ZIP (l1,l2)) = l1 ∧ MAP SND (ZIP (l1,l2)) = l2 ∧
+  MAP (f ∘ FST) (ZIP (l1,l2)) = MAP f l1 ∧
+  MAP (g ∘ SND) (ZIP (l1,l2)) = MAP g l2
+
+⊢ ∀l f. ¬NULL l ⇒ MAP f (TL l) = TL (MAP f l)
+
+⊢ ∀f n l. MAP f (TAKE n l) = TAKE n (MAP f l)
+
+⊢ ∀f x l. MAP f (SNOC x l) = SNOC (f x) (MAP f l)
+
+⊢ ∀f g. MAP (f ∘ g) = MAP f ∘ MAP g
+
+⊢ ∀f g l. MAP f (MAP g l) = MAP (f ∘ g) l
+
+⊢ MAP f (LIST_BIND l g) = LIST_BIND l (MAP f ∘ g)
+
+⊢ MAP (λx. x) l = l ∧ MAP I l = l
+
+⊢ ∀f g n. MAP f (GENLIST g n) = GENLIST (f ∘ g) n
+
+⊢ ∀ls. ls ≠ [] ⇒ MAP f (FRONT ls) = FRONT (MAP f ls)
+
+⊢ MAP f (FLAT l) = FLAT (MAP (MAP f) l)
+
+⊢ MAP f l = [x] ⇔ ∃x0. l = [x0] ∧ x = f x0
+
+⊢ ∀l f. (MAP f l = [] ⇔ l = []) ∧ ([] = MAP f l ⇔ l = [])
+
+⊢ ∀f1 f2 l. MAP f1 l = MAP f2 l ⇔ ∀e. MEM e l ⇒ f1 e = f2 e
+
+⊢ ∀f1 f2 l1 l2.
+      MAP f1 l1 = MAP f2 l2 ⇔
+      LENGTH l1 = LENGTH l2 ∧ LIST_REL (λx y. f1 x = f2 y) l1 l2
+
+⊢ MAP f l = h::t ⇔ ∃x0 t0. l = x0::t0 ∧ h = f x0 ∧ t = MAP f t0
+
+⊢ MAP f l = l1 ⧺ l2 ⇔
+  ∃l10 l20. l = l10 ⧺ l20 ∧ l1 = MAP f l10 ∧ l2 = MAP f l20
+
+⊢ ∀l i. MAP f (DROP i l) = DROP i (MAP f l)
+
+⊢ ∀l1 l2 f f'. l1 = l2 ∧ (∀x. MEM x l2 ⇒ f x = f' x) ⇒ MAP f l1 = MAP f' l2
+
+⊢ ∀xs ys.
+      MAP f1 xs ⧺ MAP g1 ys = MAP f2 xs ⧺ MAP g2 ys ⇔
+      MAP f1 xs = MAP f2 xs ∧ MAP g1 ys = MAP g2 ys
+
+⊢ ∀f l1 l2. MAP f (l1 ⧺ l2) = MAP f l1 ⧺ MAP f l2
+
+⊢ ∀l1 l2.
+      LENGTH l1 = LENGTH l2 ⇒
+      ∀f. MAP2 f l1 l2 = MAP (UNCURRY f) (ZIP (l1,l2))
+
+⊢ MAP2 f x [] = []
+
+⊢ ∀l1 l2.
+      LENGTH l1 = LENGTH l2 ⇒
+      ∀f. MAP2 f l1 l2 = MAP (UNCURRY f) (ZIP (l1,l2))
+
+⊢ ∀P.
+      (∀f h1 t1 h2 t2. P f t1 t2 ⇒ P f (h1::t1) (h2::t2)) ∧
+      (∀f y. P f [] y) ∧ (∀f v4 v5. P f (v4::v5) []) ⇒
+      ∀v v1 v2. P v v1 v2
+
+⊢ (∀t2 t1 h2 h1 f. MAP2 f (h1::t1) (h2::t2) = f h1 h2::MAP2 f t1 t2) ∧
+  (∀y f. MAP2 f [] y = []) ∧ ∀v5 v4 f. MAP2 f (v4::v5) [] = []
+
+⊢ ∀l1 l1' l2 l2' f f'.
+      l1 = l1' ∧ l2 = l2' ∧ (∀x y. MEM x l1' ∧ MEM y l2' ⇒ f x y = f' x y) ⇒
+      MAP2 f l1 l2 = MAP2 f' l1' l2'
+
+⊢ ∀xs ys xs1 ys1 f.
+      LENGTH xs = LENGTH xs1 ⇒
+      MAP2 f (xs ⧺ ys) (xs1 ⧺ ys1) = MAP2 f xs xs1 ⧺ MAP2 f ys ys1
+
+⊢ (∀f. MAP2 f [] [] = []) ∧
+  ∀f h1 t1 h2 t2. MAP2 f (h1::t1) (h2::t2) = f h1 h2::MAP2 f t1 t2
+
+⊢ ∀xs n f h.
+      LUPDATE (SOME (f h)) n (MAP (OPTION_MAP f) xs) =
+      MAP (OPTION_MAP f) (LUPDATE (SOME h) n xs)
+
+⊢ ∀ys k x y.
+      LUPDATE x k (SNOC y ys) =
+      if k = LENGTH ys then SNOC x ys else SNOC y (LUPDATE x k ys)
+
+⊢ (∀e n l. LENGTH (LUPDATE e n l) = LENGTH l) ∧
+  ∀e n l p. p < LENGTH l ⇒ EL p (LUPDATE e n l) = if p = n then e else EL p l
+
+⊢ ∀n ls. n < LENGTH ls ⇒ LUPDATE (EL n ls) n ls = ls
+
+⊢ ∀xs n x. LUPDATE x n xs = [] ⇔ xs = []
+
+⊢ ∀x n l f. MAP f (LUPDATE x n l) = LUPDATE (f x) n (MAP f l)
+
+⊢ ∀xs x y ys. LUPDATE x (LENGTH xs) (xs ⧺ y::ys) = xs ⧺ x::ys
+
+⊢ (∀e n. LUPDATE e n [] = []) ∧ (∀e x l. LUPDATE e 0 (x::l) = e::l) ∧
+  (∀e n x l.
+       LUPDATE e (NUMERAL (BIT1 n)) (x::l) =
+       x::LUPDATE e (NUMERAL (BIT1 n) − 1) l) ∧
+  ∀e n x l.
+      LUPDATE e (NUMERAL (BIT2 n)) (x::l) = x::LUPDATE e (NUMERAL (BIT1 n)) l
+
+⊢ ∀v l1 x l2 l3. LUPDATE v (LENGTH l1) (l1 ⧺ [x] ⧺ l2) = l1 ⧺ [v] ⧺ l2
+
+⊢ ∀x n l1 l2. n < LENGTH l1 ⇒ LUPDATE x n (l1 ⧺ l2) = LUPDATE x n l1 ⧺ l2
+
+⊢ LRC R (h::t) x y ∧ MEM e t ⇒ ∃z p. R z e ∧ LRC R p x z
+
+⊢ LRC R ls x y ∧ MEM e ls ⇒ ∃z t. R e z ∧ LRC R t z y
+
+⊢ transitive R ⇒ transitive (LLEX R)
+
+⊢ total (RC R) ⇒ total (RC (LLEX R))
+
+⊢ (¬LLEX R [] [] ∧ ¬LLEX R (h1::t1) []) ∧ LLEX R [] (h2::t2) ∧
+  (LLEX R (h1::t1) (h2::t2) ⇔ R h1 h2 ∨ h1 = h2 ∧ LLEX R t1 t2)
+
+⊢ (∃a b. R a b) ⇒ ¬WF (LLEX R)
+
+⊢ ¬LLEX R l []
+
+⊢ (∀x y. R1 x y ⇒ R2 x y) ⇒ LLEX R1 x y ⇒ LLEX R2 x y
+
+⊢ ∀R l1 l2.
+      LLEX R l1 l2 ⇔
+      ∃n.
+          n ≤ LENGTH l1 ∧ n < LENGTH l2 ∧ TAKE n l1 = TAKE n l2 ∧
+          (n < LENGTH l1 ⇒ R (EL n l1) (EL n l2))
+
+⊢ ∀R l1 l2 R' l1' l2'.
+      l1 = l1' ∧ l2 = l2' ∧ (∀a b. MEM a l1' ∧ MEM b l2' ⇒ (R a b ⇔ R' a b)) ⇒
+      (LLEX R l1 l2 ⇔ LLEX R' l1' l2')
+
+⊢ set [] = ∅ ∧ set (h::t) = h INSERT set t
+
+⊢ set (SNOC x ls) = x INSERT set ls
+
+⊢ ∀ls. set (REVERSE ls) = set ls
+
+⊢ ∀f l. set (MAP f l) = IMAGE f (set l)
+
+⊢ ∀f n. set (GENLIST f n) = IMAGE f (count n)
+
+⊢ ∀ls. set (FLAT ls) = BIGUNION (set (MAP set ls))
+
+⊢ set (FILTER P l) = {x | P x} ∩ set l
+
+⊢ (set l = ∅ ⇔ l = []) ∧ (∅ = set l ⇔ l = [])
+
+⊢ ∀l1 l2. set l2 DIFF set l1 = set (FILTER (λx. ¬MEM x l1) l2)
+
+⊢ ∀l1 l2. set (l1 ⧺ l2) = set l1 ∪ set l2
+
+⊢ set [] = ∅ ∧ set (h::t) = h INSERT set t
+
+⊢ ∀M N f f'.
+      M = N ∧ (∀x. MEM x N ⇒ f x = f' x) ⇒ list_size f M = list_size f' N
+
+⊢ ∀l1 l2 l3.
+      (∀n.
+           n < LENGTH l1 ∧ R (EL n l1) (EL n l2) ∧ R (EL n l2) (EL n l3) ⇒
+           R (EL n l1) (EL n l3)) ∧ LIST_REL R l1 l2 ∧ LIST_REL R l2 l3 ⇒
+      LIST_REL R l1 l3
+
+⊢ ∀R LIST_REL'.
+      LIST_REL' [] [] ∧
+      (∀h1 h2 t1 t2.
+           R h1 h2 ∧ LIST_REL R t1 t2 ∧ LIST_REL' t1 t2 ⇒
+           LIST_REL' (h1::t1) (h2::t2)) ⇒
+      ∀a0 a1. LIST_REL R a0 a1 ⇒ LIST_REL' a0 a1
+
+⊢ ∀xs1 zs.
+      LIST_REL P zs (xs1 ⧺ xs2) ⇔
+      ∃ys1 ys2. zs = ys1 ⧺ ys2 ∧ LIST_REL P ys1 xs1 ∧ LIST_REL P ys2 xs2
+
+⊢ ∀xs1 zs.
+      LIST_REL P (xs1 ⧺ xs2) zs ⇔
+      ∃ys1 ys2. zs = ys1 ⧺ ys2 ∧ LIST_REL P xs1 ys1 ∧ LIST_REL P xs2 ys2
+
+⊢ (LIST_REL R (SNOC x xs) yys ⇔
+   ∃y ys. yys = SNOC y ys ∧ LIST_REL R xs ys ∧ R x y) ∧
+  (LIST_REL R xxs (SNOC y ys) ⇔
+   ∃x xs. xxs = SNOC x xs ∧ LIST_REL R xs ys ∧ R x y)
+
+⊢ ∀R.
+      LIST_REL R [] [] ∧
+      ∀h1 h2 t1 t2. R h1 h2 ∧ LIST_REL R t1 t2 ⇒ LIST_REL R (h1::t1) (h2::t2)
+
+⊢ ∀R1 R2. LIST_REL (R1 ∘ᵣ R2) = LIST_REL R1 ∘ᵣ LIST_REL R2
+
+⊢ (LIST_REL R [] y ⇔ y = []) ∧ (LIST_REL R x [] ⇔ x = [])
+
+⊢ (∀x y. R1 x y ⇒ R2 x y) ⇒ LIST_REL R1 l1 l2 ⇒ LIST_REL R2 l1 l2
+
+⊢ ∀xs ys P x. LIST_REL P xs ys ∧ MEM x xs ⇒ ∃y. MEM y ys ∧ P x y
+
+⊢ LIST_REL R (MAP f l1) (MAP f l2) ⇔ LIST_REL (inv_image R f) l1 l2
+
+⊢ LIST_REL (λa b. R a b) l1 (MAP f l2) ⇔ LIST_REL (λa b. R a (f b)) l1 l2
+
+⊢ LIST_REL R (MAP f l1) l2 ⇔ LIST_REL (R ∘ f) l1 l2
+
+⊢ ∀x y. LIST_REL R x y ⇒ LENGTH x = LENGTH y
+
+⊢ ∀R LIST_REL'.
+      LIST_REL' [] [] ∧
+      (∀h1 h2 t1 t2. R h1 h2 ∧ LIST_REL' t1 t2 ⇒ LIST_REL' (h1::t1) (h2::t2)) ⇒
+      ∀a0 a1. LIST_REL R a0 a1 ⇒ LIST_REL' a0 a1
+
+⊢ ∀R l1 l2.
+      LIST_REL R l1 l2 ⇔
+      LENGTH l1 = LENGTH l2 ∧ EVERY (UNCURRY R) (ZIP (l1,l2))
+
+⊢ LIST_REL $= = $=
+
+⊢ ∀R l1 l2.
+      LIST_REL R l1 l2 ⇔
+      LENGTH l1 = LENGTH l2 ∧ ∀n. n < LENGTH l1 ⇒ R (EL n l1) (EL n l2)
+
+⊢ (LIST_REL R [] [] ⇔ T) ∧ (LIST_REL R (a::as) [] ⇔ F) ∧
+  (LIST_REL R [] (b::bs) ⇔ F) ∧
+  (LIST_REL R (a::as) (b::bs) ⇔ R a b ∧ LIST_REL R as bs)
+
+⊢ LIST_REL R xs (h::t) ⇔ ∃h' t'. xs = h'::t' ∧ R h' h ∧ LIST_REL R t' t
+
+⊢ LIST_REL R (h::t) xs ⇔ ∃h' t'. xs = h'::t' ∧ R h h' ∧ LIST_REL R t t'
+
+⊢ LIST_REL (λa b. P a b ∧ Q a b) l1 l2 ⇔
+  LIST_REL (λa b. P a b) l1 l2 ∧ LIST_REL (λa b. Q a b) l1 l2
+
+⊢ ∀R a0 a1.
+      LIST_REL R a0 a1 ⇔
+      a0 = [] ∧ a1 = [] ∨
+      ∃h1 h2 t1 t2. a0 = h1::t1 ∧ a1 = h2::t2 ∧ R h1 h2 ∧ LIST_REL R t1 t2
+
+⊢ LIST_REL R l1 l2 ∧ LIST_REL R l3 l4 ⇒ LIST_REL R (l1 ⧺ l3) (l2 ⧺ l4)
+
+⊢ ∀xs ys xs1 ys1.
+      LIST_REL P (xs ⧺ xs1) (ys ⧺ ys1) ∧ LENGTH xs = LENGTH ys ⇒
+      LIST_REL P xs ys ∧ LIST_REL P xs1 ys1
+
+⊢ LENGTH x1 = LENGTH x2 ⇒
+  (LIST_REL R (x1 ⧺ y1) (x2 ⧺ y2) ⇔ LIST_REL R x1 x2 ∧ LIST_REL R y1 y2)
+
+⊢ LIST_REL R l1 l2 ∧ LIST_REL R l3 l4 ⇔
+  LIST_REL R (l1 ⧺ l3) (l2 ⧺ l4) ∧ LENGTH l1 = LENGTH l2 ∧
+  LENGTH l3 = LENGTH l4
+
+⊢ ∀l1 l2. l1 ≠ l2 ⇒ ∀h1 h2. h1::l1 ≠ h2::l2
+
+⊢ ∀l. l = [] ∨ ∃h t. l = h::t
+
+⊢ ∀P. P [] ∧ (∀t. P t ⇒ ∀h. P (h::t)) ⇒ ∀l. P l
+
+⊢ ∀P. P [] ∧ (∀l. P l ⇒ ∀a. P (a::l)) ⇒ ∀l. P l
+
+⊢ ∀P. P [] ∧ (∀t. P t ⇒ ∀h. P (h::t)) ⇒ ∀l. P l
+
+⊢ ∀l1 l2.
+      l1 = l2 ⇔ LENGTH l1 = LENGTH l2 ∧ ∀x. x < LENGTH l1 ⇒ EL x l1 = EL x l2
+
+⊢ ∀l1 l2. MAP FST l1 = MAP FST l2 ∧ MAP SND l1 = MAP SND l2 ⇒ l1 = l2
+
+⊢ ∀l1 l2.
+      LENGTH l1 = LENGTH l2 ∧ (∀x. x < LENGTH l1 ⇒ EL x l1 = EL x l2) ⇒
+      l1 = l2
+
+⊢ ∀a1 a0. [] ≠ a0::a1
+
+⊢ ∀l. l = [] ∨ ∃h t. l = h::t
+
+⊢ list_CASE x v f = v' ⇔ x = [] ∧ v = v' ∨ ∃a l. x = a::l ∧ f a l = v'
+
+⊢ ∀M M' v f.
+      M = M' ∧ (M' = [] ⇒ v = v') ∧
+      (∀a0 a1. M' = a0::a1 ⇒ f a0 a1 = f' a0 a1) ⇒
+      list_CASE M v f = list_CASE M' v' f'
+
+⊢ ∀l. list_CASE l b f = if NULL l then b else f (HD l) (TL l)
+
+⊢ LIST_BIND [] f = [] ∧ LIST_BIND (h::t) f = f h ⧺ LIST_BIND t f
+
+⊢ LIST_BIND (MAP f l) g = LIST_BIND l (g ∘ f)
+
+⊢ LIST_BIND (LIST_BIND l g) f = LIST_BIND l (combin$C LIST_BIND f ∘ g)
+
+⊢ LIST_BIND l (λx. x) = FLAT l ∧ LIST_BIND l I = FLAT l
+
+⊢ LIST_BIND (l1 ⧺ l2) f = LIST_BIND l1 f ⧺ LIST_BIND l2 f
+
+⊢ ∀x f. ∃!fn1. fn1 [] = x ∧ ∀h t. fn1 (h::t) = f (fn1 t) h t
+
+⊢ ∀f0 f1. ∃fn. fn [] = f0 ∧ ∀a0 a1. fn (a0::a1) = f1 a0 a1 (fn a1)
+
+⊢ [$o] <*> fs <*> gs <*> xs = fs <*> (gs <*> xs)
+
+⊢ ∀a0 a1 a0' a1'. a0::a1 = a0'::a1' ⇔ a0 = a0' ∧ a1 = a1'
+
+⊢ ∀xs ys. LENGTH (ZIP (xs,ys)) = MIN (LENGTH xs) (LENGTH ys)
+
+⊢ ∀l1 l2.
+      LENGTH l1 = LENGTH l2 ⇒
+      LENGTH (ZIP (l1,l2)) = LENGTH l1 ∧ LENGTH (ZIP (l1,l2)) = LENGTH l2
+
+⊢ ∀pl.
+      LENGTH (FST (UNZIP pl)) = LENGTH pl ∧
+      LENGTH (SND (UNZIP pl)) = LENGTH pl
+
+⊢ ∀l. 0 < LENGTH l ⇒ LENGTH (TL l) = LENGTH l − 1
+
+⊢ LENGTH (TAKE n xs) = if n ≤ LENGTH xs then n else LENGTH xs
+
+⊢ ∀n l. n ≤ LENGTH l ⇒ LENGTH (TAKE n l) = n
+
+⊢ ∀x l. LENGTH (SNOC x l) = SUC (LENGTH l)
+
+⊢ ∀l. LENGTH (REVERSE l) = LENGTH l
+
+⊢ LENGTH ∘ REVERSE = LENGTH ∧ LENGTH ∘ REVERSE ∘ f = LENGTH ∘ f
+
+⊢ ∀l1 l2.
+      LENGTH (nub (l1 ⧺ l2)) =
+      LENGTH (nub l1) + LENGTH (nub (FILTER (λx. ¬MEM x l1) l2))
+
+⊢ 0 = LENGTH l ⇔ l = []
+
+⊢ ∀l. LENGTH l = 0 ⇔ l = []
+
+⊢ ∀xs ys. LENGTH (MAP2 f xs ys) = MIN (LENGTH xs) (LENGTH ys)
+
+⊢ ∀l f. LENGTH (MAP f l) = LENGTH l
+
+⊢ ∀x n ys. LENGTH (LUPDATE x n ys) = LENGTH ys
+
+⊢ ∀l1 l2. LENGTH l1 < LENGTH l2 ⇒ SHORTLEX R l1 l2
+
+⊢ ∀L. LENGTH L = LEN L 0
+
+⊢ ∀f n. LENGTH (GENLIST f n) = n
+
+⊢ ∀x xs. LENGTH (FRONT (x::xs)) = LENGTH xs
+
+⊢ ∀P Q. (∀x. P x ⇒ Q x) ⇒ ∀ls. LENGTH (FILTER P ls) ≤ LENGTH (FILTER Q ls)
+
+⊢ ∀l n1 n2.
+      LENGTH l = n1 + n2 ⇔
+      ∃l1 l2. LENGTH l1 = n1 ∧ LENGTH l2 = n2 ∧ l = l1 ⧺ l2
+
+⊢ (∀l. LENGTH l = 0 ⇔ l = []) ∧
+  (∀l n.
+       LENGTH l = NUMERAL (BIT1 n) ⇔
+       ∃h l'. LENGTH l' = NUMERAL (BIT1 n) − 1 ∧ l = h::l') ∧
+  (∀l n.
+       LENGTH l = NUMERAL (BIT2 n) ⇔
+       ∃h l'. LENGTH l' = NUMERAL (BIT1 n) ∧ l = h::l') ∧
+  ∀l n1 n2.
+      LENGTH l = n1 + n2 ⇔
+      ∃l1 l2. LENGTH l1 = n1 ∧ LENGTH l2 = n2 ∧ l = l1 ⧺ l2
+
+⊢ (∀l. LENGTH l = 0 ⇔ l = []) ∧
+  (∀l n. LENGTH l = SUC n ⇔ ∃h l'. LENGTH l' = n ∧ l = h::l') ∧
+  ∀l n1 n2.
+      LENGTH l = n1 + n2 ⇔
+      ∃l1 l2. LENGTH l1 = n1 ∧ LENGTH l2 = n2 ∧ l = l1 ⧺ l2
+
+⊢ ∀P. (∀l. LENGTH l = 0 ⇒ P l) ⇔ P []
+
+⊢ ∀P n.
+      (∀l. LENGTH l = SUC n ⇒ P l) ⇔ ∀l. LENGTH l = n ⇒ (λl. ∀x. P (x::l)) l
+
+⊢ ∀P ls. LENGTH (dropWhile P ls) ≤ LENGTH ls
+
+⊢ ∀n l. LENGTH (DROP n l) = LENGTH l − n
+
+⊢ ∀l n. LENGTH l = SUC n ⇔ ∃h l'. LENGTH l' = n ∧ l = h::l'
+
+⊢ ∀l1 l2. LENGTH (l1 ⧺ l2) = LENGTH l1 + LENGTH l2
+
+⊢ ∀L n. LEN L n = LENGTH L + n
+
+⊢ list_CASE = (λl b f. if NULL l then b else f (HD l) (TL l))
+
+⊢ ∀x l. LAST (SNOC x l) = x
+
+⊢ ∀ls. ls ≠ [] ⇒ LAST (REVERSE ls) = HD ls
+
+⊢ ∀l f. l ≠ [] ⇒ LAST (MAP f l) = f (LAST l)
+
+⊢ ∀ls. ls ≠ [] ⇒ LAST ls = EL (PRE (LENGTH ls)) ls
+
+⊢ ∀l n. n < LENGTH l ⇒ LAST (DROP n l) = LAST l
+
+⊢ LAST (h::t) = if t = [] then h else LAST t
+
+⊢ (∀x. LAST [x] = x) ∧ ∀x y z. LAST (x::y::z) = LAST (y::z)
+
+⊢ (∀x. LAST [x] = x) ∧ ∀h1 h2 t. LAST (h1::h2::t) = LAST (h2::t)
+
+⊢ ∀h l1 l2. LAST (l1 ⧺ h::l2) = LAST (h::l2)
+
+⊢ ∀s. FINITE s ⇒ ∀f a. ITSET f s a = FOLDL (combin$C f) a (SET_TO_LIST s)
+
+⊢ ([] ≼ l ⇔ T) ∧ (h::t ≼ [] ⇔ F) ∧ (h1::t1 ≼ h2::t2 ⇔ h1 = h2 ∧ t1 ≼ t2)
+
+⊢ x ≼ [] ⇔ x = []
+
+⊢ x ≼ y::ys ⇔ x = [] ∨ ∃xs. x = y::xs ∧ xs ≼ ys
+
+⊢ ∀f l1 l2. INJ f (set l1 ∪ set l2) 𝕌(:β) ⇒ (MAP f l1 = MAP f l2 ⇔ l1 = l2)
+
+⊢ ∀f l1 l2. INJ f (set l1 ∪ set l2) 𝕌(:β) ∧ MAP f l1 = MAP f l2 ⇒ l1 = l2
+
+⊢ INFINITE 𝕌(:α list)
+
+⊢ ∀xs h i. P h ∧ EVERY P xs ⇒ EVERY P (LUPDATE h i xs)
+
+⊢ ∀f ls. IMAGE (λn. f (EL n ls)) (count (LENGTH ls)) = IMAGE f (set ls)
+
+⊢ ∀x. x ≠ [] ⇒ HD (REVERSE x) = LAST x
+
+⊢ ∀n f. 0 < n ⇒ HD (GENLIST f n) = f 0
+
+⊢ HD (GENLIST f (SUC n)) = f 0
+
+⊢ ∀P ls. EXISTS ($~ ∘ P) ls ⇒ ¬P (HD (dropWhile P ls))
+
+⊢ ∀n l. n < LENGTH l ⇒ HD (DROP n l) = EL n l
+
+⊢ GENLIST ($+ a) n1 ⧺ GENLIST ($+ (n1 + a)) n2 = GENLIST ($+ a) (n1 + n2)
+
+⊢ GENLIST f 0 = [] ∧ GENLIST f (NUMERAL n) = GENLIST_AUX f (NUMERAL n) []
+
+⊢ ∀x. GENLIST (λi. EL i x) (LENGTH x) = x
+
+⊢ ∀n. GENLIST f n = GENLIST_AUX f n []
+
+⊢ ∀n f g. GENLIST f n = GENLIST g n ⇔ ∀x. x < n ⇒ f x = g x
+
+⊢ ∀f ls. GENLIST (λn. f (EL n ls)) (LENGTH ls) = MAP f ls
+
+⊢ ∀ls f n. n = LENGTH ls ∧ (∀i. i < n ⇒ f i = EL i ls) ⇒ GENLIST f n = ls
+
+⊢ GENLIST f (SUC n) = f 0::GENLIST (f ∘ SUC) n
+
+⊢ (∀f l. GENLIST_AUX f 0 l = l) ∧
+  (∀f n l.
+       GENLIST_AUX f (NUMERAL (BIT1 n)) l =
+       GENLIST_AUX f (NUMERAL (BIT1 n) − 1) (f (NUMERAL (BIT1 n) − 1)::l)) ∧
+  ∀f n l.
+      GENLIST_AUX f (NUMERAL (BIT2 n)) l =
+      GENLIST_AUX f (NUMERAL (BIT1 n)) (f (NUMERAL (BIT1 n))::l)
+
+⊢ ∀f a b. GENLIST f (a + b) = GENLIST f b ⧺ GENLIST (λt. f (t + b)) a
+
+⊢ ∀x l. FRONT (SNOC x l) = l
+
+⊢ (∀x xs. FRONT (x::xs) = [] ⇔ xs = []) ∧
+  (∀x xs. [] = FRONT (x::xs) ⇔ xs = []) ∧
+  ∀x xs. NULL (FRONT (x::xs)) ⇔ NULL xs
+
+⊢ (∀x. FRONT [x] = []) ∧ ∀x y z. FRONT (x::y::z) = x::FRONT (y::z)
+
+⊢ (∀l. P l) ⇔ P [] ∧ ∀h t. P (h::t)
+
+⊢ ∀f ls a. FOLDR (λx y. f x::y) a ls = MAP f ls ⧺ a
+
+⊢ ∀l l' b b' f f'.
+      l = l' ∧ b = b' ∧ (∀x a. MEM x l' ⇒ f x a = f' x a) ⇒
+      FOLDR f b l = FOLDR f' b' l'
+
+⊢ ∀ls f e. FOLDL f e (ZIP (ls,ls)) = FOLDL (λx y. f x (y,y)) e ls
+
+⊢ ∀f ls s.
+      FOLDL (λs (x,y). s ∪ f x y) s ls =
+      s ∪ BIGUNION (IMAGE (UNCURRY f) (set ls))
+
+⊢ ∀f ls s. FOLDL (λs x. s ∪ f x) s ls = s ∪ BIGUNION (IMAGE f (set ls))
+
+⊢ ∀f e x l. FOLDL f e (SNOC x l) = f (FOLDL f e l) x
+
+⊢ ∀f l e. ASSOC f ∧ COMM f ⇒ FOLDL f e l = FOLDR f e l
+
+⊢ ∀l l' b b' f f'.
+      l = l' ∧ b = b' ∧ (∀x a. MEM x l' ⇒ f a x = f' a x) ⇒
+      FOLDL f b l = FOLDL f' b' l'
+
+⊢ ∀P.
+      (∀f a b bs c cs. P f (f a b c) bs cs ⇒ P f a (b::bs) (c::cs)) ∧
+      (∀f a cs. P f a [] cs) ∧ (∀f a v6 v7. P f a (v6::v7) []) ⇒
+      ∀v v1 v2 v3. P v v1 v2 v3
+
+⊢ ∀l1 l2.
+      LENGTH l1 = LENGTH l2 ⇒
+      ∀f a. FOLDL2 f a l1 l2 = FOLDL (λa. UNCURRY (f a)) a (ZIP (l1,l2))
+
+⊢ (∀f cs c bs b a. FOLDL2 f a (b::bs) (c::cs) = FOLDL2 f (f a b c) bs cs) ∧
+  (∀f cs a. FOLDL2 f a [] cs = a) ∧ ∀v7 v6 f a. FOLDL2 f a (v6::v7) [] = a
+
+⊢ ∀l1 l1' l2 l2' a a' f f'.
+      l1 = l1' ∧ l2 = l2' ∧ a = a' ∧
+      (∀z b c. MEM b l1' ∧ MEM c l2' ⇒ f z b c = f' z b c) ⇒
+      FOLDL2 f a l1 l2 = FOLDL2 f' a' l1' l2'
+
+⊢ ∀ls. FLAT ls = [] ⇔ EVERY ($= []) ls
+
+⊢ FLAT [] = [] ∧ FLAT ([]::t) = FLAT t ∧
+  FLAT ((h::t1)::t2) = h::FLAT (t1::t2)
+
+⊢ ∀l1 l2. FLAT (l1 ⧺ l2) = FLAT l1 ⧺ FLAT l2
+
+⊢ ∀l. FINITE (set l)
+
+⊢ ∀xs. FILTER (λx. T) xs = xs
+
+⊢ ∀l P. FILTER P (REVERSE l) = REVERSE (FILTER P l)
+
+⊢ ∀P l. FILTER P l ≠ [] ⇔ ∃x. MEM x l ∧ P x
+
+⊢ ∀P l. FILTER P l ≠ l ⇔ ∃x. MEM x l ∧ ¬P x
+
+⊢ ∀xs. FILTER (λx. F) xs = []
+
+⊢ ∀P l. FILTER P l = [] ⇔ EVERY (λx. ¬P x) l
+
+⊢ ∀P l. FILTER P l = l ⇔ EVERY P l
+
+⊢ ∀P l h lr.
+      FILTER P l = h::lr ⇔
+      ∃l1 l2. l = l1 ⧺ [h] ⧺ l2 ∧ FILTER P l1 = [] ∧ FILTER P l2 = lr ∧ P h
+
+⊢ ∀P l l1 l2.
+      FILTER P l = l1 ⧺ l2 ⇔
+      ∃l3 l4. l = l3 ⧺ l4 ∧ FILTER P l3 = l1 ∧ FILTER P l4 = l2
+
+⊢ FILTER P [] = [] ∧ (∀h. P h ⇒ FILTER P (h::l) = h::FILTER P l) ∧
+  ∀h. ¬P h ⇒ FILTER P (h::l) = FILTER P l
+
+⊢ ∀P L M. FILTER P (L ⧺ M) = FILTER P L ⧺ FILTER P M
+
+⊢ ∀P l. ALL_DISTINCT l ⇒ ALL_DISTINCT (FILTER P l)
+
+⊢ ∀P x l. EXISTS P (SNOC x l) ⇔ P x ∨ EXISTS P l
+
+⊢ ∀c l. EXISTS (λx. c) l ⇔ l ≠ [] ∧ c
+
+⊢ ∀P l. EXISTS P l ⇔ ¬EVERY (λx. ¬P x) l
+
+⊢ ∀P l. EXISTS P l ⇔ ∃e. MEM e l ∧ P e
+
+⊢ ∀P f l. EXISTS P (MAP f l) ⇔ EXISTS (λx. P (f x)) l
+
+⊢ (∃ls. P ls) ⇔ ∃n f. P (GENLIST f n)
+
+⊢ ∀ls f. EVERY (λx. ∃y. x = f y) ls ⇒ ∃l. ls = MAP f l
+
+⊢ (∃l. P l) ⇔ P [] ∨ ∃h t. P (h::t)
+
+⊢ ∀n. EXISTS P (GENLIST f n) ⇔ ∃i. i < n ∧ P (f i)
+
+⊢ ∀l1 l2 P P'.
+      l1 = l2 ∧ (∀x. MEM x l2 ⇒ (P x ⇔ P' x)) ⇒ (EXISTS P l1 ⇔ EXISTS P' l2)
+
+⊢ ∀P l1 l2. EXISTS P (l1 ⧺ l2) ⇔ EXISTS P l1 ∨ EXISTS P l2
+
+⊢ ∀l1 l2 P.
+      LENGTH l1 = LENGTH l2 ⇒
+      (EVERY (λx. P (SND x)) (ZIP (l1,l2)) ⇔ EVERY P l2)
+
+⊢ ∀l1 l2 P.
+      LENGTH l1 = LENGTH l2 ⇒
+      (EVERY (λx. P (FST x)) (ZIP (l1,l2)) ⇔ EVERY P l1)
+
+⊢ ∀P x l. EVERY P (SNOC x l) ⇔ EVERY P l ∧ P x
+
+⊢ ∀c l. EVERY (λx. c) l ⇔ l = [] ∨ c
+
+⊢ ∀P l. EVERY P l ⇔ ¬EXISTS (λx. ¬P x) l
+
+⊢ ∀P Q. (∀x. P x ⇒ Q x) ⇒ ∀l. EVERY P l ⇒ EVERY Q l
+
+⊢ ∀P Q l. (∀x. MEM x l ∧ P x ⇒ Q x) ∧ EVERY P l ⇒ EVERY Q l
+
+⊢ ∀P l. EVERY P l ⇔ ∀e. MEM e l ⇒ P e
+
+⊢ ∀P f l. EVERY P (MAP f l) ⇔ EVERY (λx. P (f x)) l
+
+⊢ ∀n. EVERY P (GENLIST f n) ⇔ ∀i. i < n ⇒ P (f i)
+
+⊢ EVERY P (FLAT ls) ⇔ EVERY (EVERY P) ls
+
+⊢ ∀P1 P2 l. EVERY P1 l ⇒ EVERY P1 (FILTER P2 l)
+
+⊢ ∀P1 P2 l. EVERY P1 (FILTER P2 l) ⇔ EVERY (λx. P2 x ⇒ P1 x) l
+
+⊢ ∀l P. EVERY P l ⇔ ∀n. n < LENGTH l ⇒ P (EL n l)
+
+⊢ ∀P Q l. EVERY (λx. P x ∧ Q x) l ⇔ EVERY P l ∧ EVERY Q l
+
+⊢ ∀l1 l2 P P'.
+      l1 = l2 ∧ (∀x. MEM x l2 ⇒ (P x ⇔ P' x)) ⇒ (EVERY P l1 ⇔ EVERY P' l2)
+
+⊢ ∀P l1 l2. EVERY P (l1 ⧺ l2) ⇔ EVERY P l1 ∧ EVERY P l2
+
+⊢ (∀x y z. R x y ∧ R y z ⇒ R x z) ⇒
+  ∀x y z. LIST_REL R x y ∧ LIST_REL R y z ⇒ LIST_REL R x z
+
+⊢ (∀P ys. LIST_REL P [] ys ⇔ ys = []) ∧
+  (∀P yys x xs.
+       LIST_REL P (x::xs) yys ⇔ ∃y ys. yys = y::ys ∧ P x y ∧ LIST_REL P xs ys) ∧
+  (∀P xs. LIST_REL P xs [] ⇔ xs = []) ∧
+  ∀P xxs y ys.
+      LIST_REL P xxs (y::ys) ⇔ ∃x xs. xxs = x::xs ∧ P x y ∧ LIST_REL P xs ys
+
+⊢ (∀x y. R1 x y ⇒ R2 y x) ⇒ ∀x y. LIST_REL R1 x y ⇒ LIST_REL R2 y x
+
+⊢ ∀R l1 l2. LIST_REL R l1 l2 ⇒ LIST_REL R (REVERSE l1) (REVERSE l2)
+
+⊢ (∀x. MEM x ls ⇒ R x x) ⇒ LIST_REL R ls ls
+
+⊢ (∀x y. R1 x y ⇒ R2 x y) ⇒ LIST_REL R1 l1 l2 ⇒ LIST_REL R2 l1 l2
+
+⊢ ∀P Q l1 l2.
+      (∀x. MEM x (ZIP (l1,l2)) ∧ UNCURRY P x ⇒ UNCURRY Q x) ∧
+      LIST_REL P l1 l2 ⇒
+      LIST_REL Q l1 l2
+
+⊢ (LIST_REL P (MAP f l1) l2 ⇔ LIST_REL (λx y. P (f x) y) l1 l2) ∧
+  (LIST_REL Q l1 (MAP g l2) ⇔ LIST_REL (λx y. Q x (g y)) l1 l2)
+
+⊢ ∀P l1 l2 v1 v2 n.
+      P v1 v2 ∧ LIST_REL P l1 l2 ⇒
+      LIST_REL P (LUPDATE v1 n l1) (LUPDATE v2 n l2)
+
+⊢ ∀P l1 l2. LIST_REL P l1 l2 ⇒ LENGTH l1 = LENGTH l2
+
+⊢ ∀l1 l2 f.
+      LIST_REL f l1 l2 ⇔
+      LENGTH l1 = LENGTH l2 ∧ EVERY (UNCURRY f) (ZIP (l1,l2))
+
+⊢ ∀l1 l1' l2 l2' P P'.
+      l1 = l1' ∧ l2 = l2' ∧ (∀x y. MEM x l1' ∧ MEM y l2' ⇒ (P x y ⇔ P' x y)) ⇒
+      (LIST_REL P l1 l2 ⇔ LIST_REL P' l1' l2')
+
+⊢ ∀h1 h2. h1 = h2 ⇒ ∀l1 l2. l1 = l2 ⇒ h1::l1 = h2::l2
+
+⊢ ∀l1 l2 n.
+      LENGTH l1 = LENGTH l2 ∧ n < LENGTH l1 ⇒
+      EL n (ZIP (l1,l2)) = (EL n l1,EL n l2)
+
+⊢ ∀n x l. x < n ⇒ EL x (TAKE n l) = EL x l
+
+⊢ ∀n l. n < LENGTH l ⇒ ∀x. EL n (SNOC x l) = EL n l
+
+⊢ EL (NUMERAL (BIT1 n)) (l::ls) = EL (PRE (NUMERAL (BIT1 n))) ls ∧
+  EL (NUMERAL (BIT2 n)) (l::ls) = EL (NUMERAL (BIT1 n)) ls
+
+⊢ EL (NUMERAL (BIT1 n)) l = EL (PRE (NUMERAL (BIT1 n))) (TL l) ∧
+  EL (NUMERAL (BIT2 n)) l = EL (NUMERAL (BIT1 n)) (TL l)
+
+⊢ ∀n l. n < LENGTH l ⇒ EL n (REVERSE l) = EL (PRE (LENGTH l − n)) l
+
+⊢ EL 0 = HD ∧ EL (SUC n) (l::ls) = EL n ls
+
+⊢ ∀ts tt n.
+      n < MIN (LENGTH ts) (LENGTH tt) ⇒
+      EL n (MAP2 f ts tt) = f (EL n ts) (EL n tt)
+
+⊢ ∀n l. n < LENGTH l ⇒ ∀f. EL n (MAP f l) = f (EL n l)
+
+⊢ ∀ys x i k.
+      EL i (LUPDATE x k ys) = if i = k ∧ k < LENGTH ys then x else EL i ys
+
+⊢ ∀l x. EL (LENGTH l) (SNOC x l) = x
+
+⊢ ∀P ls k.
+      LENGTH (dropWhile P (REVERSE ls)) ≤ k ∧ k < LENGTH ls ⇒ P (EL k ls)
+
+⊢ ∀f n x. x < n ⇒ EL x (GENLIST f n) = f x
+
+⊢ ∀m n l. m + n < LENGTH l ⇒ EL m (DROP n l) = EL (m + n) l
+
+⊢ ∀n. EL n l = if n = 0 then HD l else EL (PRE n) (TL l)
+
+⊢ ∀l1 l2 n.
+      EL n (l1 ⧺ l2) =
+      if n < LENGTH l1 then EL n l1 else EL (n − LENGTH l1) l2
+
+⊢ ∀l1 x l2. EL (LENGTH l1) (l1 ⧺ [x] ⧺ l2) = x
+
+⊢ ∀l.
+      ALL_DISTINCT l ⇔
+      ∀n1 n2. n1 < LENGTH l ∧ n2 < LENGTH l ⇒ (EL n1 l = EL n2 l ⇔ n1 = n2)
+
+⊢ ∀P. dropWhile P = splitAtPki (combin$C (K ∘ $~ ∘ P)) (K I)
+
+⊢ ∀P ls. dropWhile P ls = [] ⇔ EVERY P ls
+
+⊢ ∀P l1 l2. EXISTS ($~ ∘ P) l1 ⇒ dropWhile P (l1 ⧺ l2) = dropWhile P l1 ⧺ l2
+
+⊢ ∀P l1 l2. EVERY P l1 ⇒ dropWhile P (l1 ⧺ l2) = dropWhile P l2
+
+⊢ DROP n l = splitAtPki (K ∘ $= n) (K I) l
+
+⊢ ∀n. DROP n [] = []
+
+⊢ ∀ls n. DROP n ls = [] ⇔ n ≥ LENGTH ls
+
+⊢ ∀l n. LENGTH l ≤ n ⇒ DROP n l = []
+
+⊢ DROP n (GENLIST f m) = GENLIST (f ∘ $+ n) (m − n)
+
+⊢ 0 < n ⇒ DROP n (x::xs) = DROP (n − 1) xs
+
+⊢ (∀l. DROP 0 l = l) ∧ (∀n. DROP (NUMERAL (BIT1 n)) [] = []) ∧
+  (∀n. DROP (NUMERAL (BIT2 n)) [] = []) ∧
+  (∀n h t. DROP (NUMERAL (BIT1 n)) (h::t) = DROP (NUMERAL (BIT1 n) − 1) t) ∧
+  ∀n h t. DROP (NUMERAL (BIT2 n)) (h::t) = DROP (NUMERAL (BIT1 n)) t
+
+⊢ DROP 0 l = l
+
+⊢ DISJOINT x (set (GENLIST ($+ n) (a + b))) ⇒
+  DISJOINT x (set (GENLIST ($+ n) a)) ∧
+  DISJOINT x (set (GENLIST ($+ (n + a)) b))
+
+⊢ DATATYPE (list [] CONS)
+
+⊢ ∀l x. l ≠ x::l ∧ x::l ≠ l
+
+⊢ ∀a0 a1 a0' a1'. a0::a1 = a0'::a1' ⇔ a0 = a0' ∧ a1 = a1'
+
+⊢ ∀l. ¬NULL l ⇒ HD l::TL l = l
+
+⊢ ∀ls. CARD (set ls) = LENGTH ls ⇒ ALL_DISTINCT ls
+
+⊢ CARD (set ls) ≤ LENGTH ls
+
+⊢ BIGUNION (IMAGE f (set ls)) ⊆ s ⇔ ∀x. MEM x ls ⇒ f x ⊆ s
+
+⊢ ∀l1 x l2. l1 ⧺ SNOC x l2 = SNOC x (l1 ⧺ l2)
+
+⊢ ∀l. l ⧺ [] = l
+
+⊢ ∀l1 l1'.
+      LENGTH l1 = LENGTH l1' ⇒
+      ∀l2 l2'.
+          LENGTH l2 = LENGTH l2' ⇒
+          (l1 ⧺ l2 = l1' ⧺ l2' ⇔ l1 = l1' ∧ l2 = l2')
+
+⊢ ∀l. l ≠ [] ⇒ FRONT l ⧺ [LAST l] = l
+
+⊢ l1 ⧺ l2 = [e] ⇔ l1 = [e] ∧ l2 = [] ∨ l1 = [] ∧ l2 = [e]
+
+⊢ (∀l1 l2. l1 ⧺ l2 = l1 ⇔ l2 = []) ∧ (∀l1 l2. l1 ⧺ l2 = l2 ⇔ l1 = []) ∧
+  (∀l1 l2. l1 = l1 ⧺ l2 ⇔ l2 = []) ∧ ∀l1 l2. l2 = l1 ⧺ l2 ⇔ l1 = []
+
+⊢ (∀l1 l2. [] = l1 ⧺ l2 ⇔ l1 = [] ∧ l2 = []) ∧
+  ∀l1 l2. l1 ⧺ l2 = [] ⇔ l1 = [] ∧ l2 = []
+
+⊢ l1 ⧺ l2 = h::t ⇔ l1 = [] ∧ l2 = h::t ∨ ∃lt. l1 = h::lt ∧ t = lt ⧺ l2
+
+⊢ l1 ⧺ [e] ⧺ l2 = m1 ⧺ m2 ⇔
+  (∃l. m1 = l1 ⧺ [e] ⧺ l ∧ l2 = l ⧺ m2) ∨ ∃l. l1 = m1 ⧺ l ∧ m2 = l ⧺ [e] ⧺ l2
+
+⊢ l1 ⧺ l2 = m1 ⧺ m2 ⇔
+  (∃l. l1 = m1 ⧺ l ∧ m2 = l ⧺ l2) ∨ ∃l. m1 = l1 ⧺ l ∧ l2 = l ⧺ m2
+
+⊢ ∀l1 l2 l3. l1 ⧺ (l2 ⧺ l3) = l1 ⧺ l2 ⧺ l3
+
+⊢ (∀l1 l2 l1' l2'.
+       LENGTH l1 = LENGTH l1' ⇒ (l1 ⧺ l2 = l1' ⧺ l2' ⇔ l1 = l1' ∧ l2 = l2')) ∧
+  ∀l1 l2 l1' l2'.
+      LENGTH l2 = LENGTH l2' ⇒ (l1 ⧺ l2 = l1' ⧺ l2' ⇔ l1 = l1' ∧ l2 = l2')
+
+⊢ (∀l1 l2 l3. l1 ⧺ l2 = l1 ⧺ l3 ⇔ l2 = l3) ∧
+  ∀l1 l2 l3. l2 ⧺ l1 = l3 ⧺ l1 ⇔ l2 = l3
+
+⊢ ∀l1 l2.
+      ALL_DISTINCT (ZIP (l1,l2)) ∧ LENGTH l1 = LENGTH l2 ⇒
+      ALL_DISTINCT (ZIP (l2,l1))
+
+⊢ ∀l1 l2.
+      ALL_DISTINCT l1 ∧ LENGTH l1 = LENGTH l2 ⇒ ALL_DISTINCT (ZIP (l1,l2))
+
+⊢ ∀x l. ALL_DISTINCT (SNOC x l) ⇔ ¬MEM x l ∧ ALL_DISTINCT l
+
+⊢ ∀x. ALL_DISTINCT [x]
+
+⊢ ∀s. FINITE s ⇒ ALL_DISTINCT (SET_TO_LIST s)
+
+⊢ ∀l. ALL_DISTINCT (REVERSE l) ⇔ ALL_DISTINCT l
+
+⊢ ∀l. ALL_DISTINCT (nub l)
+
+⊢ ∀ls f.
+      (∀x y. MEM x ls ∧ MEM y ls ∧ f x = f y ⇒ x = y) ∧ ALL_DISTINCT ls ⇒
+      ALL_DISTINCT (MAP f ls)
+
+⊢ ∀f ls. ALL_DISTINCT (MAP f ls) ⇒ ALL_DISTINCT ls
+
+⊢ ALL_DISTINCT (GENLIST f n) ⇔
+  ∀m1 m2. m1 < n ∧ m2 < n ∧ f m1 = f m2 ⇒ m1 = m2
+
+⊢ ∀xs. ALL_DISTINCT (FLAT (REVERSE xs)) ⇔ ALL_DISTINCT (FLAT xs)
+
+⊢ ∀P l n1 n2.
+      ALL_DISTINCT (FILTER P l) ∧ n1 < LENGTH l ∧ n2 < LENGTH l ∧
+      P (EL n1 l) ∧ EL n1 l = EL n2 l ⇒
+      n1 = n2
+
+⊢ ∀l. ALL_DISTINCT l ⇔ ∀x. MEM x l ⇒ FILTER ($= x) l = [x]
+
+⊢ ∀l n1 n2.
+      ALL_DISTINCT l ∧ n1 < LENGTH l ∧ n2 < LENGTH l ⇒
+      (EL n1 l = EL n2 l ⇔ n1 = n2)
+
+⊢ ∀ls n. ALL_DISTINCT ls ⇒ ALL_DISTINCT (DROP n ls)
+
+⊢ ∀ls. ALL_DISTINCT ls ⇒ CARD (set ls) = LENGTH ls
+
+⊢ ∀l1 l2.
+      ALL_DISTINCT (l1 ⧺ l2) ⇔
+      ALL_DISTINCT l1 ∧ ALL_DISTINCT l2 ∧ ∀e. MEM e l1 ⇒ ¬MEM e l2

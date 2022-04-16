@@ -1,0 +1,6 @@
+install poly locally / use git source following instructions
+
+note : ./configure --prefix=/somewhere/else/than/usr/local
+
+build hol4 following instructions
+

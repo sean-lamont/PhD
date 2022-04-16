@@ -1,0 +1,17 @@
+Initialization done. Main goal is:
+∀L. UNZIP L = (MAP FST L,MAP SND L).
+Exception: Induct_on to ∀L. UNZIP L = (MAP FST L,MAP SND L).
+Exception: drule ZIP_def to UNZIP L = (MAP FST L,MAP SND L).
+Exception: drule SHORTLEX_def to UNZIP [] = (MAP FST [],MAP SND []).
+Exception: metis_tac[FILTER, MAP, LENGTH, LEN_DEF, SNOC, LUPDATE_def, FOLDL, oEL_def, ZIP_def, FRONT_DEF] to UNZIP [] = (MAP FST [],MAP SND []).
+Exception: irule LEN_DEF to UNZIP [] = (MAP FST [],MAP SND []).
+Exception: rpt strip_tac >> Induct_on `min$=` to (UNZIP L = (MAP FST L,MAP SND L)) ==> (∀h. UNZIP (h::L) = (MAP FST (h::L),MAP SND (h::L))).
+Exception: rpt strip_tac >> Induct_on `h` to (UNZIP L = (MAP FST L,MAP SND L)) ==> (∀h. UNZIP (h::L) = (MAP FST (h::L),MAP SND (h::L))).
+Exception: rpt strip_tac >> drule ALL_DISTINCT to (UNZIP L = (MAP FST L,MAP SND L)) ==> (∀h. UNZIP (h::L) = (MAP FST (h::L),MAP SND (h::L))).
+Exception: rpt strip_tac >> drule LIST_BIND_def to (UNZIP L = (MAP FST L,MAP SND L)) ==> (∀h. UNZIP (h::L) = (MAP FST (h::L),MAP SND (h::L))).
+Exception: rpt strip_tac >> drule HD to (UNZIP L = (MAP FST L,MAP SND L)) ==> (∀h. UNZIP (h::L) = (MAP FST (h::L),MAP SND (h::L))).
+Exception: rpt strip_tac >> strip_tac to (UNZIP L = (MAP FST L,MAP SND L)) ==> (∀h. UNZIP (h::L) = (MAP FST (h::L),MAP SND (h::L))).
+Proved in 21 steps.
+Reward pool: [0, -1, 0, 0, 0, 0, 0, -1, 0, 0, -1, -1, -1, 0, -1, -1, -1, -1, -1, -1, 20]
+Total reward: 9
+Proof trace: [('fs[MAP, TL_DEF, FRONT_DEF, FLAT, ALL_DISTINCT, oEL_def, FOLDR, SUM_ACC_DEF, EVERYi_def, EVERY_DEF]', '∀L. UNZIP L = (MAP FST L,MAP SND L)'), ('simp[dropWhile_def, REV_DEF, list_case_def, EL, FIND_def, SUM, SNOC, oEL_def, FLAT, GENLIST_AUX]', '∀L. UNZIP L = (MAP FST L,MAP SND L)'), ('strip_tac', '∀L. UNZIP L = (MAP FST L,MAP SND L)'), ('simp[splitAtPki_def, SHORTLEX_def, SNOC, FIND_def, FOLDL, LIST_BIND_def, dropWhile_def, LRC_def, nub_def, TL_DEF]', 'UNZIP L = (MAP FST L,MAP SND L)'), ('fs[PAD_LEFT, SHORTLEX_def, FOLDL, list_size_def, DROP_def, APPEND, list_case_def, FLAT, SUM, LEN_DEF]', 'UNZIP L = (MAP FST L,MAP SND L)'), ('simp[LIST_LIFT2_def, LIST_APPLY_def, LIST_IGNORE_BIND_def, oHD_def, FILTER, APPEND, DROP_def, LIST_BIND_def, LIST_APPLY_def, DROP_def]', 'UNZIP L = (MAP FST L,MAP SND L)'), ('simp[PAD_RIGHT, INDEX_FIND_def, EVERY_DEF, EL, MAP, DROP_def, TL_DEF, LIST_LIFT2_def, oEL_def, LAST_DEF]', 'UNZIP L = (MAP FST L,MAP SND L)'), ('Induct_on `L`', 'UNZIP L = (MAP FST L,MAP SND L)'), ('simp[dropWhile_def, TL_DEF, TL_DEF, NULL_DEF, splitAtPki_def, LAST_DEF, INDEX_FIND_def, OPT_MMAP_def, REV_DEF, LAST_DEF]', 'UNZIP [] = (MAP FST [],MAP SND [])'), ('rpt strip_tac >> simp[LIST_BIND_def, INDEX_OF_def, splitAtPki_def, TL_DEF, LRC_def, GENLIST, list_size_def, LIST_IGNORE_BIND_def, EXISTS_DEF, LIST_GUARD_def]', '(UNZIP L = (MAP FST L,MAP SND L)) ==> (∀h. UNZIP (h::L) = (MAP FST (h::L),MAP SND (h::L)))')]
