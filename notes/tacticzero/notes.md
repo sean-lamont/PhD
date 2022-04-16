@@ -1,0 +1,3 @@
+Equation 6 implies the policy factorises into the product of separate goal, tactic and argument networks. Thus they are independent wrt the loss and so can be separately optimised using gradient descent on each network wrt to the total loss. 
+
+Implementation wise, need to create each network. Given a reward (done currently by sampling and taking the discounted sum), multiply this by the log gradient as in the REINFORCE estimator which then gives the loss to perform gradient descent with on each network. Could possibly do this in one vectorised step once gradients are calculated for each network. 
