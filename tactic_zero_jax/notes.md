@@ -18,6 +18,7 @@ Candidate matrix is given by the fact\_pool of known current theorems, concatena
  
 
 Q: Not sure why the hidden state has 2 vectors in a tuple? 
+A: Needed for torch syntax. (1,1,MAX\_LEN) gives us a single batch element, with 1 recurrent layer, with hidden dimension size MAX\_LEN
 Q: Where does MAX\_CONTEXT come in for the shape of the inputs
 Q: More precise detail on how the shapes for the network are derived. 
 
@@ -32,6 +33,8 @@ Env class (sets\_env):
 - Context in old repository is given by an assumption, goal pair. target = context["polished"] contains the goal and assumptions, with goal being a singleton and assumptions being a list
 
 - Encoding just looks at a global dictionary of tokens, and gives them a number up to MAX\_LEN. Encoding of a string is then given by the vector of token encodings
+
+- Doesn't seem to be done in batches in the traditional sense. Each 'batch' is an episode, where the gradient is updated from the sum of rewards for the episode. The actual inputs to the network aren't passed in as this. Some of the networks still have multiple arguments e.g. context net will be applied over a list of contexts, arg net is over candidates in some cases. But if one argument is passed in then batch norm doesn't make sense? Could use replay buffer and update in batch instead, then have separate module for the forward pass when collecting data, but would require off policy algorithm. 
 
 ## Global variables:
 
