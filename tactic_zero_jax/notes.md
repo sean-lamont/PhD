@@ -43,3 +43,11 @@ MAX\_LEN = 128, maximum length of an encoding in env class
 MAX\_ASSUMPTIONS = 3
 MAX\_CONTEXTS = 8
 
+
+## Environment 
+- new\_env class for the latest environment
+- polish vs standard notation - is there a better way? e.g. cutsom defined function to turn standard notation into polish without needing to query the process
+- history variable is list of fringes, action history list of action tuples (fringe\_id, goal\_id, tactic object)
+- fringe object has {content=polished\_goal, parent=prev\_fringe, goal=goal\_id, by\_tactic=tactic (used to get here from parent i assume), reward (from tactic application?) 
+- step takes action and processes reward and history updates. Returns reward and True if progress has been made (subgoal proven) Updates fringe/action history, shapes reward if frequency defined (i.e. records time taken to prove goals. Takes action in environment using query method
+- query method takes action as a goal and tactic and applies it to the HOL4 process. Processes reply from HOL (deals with errors, timeouts etc). Returns "data" as: empty list if goal proved, list of subgoal contexts if subgoals returned (i.e. assumptions, goal tuples in both polished and plain notation) or string for timeouts/exceptions to be handled by e.g. step. 
