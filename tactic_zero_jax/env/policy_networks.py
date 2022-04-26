@@ -87,20 +87,28 @@ class ArgPolicy(hk.Module):
     def __call__(self, x, candidates, hidden):
         
         #asserting x is integer  
-        #if x.shape == torch.Size([1]):
+        if x.size == 1:
             # x is a tactic
             # print("good")
-        x = jnp.expand_dims(self.tactic_embeddings(x), 0)
-        #else:
-        #    x = x
+       	    x = jnp.expand_dims(self.tactic_embeddings(x), 0)
+        else:
+            x = x
         
         #x = jnp.reshape(x, (1,-1))
         
+        #we should be feeding in the output of the LSTM into the FFN from the paper!
+
+        h, hidden = self.lstm(x, hidden)
+        
+       	#stack LSTM output to each candidate 
+        h_stack = jnp.concatenate([jnp.expand_dims(h[0],0) for _ in range(candidates.shape[0])])
+        
+        candidates = jnp.concatenate([candidates, h_stack], 1)
         s = jax.nn.relu(self.fc(candidates)) 
         s = jax.nn.relu(self.fc2(s))
         scores = self.head(s)
         
-        o, hidden = self.lstm(x, hidden)
+
         
         return hidden, scores
 
@@ -139,6 +147,39 @@ class TermPolicy(hk.Module):
 def _term_forward(candidates, tac, tactic_size, embedding_dim):
     module = TermPolicy(tactic_size, embedding_dim)
     return module(candidates, tac)
+    
+    
+#network for term policy without tactic argument as that is implicit in its usage (always Induct_on)
+class TermPolicyNoTac(hk.Module):
+    def __init__(self, name=None):
+        super().__init__(name=name)  
+                
+        self.fc = hk.Linear(512)
+        self.fc2 = hk.Linear(1024)
+        self.head = hk.Linear(1)
+
+    def __call__(self, x):
+
+        #tac = self.tactic_embeddings(tac)#.view(1,-1)
+        
+        #concatenate the tactic to every candidate 
+    
+        #tac_tensor = jnp.stack([tac for _ in range(candidates.shape[0])], 1)
+        #x  = jnp.concatenate([jnp.reshape(tac_tensor, candidates.shape), candidates], axis=1)
+    
+        x = jax.nn.relu(self.fc(x))
+        x = jax.nn.relu(self.fc2(x))
+        x = self.head(x)
+        
+        return x
+    
+    
+    
+def _term_no_tac_forward(x):# tactic_size, embedding_dim):
+    module = TermPolicyNoTac()
+    return module(x)
+
+
 
 
 # In[435]:
