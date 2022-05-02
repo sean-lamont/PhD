@@ -93,6 +93,7 @@ class ArgPolicy(hk.Module):
        	    x = jnp.expand_dims(self.tactic_embeddings(x), 0)
         else:
             x = x
+            
         
         #x = jnp.reshape(x, (1,-1))
         

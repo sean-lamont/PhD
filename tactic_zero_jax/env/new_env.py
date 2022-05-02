@@ -16,7 +16,7 @@ from time import sleep
 import json
 import signal
 import os
-#from exp_config import *
+from exp_config import *
 #from autoencoder.autoencoder import *
 from copy import deepcopy
 #from igraph import *
@@ -26,6 +26,8 @@ from copy import deepcopy
 HOLPATH = "/home/sean/Documents/PhD/HOL4/HOL/bin/hol --maxheap=256"
 
 ansi_escape = re.compile(r'\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])')
+
+
 
 def parse_theory(pg):
     theories = re.findall(r'C\$(\w+)\$ ', pg)
