@@ -50,17 +50,15 @@ class TacPolicy(hk.Module):
         super().__init__(name=name)    
     
         self.fc = hk.Linear(512)
-        self.fc2 = hk.Linear(1024)
+        #self.fc2 = hk.Linear(1024)
 
         self.head = hk.Linear(tactic_size)
         
     def __call__(self, x):
 
         x = jax.nn.relu(self.fc(x)) 
-        x = jax.nn.relu(self.fc2(x)) 
-        x = jax.nn.softmax(self.head(x), axis=1) 
-        
-        return x
+        #x = jax.nn.relu(self.fc2(x)) 
+        return self.head(x)
 
 def _tac_forward(x, action_size):
     module = TacPolicy(action_size)
@@ -314,6 +312,18 @@ def _term_no_tac_forward(x):# tactic_size, embedding_dim):
 
 
 # In[ ]:
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

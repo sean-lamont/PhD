@@ -403,8 +403,12 @@ class HolEnv():
         return data
 
     def step(self, action):            
+       # print ("test")
+       # print (action)
+       # print (self.action_history)
         if action in self.action_history:
-            reward = -0.1
+            reward = -1
+            print ("same action")
             return reward, False # TODO: make this reward zero?
         fringe_id, goal_id, tactic = action
         target_fringe = self.history[fringe_id]
@@ -521,12 +525,16 @@ class HolEnv():
             else:
                 # nothing changed
                 reward = -0.1
+
+                self.action_history.append(action)
         else:
             if d == "timeout":
                 reward = -0.1
+                self.action_history.append(action)
             else:
                 # not applicable
                 reward = -0.1
+                self.action_history.append(action)
                 
         return reward, False
         
