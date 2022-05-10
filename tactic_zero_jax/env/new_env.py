@@ -23,7 +23,7 @@ from copy import deepcopy
 #import plotly.graph_objects as go
 #import timeit
 
-HOLPATH = "/home/sean/Documents/PhD/HOL4/HOL/bin/hol --maxheap=256"
+HOLPATH = "/home/sean/Documents/hol/HOL/bin/hol --maxheap=256"
 
 ansi_escape = re.compile(r'\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])')
 
