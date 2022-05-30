@@ -24,6 +24,8 @@ from copy import deepcopy
 #import timeit
 
 HOLPATH = "/home/sean/Documents/hol/HOL/bin/hol --maxheap=256"
+HOLPATH = "/home/sean/Documents/PhD/HOL4/HOL/bin/hol --maxheap=256"
+
 
 ansi_escape = re.compile(r'\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])')
 
@@ -90,7 +92,7 @@ class HolEnv():
         self.frequency = {}
         self.mean_frequency = 0
         
-        self.import_theories = []
+        self.import_theories = ["probabilityTheory"]
         self.process = pexpect.spawn(HOLPATH, timeout=3)
         
         # experimental feature
@@ -828,6 +830,17 @@ def draw_tree(history, output_graph=False):
     # fig.show()
     fig.write_html('first_figure.html', auto_open=True)
 
+def split_by_fringe(goal_set, goal_scores, fringe_sizes):
+    # group the scores by fringe
+    fs = []
+    gs = []
+    counter = 0
+    for i in fringe_sizes:
+        end = counter + i
+        fs.append(goal_scores[counter:end])
+        gs.append(goal_set[counter:end])
+        counter = end
+    return gs, fs
 
 # def encode(s):
 #     # s is a string
@@ -899,18 +912,51 @@ def draw_tree(history, output_graph=False):
 #         representations.append(encoded.unsqueeze(0))
 #     return torch.stack(representations), goals,fringe_sizes
 
+#def revert_with_polish(context):
+#    target = context["polished"]
+#    assumptions = target["assumptions"]
+#    goal = target["goal"]
+#    for i in reversed(assumptions): 
+#        goal = "@ @ Dmin$==> {} {}".format(i, goal)
+#    return goal    
+
 def revert_with_polish(context):
-    target = context["polished"]
-    assumptions = target["assumptions"]
-    goal = target["goal"]
-    for i in reversed(assumptions): 
-        goal = "@ @ Dmin$==> {} {}".format(i, goal)
-    return goal    
-    
+   target = context["polished"]
+   assumptions = target["assumptions"]
+   goal = target["goal"]
+   for i in reversed(assumptions): 
+       #goal = "@ @ D$min$==> {} {}".format(i, goal)
+       goal = "@ @ C$min$ ==> {} {}".format(i, goal)
+
+   return goal 
+
+   
+
+#def gather_encoded_content(history, encoder):
+#    # figure out why this is slower than tests
+#    # figured out: remember to do strip().split()
+#    fringe_sizes = []
+#    contexts = []
+#    reverted = []
+#    for i in history:
+#        c = i["content"]
+#        contexts.extend(c)
+#        fringe_sizes.append(len(c))
+#    for e in contexts:
+#        g = revert_with_polish(e)
+#        reverted.append(g.strip().split())
+#    # print(reverted)
+#    # s1 = timeit.default_timer()
+#    out, sizes = batch_encoder.encode(reverted)
+#    # merge two hidden variables
+#    representations = torch.cat(out.split(1), dim=2).squeeze(0)
+#    # print(representations.shape)
+#    # s2 = timeit.default_timer()    
+#    # print(s2-s1)
+#
+#    return representations, contexts, fringe_sizes
 
 def gather_encoded_content(history, encoder):
-    # figure out why this is slower than tests
-    # figured out: remember to do strip().split()
     fringe_sizes = []
     contexts = []
     reverted = []
@@ -921,14 +967,14 @@ def gather_encoded_content(history, encoder):
     for e in contexts:
         g = revert_with_polish(e)
         reverted.append(g.strip().split())
-    # print(reverted)
-    # s1 = timeit.default_timer()
-    out, sizes = batch_encoder.encode(reverted)
-    # merge two hidden variables
-    representations = torch.cat(out.split(1), dim=2).squeeze(0)
-    # print(representations.shape)
-    # s2 = timeit.default_timer()    
-    # print(s2-s1)
+    out = []
+    sizes = []
+    for goal in reverted:
+        out_, sizes_ = encoder.encode([goal])
+        out.append(torch.cat(out_.split(1), dim=2).squeeze(0))
+        sizes.append(sizes_)
+
+    representations = out
 
     return representations, contexts, fringe_sizes
 
