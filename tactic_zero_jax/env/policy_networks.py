@@ -11,7 +11,8 @@ from jax import random
 from jax import numpy as jnp
 from jax import jit
 from functools import partial
-
+from jax import vmap
+import numpy as np
 
 # In[457]:
 
@@ -100,9 +101,20 @@ class ArgPolicy(hk.Module):
         h, hidden = self.lstm(x, hidden)
         
        	#stack LSTM output to each candidate 
-        h_stack = jnp.concatenate([jnp.expand_dims(h[0],0) for _ in range(candidates.shape[0])])
+        h = jnp.expand_dims(h[0],0)
         
+#        #create and update array in place, more efficient than jax concatenate
+#
+#        h_stack = np.zeros((candidates.shape[0], h.shape[1]))
+#        
+#        for i in range(candidates.shape[0]):
+#            h_stack[i] = h
+#        
+#        h_stack = jnp.array(h_stack)
+#
+        h_stack = jnp.concatenate([h for _ in range(candidates.shape[0])])
         candidates = jnp.concatenate([candidates, h_stack], 1)
+
         s = jax.nn.relu(self.fc(candidates)) 
         s = jax.nn.relu(self.fc2(s))
         scores = self.head(s)
